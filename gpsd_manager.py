@@ -157,12 +157,6 @@ class GpsdManager:
             if result.returncode != 0 and "password" in result.stderr.lower():
                 issues.append("Not running as root and passwordless sudo not available for systemctl")
 
-        result = self._run(["groups"])
-        if result.returncode == 0:
-            groups = result.stdout.strip().split()
-            if "dialout" not in groups:
-                issues.append("User not in 'dialout' group - may not be able to access serial GPS devices")
-
         return len(issues) == 0, issues
 
     def get_status(self) -> GpsdStatus:
