@@ -586,4 +586,7 @@ async def api_config():
 
 if __name__ == "__main__":
     import uvicorn
-    uvicorn.run("gpsd_manager:app", host="0.0.0.0", port=8000, reload=True, log_level="warning")
+    host = "0.0.0.0"
+    port = 8000
+    print(f"GPSD Manager starting — http://{host}:{port}")
+    uvicorn.run("gpsd_manager:app", host=host, port=port, reload=True, log_level="warning")
