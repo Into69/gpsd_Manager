@@ -483,7 +483,14 @@
         async function serviceAction(action) {
             const data = await api('POST', action);
             toast(data.message, data.success ? 'success' : 'error');
-            setTimeout(refreshStatus, 1000);
+            setTimeout(() => {
+                refreshStatus();
+                if (action === 'restart') {
+                    loadOptions();
+                    configuredDevices = [];
+                    scanDevices();
+                }
+            }, 1000);
         }
 
         // --- Options ---

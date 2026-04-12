@@ -241,6 +241,7 @@ class GpsdManager:
                   "speed": None, "track": None, "climb": None, "time": None,
                   "satellites_used": None, "satellites_visible": None,
                   "hdop": None, "pdop": None, "vdop": None,
+                  "snr_min": None, "snr_max": None, "snr_avg": None,
                   "error": None}
 
         try:
@@ -324,6 +325,16 @@ class GpsdManager:
         result["hdop"] = data.get("hdop")
         result["pdop"] = data.get("pdop")
         result["vdop"] = data.get("vdop")
+        # SNR/signal strength from satellites that report it (ss field, in dB-Hz)
+        snr_values = [s["ss"] for s in sats if s.get("ss") is not None and s["ss"] > 0]
+        if snr_values:
+            result["snr_min"] = min(snr_values)
+            result["snr_max"] = max(snr_values)
+            result["snr_avg"] = round(sum(snr_values) / len(snr_values), 1)
+        else:
+            result["snr_min"] = None
+            result["snr_max"] = None
+            result["snr_avg"] = None
 
     def get_logs(self, lines: int = 100) -> str:
         """Get recent gpsd log entries from journald."""
@@ -333,9 +344,10 @@ class GpsdManager:
         return f"Could not retrieve logs: {result.stderr}"
 
     def restart(self) -> tuple[bool, str]:
-        """Restart the gpsd service."""
+        """Restart the gpsd service and reload config."""
         result = self._run(["sudo", "systemctl", "restart", self.GPSD_SYSTEMD_SERVICE], timeout=15)
         if result.returncode == 0:
+            self._load_config()
             return True, "gpsd restarted successfully"
         return False, f"Failed to restart gpsd: {result.stderr}"
 
