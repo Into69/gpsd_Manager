@@ -82,6 +82,48 @@ class GpsdManager:
         except OSError:
             pass
 
+    def sync_options_from_running(self):
+        """Read the running gpsd process's command line and sync options to match."""
+        # Try to get PID from systemd
+        result = self._run(["systemctl", "show", self.GPSD_SYSTEMD_SERVICE, "--property=MainPID"])
+        if result.returncode != 0:
+            return
+        match = re.search(r"MainPID=(\d+)", result.stdout)
+        if not match or match.group(1) == "0":
+            return
+
+        pid = match.group(1)
+        cmdline_path = Path(f"/proc/{pid}/cmdline")
+        if not cmdline_path.exists():
+            return
+
+        try:
+            raw = cmdline_path.read_bytes()
+            args = raw.decode("utf-8", errors="replace").split("\x00")
+        except OSError:
+            return
+
+        # Reset all options, then enable those present in the cmdline
+        for flag in self.options:
+            self.options[flag]["enabled"] = False
+        for arg in args:
+            if arg in self.options:
+                self.options[arg]["enabled"] = True
+
+    def get_configured_devices(self) -> list[str]:
+        """Return the device paths currently set in /etc/default/gpsd."""
+        conf = Path(self.GPSD_CONF_PATH)
+        if not conf.exists():
+            return []
+        try:
+            content = conf.read_text()
+            match = re.search(r'DEVICES="([^"]*)"', content)
+            if match and match.group(1).strip():
+                return match.group(1).strip().split()
+        except OSError:
+            pass
+        return []
+
     def check_installed(self) -> tuple[bool, str | None, str | None]:
         """Check if gpsd is installed and return (installed, version, path)."""
         gpsd_path = shutil.which("gpsd")
@@ -317,6 +359,19 @@ def run_startup_checks() -> dict:
     report["has_permissions"] = has_perms
     if not has_perms:
         report["issues"].extend(perm_issues)
+
+    # Sync options from the running process (if running), otherwise config is
+    # already loaded from /etc/default/gpsd during __init__
+    result = subprocess.run(
+        ["systemctl", "is-active", manager.GPSD_SYSTEMD_SERVICE],
+        capture_output=True, text=True, timeout=5,
+    )
+    if result.returncode == 0 and result.stdout.strip() == "active":
+        manager.sync_options_from_running()
+
+    # Include configured devices so the frontend can pre-select them
+    report["configured_devices"] = manager.get_configured_devices()
+
     return report
 
 

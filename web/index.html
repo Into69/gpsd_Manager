@@ -445,9 +445,18 @@
         }
 
         // --- Devices ---
+        let configuredDevices = [];
+
         async function scanDevices() {
             const el = document.getElementById('available-devices');
             el.innerHTML = '<li class="empty-state"><span class="spinner"></span>Scanning...</li>';
+
+            // Fetch configured devices from startup report if not already loaded
+            if (configuredDevices.length === 0) {
+                const startup = await api('GET', 'startup');
+                configuredDevices = startup.configured_devices || [];
+            }
+
             const data = await api('GET', 'devices');
             if (!data.devices || data.devices.length === 0) {
                 el.innerHTML = '<li class="empty-state">No GPS devices found</li>';
@@ -455,7 +464,8 @@
             }
             el.innerHTML = data.devices.map(d => `
                 <li class="device-item">
-                    <input type="checkbox" value="${d.path}" class="device-checkbox">
+                    <input type="checkbox" value="${d.path}" class="device-checkbox"
+                           ${configuredDevices.includes(d.path) ? 'checked' : ''}>
                     <div>
                         <span class="device-path">${d.path}</span>
                         ${d.description ? `<div class="device-desc">${d.description}</div>` : ''}
