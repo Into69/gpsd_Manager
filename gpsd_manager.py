@@ -66,6 +66,22 @@ class GpsdManager:
             self.errors.append(f"Command not found: {cmd[0]}")
             return subprocess.CompletedProcess(cmd, returncode=-1, stdout="", stderr=f"{cmd[0]} not found")
 
+    def _expand_flags(self, args: list[str]) -> set[str]:
+        """Expand combined flags like '-Gn' into individual flags {'-G', '-n'}."""
+        expanded = set()
+        for arg in args:
+            if arg.startswith("-") and len(arg) > 2 and not arg.startswith("--"):
+                for char in arg[1:]:
+                    expanded.add(f"-{char}")
+            else:
+                expanded.add(arg)
+        return expanded
+
+    def _apply_flags(self, flags: set[str]):
+        """Reset all options then enable only those present in flags."""
+        for flag in self.options:
+            self.options[flag]["enabled"] = flag in flags
+
     def _load_config(self):
         """Load saved options from /etc/default/gpsd if it exists."""
         conf = Path(self.GPSD_CONF_PATH)
@@ -75,10 +91,8 @@ class GpsdManager:
             content = conf.read_text()
             match = re.search(r'GPSD_OPTIONS="([^"]*)"', content)
             if match:
-                saved_flags = match.group(1).split()
-                for flag in saved_flags:
-                    if flag in self.options:
-                        self.options[flag]["enabled"] = True
+                flags = self._expand_flags(match.group(1).split())
+                self._apply_flags(flags)
         except OSError:
             pass
 
@@ -103,12 +117,7 @@ class GpsdManager:
         except OSError:
             return
 
-        # Reset all options, then enable those present in the cmdline
-        for flag in self.options:
-            self.options[flag]["enabled"] = False
-        for arg in args:
-            if arg in self.options:
-                self.options[arg]["enabled"] = True
+        self._apply_flags(self._expand_flags(args))
 
     def get_configured_devices(self) -> list[str]:
         """Return the device paths currently set in /etc/default/gpsd."""
@@ -478,6 +487,13 @@ async def api_set_option(request: Request):
     enabled = body.get("enabled", False)
     ok, msg = manager.set_option(flag, enabled)
     return {"success": ok, "message": msg}
+
+
+@app.post("/api/options/save")
+async def api_save_options():
+    """Save current options to /etc/default/gpsd."""
+    ok, msg = manager._write_config()
+    return {"success": ok, "message": msg if not ok else "Options saved to config. Restart gpsd to apply."}
 
 
 @app.get("/api/config")

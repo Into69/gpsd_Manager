@@ -299,6 +299,9 @@
             <div class="card">
                 <h2>Options</h2>
                 <div id="options-list"></div>
+                <div class="btn-group">
+                    <button class="btn btn-blue" onclick="saveOptions()">Save to Config</button>
+                </div>
             </div>
         </div>
 
@@ -441,6 +444,11 @@
 
         async function toggleOption(flag, enabled) {
             const data = await api('POST', 'options', { flag, enabled });
+            toast(data.message, data.success ? 'success' : 'error');
+        }
+
+        async function saveOptions() {
+            const data = await api('POST', 'options/save');
             toast(data.message, data.success ? 'success' : 'error');
         }
 
