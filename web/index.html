@@ -364,6 +364,10 @@
                         <span class="status-label">VDOP</span>
                         <span class="status-value" id="gps-vdop">--</span>
                     </div>
+                    <div class="status-row">
+                        <span class="status-label">SNR (dB-Hz)</span>
+                        <span class="status-value" id="gps-snr">--</span>
+                    </div>
                 </div>
             </div>
         </div>
@@ -584,6 +588,12 @@
             document.getElementById('gps-hdop').textContent = fmt(data.hdop, '', 1);
             document.getElementById('gps-pdop').textContent = fmt(data.pdop, '', 1);
             document.getElementById('gps-vdop').textContent = fmt(data.vdop, '', 1);
+            if (data.snr_avg !== null) {
+                document.getElementById('gps-snr').textContent =
+                    `${data.snr_min} / ${data.snr_avg} / ${data.snr_max} (min/avg/max)`;
+            } else {
+                document.getElementById('gps-snr').textContent = '--';
+            }
         }
 
         // --- Logs ---
@@ -604,7 +614,7 @@
 
         // Auto-refresh status every 15 seconds, GPS every 5 seconds
         setInterval(refreshStatus, 15000);
-        setInterval(refreshGps, 5000);
+        setInterval(refreshGps, 1000);
     </script>
 </body>
 </html>
