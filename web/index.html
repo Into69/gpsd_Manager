@@ -305,6 +305,69 @@
             </div>
         </div>
 
+        <!-- GPS Info -->
+        <div class="card">
+            <h2>GPS Information</h2>
+            <div class="grid-2">
+                <div>
+                    <div class="status-row">
+                        <span class="status-label">Fix</span>
+                        <span class="status-value" id="gps-fix">--</span>
+                    </div>
+                    <div class="status-row">
+                        <span class="status-label">Latitude</span>
+                        <span class="status-value" id="gps-lat">--</span>
+                    </div>
+                    <div class="status-row">
+                        <span class="status-label">Longitude</span>
+                        <span class="status-value" id="gps-lon">--</span>
+                    </div>
+                    <div class="status-row">
+                        <span class="status-label">Altitude</span>
+                        <span class="status-value" id="gps-alt">--</span>
+                    </div>
+                    <div class="status-row">
+                        <span class="status-label">Speed</span>
+                        <span class="status-value" id="gps-speed">--</span>
+                    </div>
+                    <div class="status-row">
+                        <span class="status-label">Heading</span>
+                        <span class="status-value" id="gps-track">--</span>
+                    </div>
+                    <div class="status-row">
+                        <span class="status-label">Climb</span>
+                        <span class="status-value" id="gps-climb">--</span>
+                    </div>
+                </div>
+                <div>
+                    <div class="status-row">
+                        <span class="status-label">Time (UTC)</span>
+                        <span class="status-value" id="gps-time">--</span>
+                    </div>
+                    <div class="status-row">
+                        <span class="status-label">Satellites Used</span>
+                        <span class="status-value" id="gps-sats-used">--</span>
+                    </div>
+                    <div class="status-row">
+                        <span class="status-label">Satellites Visible</span>
+                        <span class="status-value" id="gps-sats-visible">--</span>
+                    </div>
+                    <div class="status-row">
+                        <span class="status-label">HDOP</span>
+                        <span class="status-value" id="gps-hdop">--</span>
+                    </div>
+                    <div class="status-row">
+                        <span class="status-label">PDOP</span>
+                        <span class="status-value" id="gps-pdop">--</span>
+                    </div>
+                    <div class="status-row">
+                        <span class="status-label">VDOP</span>
+                        <span class="status-value" id="gps-vdop">--</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <!-- Devices -->
         <div class="card">
             <h2>GPS Devices</h2>
@@ -493,6 +556,36 @@
             toast(data.message, data.success ? 'success' : 'error');
         }
 
+        // --- GPS Info ---
+        function fmt(val, unit, decimals = 6) {
+            if (val === null || val === undefined) return '--';
+            return Number(val).toFixed(decimals) + (unit ? ' ' + unit : '');
+        }
+
+        async function refreshGps() {
+            const data = await api('GET', 'gps');
+            if (data.error) {
+                document.getElementById('gps-fix').innerHTML = '<span class="badge badge-red">Unavailable</span>';
+                return;
+            }
+
+            const fixColors = { 'No fix': 'badge-red', '2D fix': 'badge-yellow', '3D fix': 'badge-green' };
+            const fixClass = fixColors[data.fix] || 'badge-red';
+            document.getElementById('gps-fix').innerHTML = `<span class="badge ${fixClass}">${data.fix}</span>`;
+            document.getElementById('gps-lat').textContent = fmt(data.lat, '\u00B0', 7);
+            document.getElementById('gps-lon').textContent = fmt(data.lon, '\u00B0', 7);
+            document.getElementById('gps-alt').textContent = fmt(data.alt, 'm', 1);
+            document.getElementById('gps-speed').textContent = fmt(data.speed, 'm/s', 2);
+            document.getElementById('gps-track').textContent = fmt(data.track, '\u00B0', 1);
+            document.getElementById('gps-climb').textContent = fmt(data.climb, 'm/s', 2);
+            document.getElementById('gps-time').textContent = data.time || '--';
+            document.getElementById('gps-sats-used').textContent = data.satellites_used ?? '--';
+            document.getElementById('gps-sats-visible').textContent = data.satellites_visible ?? '--';
+            document.getElementById('gps-hdop').textContent = fmt(data.hdop, '', 1);
+            document.getElementById('gps-pdop').textContent = fmt(data.pdop, '', 1);
+            document.getElementById('gps-vdop').textContent = fmt(data.vdop, '', 1);
+        }
+
         // --- Logs ---
         async function refreshLogs() {
             const el = document.getElementById('log-output');
@@ -507,9 +600,11 @@
         refreshStatus();
         loadOptions();
         scanDevices();
+        refreshGps();
 
-        // Auto-refresh status every 15 seconds
+        // Auto-refresh status every 15 seconds, GPS every 5 seconds
         setInterval(refreshStatus, 15000);
+        setInterval(refreshGps, 5000);
     </script>
 </body>
 </html>

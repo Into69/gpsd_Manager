@@ -5,7 +5,9 @@ import json
 import os
 import re
 import shutil
+import socket
 import subprocess
+import time
 from contextlib import asynccontextmanager
 from dataclasses import asdict, dataclass, field
 from pathlib import Path
@@ -233,6 +235,74 @@ class GpsdManager:
 
         return devices
 
+    def get_gps_info(self) -> dict:
+        """Query gpsd via its JSON socket for current GPS fix and satellite info."""
+        result = {"fix": "No data", "lat": None, "lon": None, "alt": None,
+                  "speed": None, "track": None, "climb": None, "time": None,
+                  "satellites_used": None, "satellites_visible": None,
+                  "hdop": None, "pdop": None, "vdop": None,
+                  "error": None}
+
+        try:
+            sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+            sock.settimeout(3)
+            sock.connect(("127.0.0.1", 2947))
+
+            # gpsd sends a version line on connect, then we request a WATCH
+            sock.recv(1024)
+            sock.sendall(b'?WATCH={"enable":true,"json":true};\n')
+
+            buf = b""
+            deadline = 4  # seconds total to collect data
+            sock.settimeout(1)
+            start = time.monotonic()
+
+            while time.monotonic() - start < deadline:
+                try:
+                    chunk = sock.recv(4096)
+                    if not chunk:
+                        break
+                    buf += chunk
+                except socket.timeout:
+                    continue
+
+                # Process complete lines
+                while b"\n" in buf:
+                    line, buf = buf.split(b"\n", 1)
+                    try:
+                        data = json.loads(line)
+                    except json.JSONDecodeError:
+                        continue
+
+                    if data.get("class") == "TPV":
+                        mode = data.get("mode", 0)
+                        result["fix"] = {0: "Unknown", 1: "No fix", 2: "2D fix", 3: "3D fix"}.get(mode, "Unknown")
+                        result["lat"] = data.get("lat")
+                        result["lon"] = data.get("lon")
+                        result["alt"] = data.get("altHAE", data.get("alt"))
+                        result["speed"] = data.get("speed")
+                        result["track"] = data.get("track")
+                        result["climb"] = data.get("climb")
+                        result["time"] = data.get("time")
+
+                    elif data.get("class") == "SKY":
+                        sats = data.get("satellites", [])
+                        result["satellites_visible"] = len(sats)
+                        result["satellites_used"] = sum(1 for s in sats if s.get("used"))
+                        result["hdop"] = data.get("hdop")
+                        result["pdop"] = data.get("pdop")
+                        result["vdop"] = data.get("vdop")
+
+                # Stop early if we have both TPV and SKY data
+                if result["lat"] is not None and result["satellites_visible"] is not None:
+                    break
+
+            sock.close()
+        except (OSError, ConnectionRefusedError) as e:
+            result["error"] = str(e)
+
+        return result
+
     def get_logs(self, lines: int = 100) -> str:
         """Get recent gpsd log entries from journald."""
         result = self._run(["journalctl", "-u", self.GPSD_SYSTEMD_SERVICE, "-n", str(lines), "--no-pager"])
@@ -382,16 +452,6 @@ def run_startup_checks() -> dict:
 async def lifespan(app: FastAPI):
     global startup_report
     startup_report = run_startup_checks()
-
-    if startup_report["installed"]:
-        print(f"[startup] gpsd found: v{startup_report['version']} at {startup_report['gpsd_path']}")
-    else:
-        print("[startup] WARNING: gpsd is NOT installed")
-
-    if startup_report["issues"]:
-        for issue in startup_report["issues"]:
-            print(f"[startup] ISSUE: {issue}")
-
     yield
 
 
@@ -421,6 +481,12 @@ async def api_status():
     """Get current gpsd status."""
     status = manager.get_status()
     return asdict(status)
+
+
+@app.get("/api/gps")
+async def api_gps():
+    """Get current GPS fix and satellite info."""
+    return manager.get_gps_info()
 
 
 @app.post("/api/start")
