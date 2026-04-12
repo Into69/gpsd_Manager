@@ -248,22 +248,26 @@ class GpsdManager:
             sock.settimeout(3)
             sock.connect(("127.0.0.1", 2947))
 
-            # gpsd sends a version line on connect, then we request a WATCH
+            # gpsd sends a version line on connect
             sock.recv(1024)
-            sock.sendall(b'?WATCH={"enable":true,"json":true};\n')
+            # Enable watching and immediately request a POLL for both TPV and SKY
+            sock.sendall(b'?WATCH={"enable":true,"json":true};\n?POLL;\n')
 
             buf = b""
-            deadline = 4  # seconds total to collect data
+            got_tpv = False
+            got_sky = False
             sock.settimeout(1)
             start = time.monotonic()
 
-            while time.monotonic() - start < deadline:
+            while time.monotonic() - start < 5:
                 try:
                     chunk = sock.recv(4096)
                     if not chunk:
                         break
                     buf += chunk
                 except socket.timeout:
+                    if got_tpv and got_sky:
+                        break
                     continue
 
                 # Process complete lines
@@ -274,27 +278,24 @@ class GpsdManager:
                     except json.JSONDecodeError:
                         continue
 
-                    if data.get("class") == "TPV":
-                        mode = data.get("mode", 0)
-                        result["fix"] = {0: "Unknown", 1: "No fix", 2: "2D fix", 3: "3D fix"}.get(mode, "Unknown")
-                        result["lat"] = data.get("lat")
-                        result["lon"] = data.get("lon")
-                        result["alt"] = data.get("altHAE", data.get("alt"))
-                        result["speed"] = data.get("speed")
-                        result["track"] = data.get("track")
-                        result["climb"] = data.get("climb")
-                        result["time"] = data.get("time")
+                    if data.get("class") == "POLL":
+                        # POLL response contains tpv and sky arrays
+                        for tpv in data.get("tpv", []):
+                            self._parse_tpv(tpv, result)
+                            got_tpv = True
+                        for sky in data.get("sky", []):
+                            self._parse_sky(sky, result)
+                            got_sky = True
+
+                    elif data.get("class") == "TPV":
+                        self._parse_tpv(data, result)
+                        got_tpv = True
 
                     elif data.get("class") == "SKY":
-                        sats = data.get("satellites", [])
-                        result["satellites_visible"] = len(sats)
-                        result["satellites_used"] = sum(1 for s in sats if s.get("used"))
-                        result["hdop"] = data.get("hdop")
-                        result["pdop"] = data.get("pdop")
-                        result["vdop"] = data.get("vdop")
+                        self._parse_sky(data, result)
+                        got_sky = True
 
-                # Stop early if we have both TPV and SKY data
-                if result["lat"] is not None and result["satellites_visible"] is not None:
+                if got_tpv and got_sky:
                     break
 
             sock.close()
@@ -302,6 +303,27 @@ class GpsdManager:
             result["error"] = str(e)
 
         return result
+
+    @staticmethod
+    def _parse_tpv(data: dict, result: dict):
+        mode = data.get("mode", 0)
+        result["fix"] = {0: "Unknown", 1: "No fix", 2: "2D fix", 3: "3D fix"}.get(mode, "Unknown")
+        result["lat"] = data.get("lat")
+        result["lon"] = data.get("lon")
+        result["alt"] = data.get("altHAE", data.get("alt"))
+        result["speed"] = data.get("speed")
+        result["track"] = data.get("track")
+        result["climb"] = data.get("climb")
+        result["time"] = data.get("time")
+
+    @staticmethod
+    def _parse_sky(data: dict, result: dict):
+        sats = data.get("satellites", [])
+        result["satellites_visible"] = len(sats)
+        result["satellites_used"] = sum(1 for s in sats if s.get("used"))
+        result["hdop"] = data.get("hdop")
+        result["pdop"] = data.get("pdop")
+        result["vdop"] = data.get("vdop")
 
     def get_logs(self, lines: int = 100) -> str:
         """Get recent gpsd log entries from journald."""
