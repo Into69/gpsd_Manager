@@ -339,7 +339,7 @@ async def lifespan(app: FastAPI):
 
 app = FastAPI(title="GPSD Manager", lifespan=lifespan)
 
-templates_dir = Path(__file__).parent / "templates"
+templates_dir = Path(__file__).parent / "web"
 templates = Jinja2Templates(directory=str(templates_dir))
 
 
