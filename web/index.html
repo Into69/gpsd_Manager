@@ -458,14 +458,21 @@
                 ? '<span class="badge badge-green">Running</span>'
                 : '<span class="badge badge-red">Stopped</span>';
 
-            // Active devices in sidebar
+            // Active / configured devices in sidebar
             const activeEl = document.getElementById('active-devices');
-            if (data.devices && data.devices.length) {
-                activeEl.innerHTML = data.devices.map(d =>
-                    `<li class="device-item"><span class="device-path">${d}</span></li>`
-                ).join('');
+            const activeSet = new Set(data.devices || []);
+            // Merge configured devices with active devices
+            const allDevices = [...new Set([...configuredDevices, ...activeSet])].sort();
+            if (allDevices.length) {
+                activeEl.innerHTML = allDevices.map(d => {
+                    const active = activeSet.has(d);
+                    const badge = active
+                        ? '<span class="badge badge-green">active</span>'
+                        : '<span class="badge badge-red">inactive</span>';
+                    return `<li class="device-item"><span class="device-path">${d}</span> ${badge}</li>`;
+                }).join('');
             } else {
-                activeEl.innerHTML = '<li class="empty-state">No active devices</li>';
+                activeEl.innerHTML = '<li class="empty-state">No devices</li>';
             }
 
             // Errors
@@ -613,11 +620,16 @@
         }
 
         // --- Init ---
-        checkStartup();
-        refreshStatus();
-        loadOptions();
-        scanDevices();
-        refreshGps();
+        async function init() {
+            const startup = await api('GET', 'startup');
+            configuredDevices = startup.configured_devices || [];
+            checkStartup();
+            refreshStatus();
+            loadOptions();
+            scanDevices();
+            refreshGps();
+        }
+        init();
 
         // Auto-refresh status every 15 seconds, GPS every 5 seconds
         setInterval(refreshStatus, 15000);
