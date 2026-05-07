@@ -237,12 +237,23 @@ class GpsdManager:
 
     def get_gps_info(self) -> dict:
         """Query gpsd via its JSON socket for current GPS fix and satellite info."""
-        result = {"fix": "No data", "lat": None, "lon": None, "alt": None,
-                  "speed": None, "track": None, "climb": None, "time": None,
-                  "satellites_used": None, "satellites_visible": None,
-                  "hdop": None, "pdop": None, "vdop": None,
-                  "snr_min": None, "snr_max": None, "snr_avg": None,
-                  "error": None}
+        result = {
+            "fix": "No data", "status": None,
+            "lat": None, "lon": None,
+            "alt": None, "alt_msl": None, "geoid_sep": None,
+            "speed": None, "track": None,
+            "magtrack": None, "magvar": None,
+            "climb": None, "time": None,
+            "epx": None, "epy": None, "epv": None,
+            "eps": None, "ept": None, "epd": None, "epc": None,
+            "satellites_used": None, "satellites_visible": None,
+            "hdop": None, "pdop": None, "vdop": None,
+            "tdop": None, "gdop": None,
+            "snr_min": None, "snr_max": None, "snr_avg": None,
+            "constellations": {},
+            "satellites": [],
+            "error": None,
+        }
 
         try:
             sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -305,26 +316,49 @@ class GpsdManager:
 
         return result
 
-    @staticmethod
-    def _parse_tpv(data: dict, result: dict):
+    # See gpsd JSON protocol docs (TPV.status field)
+    _STATUS_MAP = {
+        1: "Normal", 2: "DGPS", 3: "RTK Fixed", 4: "RTK Float",
+        5: "DR", 6: "GNSS+DR", 7: "Time only", 8: "Simulated", 9: "P(Y)",
+    }
+
+    # gpsd gnssid -> human name (NMEA 0183 v4.10 / u-blox)
+    _GNSS_NAMES = {
+        0: "GPS", 1: "SBAS", 2: "Galileo", 3: "BeiDou",
+        4: "IMES", 5: "QZSS", 6: "GLONASS", 7: "NavIC",
+    }
+
+    @classmethod
+    def _parse_tpv(cls, data: dict, result: dict):
         mode = data.get("mode", 0)
         result["fix"] = {0: "Unknown", 1: "No fix", 2: "2D fix", 3: "3D fix"}.get(mode, "Unknown")
+        status = data.get("status")
+        result["status"] = cls._STATUS_MAP.get(status) if status else None
         result["lat"] = data.get("lat")
         result["lon"] = data.get("lon")
         result["alt"] = data.get("altHAE", data.get("alt"))
+        result["alt_msl"] = data.get("altMSL")
+        result["geoid_sep"] = data.get("geoidSep")
         result["speed"] = data.get("speed")
         result["track"] = data.get("track")
+        result["magtrack"] = data.get("magtrack")
+        result["magvar"] = data.get("magvar")
         result["climb"] = data.get("climb")
         result["time"] = data.get("time")
+        for k in ("epx", "epy", "epv", "eps", "ept", "epd", "epc"):
+            result[k] = data.get(k)
 
-    @staticmethod
-    def _parse_sky(data: dict, result: dict):
+    @classmethod
+    def _parse_sky(cls, data: dict, result: dict):
         sats = data.get("satellites", [])
-        result["satellites_visible"] = len(sats)
-        result["satellites_used"] = sum(1 for s in sats if s.get("used"))
+        result["satellites_visible"] = data.get("nSat", len(sats))
+        result["satellites_used"] = data.get("uSat", sum(1 for s in sats if s.get("used")))
         result["hdop"] = data.get("hdop")
         result["pdop"] = data.get("pdop")
         result["vdop"] = data.get("vdop")
+        result["tdop"] = data.get("tdop")
+        result["gdop"] = data.get("gdop")
+
         # SNR/signal strength from satellites that report it (ss field, in dB-Hz)
         snr_values = [s["ss"] for s in sats if s.get("ss") is not None and s["ss"] > 0]
         if snr_values:
@@ -335,6 +369,25 @@ class GpsdManager:
             result["snr_min"] = None
             result["snr_max"] = None
             result["snr_avg"] = None
+
+        constellations: dict = {}
+        sat_list = []
+        for s in sats:
+            name = cls._GNSS_NAMES.get(s.get("gnssid"), "Other")
+            c = constellations.setdefault(name, {"used": 0, "visible": 0})
+            c["visible"] += 1
+            if s.get("used"):
+                c["used"] += 1
+            sat_list.append({
+                "prn": s.get("PRN"),
+                "gnss": name,
+                "elev": s.get("el"),
+                "az": s.get("az"),
+                "ss": s.get("ss"),
+                "used": bool(s.get("used")),
+            })
+        result["constellations"] = constellations
+        result["satellites"] = sorted(sat_list, key=lambda x: (x["gnss"], x["prn"] or 0))
 
     def get_logs(self, lines: int = 100) -> str:
         """Get recent gpsd log entries from journald."""

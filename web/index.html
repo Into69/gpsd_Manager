@@ -237,6 +237,51 @@
         }
         @keyframes spin { to { transform: rotate(360deg); } }
 
+        .subhead {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--text-dim);
+            margin: 0.75rem 0 0.25rem;
+            padding-bottom: 0.25rem;
+            border-bottom: 1px dashed var(--border);
+        }
+        .subhead:first-child { margin-top: 0; }
+
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.8125rem;
+        }
+        .data-table th, .data-table td {
+            text-align: left;
+            padding: 0.35rem 0.5rem;
+            border-bottom: 1px solid var(--border);
+        }
+        .data-table th {
+            font-weight: 500;
+            color: var(--text-dim);
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+        }
+        .data-table td.num { text-align: right; font-variant-numeric: tabular-nums; }
+        .data-table tbody tr:last-child td { border-bottom: none; }
+
+        .snr-bar {
+            display: inline-block;
+            height: 6px;
+            background: var(--accent);
+            border-radius: 3px;
+            vertical-align: middle;
+            margin-right: 0.4rem;
+        }
+
+        .scroll-area {
+            max-height: 320px;
+            overflow-y: auto;
+        }
+
         .errors-list {
             list-style: none;
             font-size: 0.8125rem;
@@ -308,12 +353,16 @@
         <!-- GPS Info -->
         <div class="card">
             <h2>GPS Information</h2>
+            <div class="status-row" style="border-bottom:1px solid var(--border); padding-bottom:0.6rem; margin-bottom:0.4rem;">
+                <span class="status-label">Fix</span>
+                <span class="status-value">
+                    <span id="gps-fix">--</span>
+                    <span id="gps-status"></span>
+                </span>
+            </div>
             <div class="grid-2">
                 <div>
-                    <div class="status-row">
-                        <span class="status-label">Fix</span>
-                        <span class="status-value" id="gps-fix">--</span>
-                    </div>
+                    <div class="subhead">Position</div>
                     <div class="status-row">
                         <span class="status-label">Latitude</span>
                         <span class="status-value" id="gps-lat">--</span>
@@ -323,27 +372,74 @@
                         <span class="status-value" id="gps-lon">--</span>
                     </div>
                     <div class="status-row">
-                        <span class="status-label">Altitude</span>
+                        <span class="status-label">Altitude (HAE)</span>
                         <span class="status-value" id="gps-alt">--</span>
                     </div>
+                    <div class="status-row">
+                        <span class="status-label">Altitude (MSL)</span>
+                        <span class="status-value" id="gps-alt-msl">--</span>
+                    </div>
+                    <div class="status-row">
+                        <span class="status-label">Geoid Separation</span>
+                        <span class="status-value" id="gps-geoid">--</span>
+                    </div>
+                    <div class="subhead">Motion</div>
                     <div class="status-row">
                         <span class="status-label">Speed</span>
                         <span class="status-value" id="gps-speed">--</span>
                     </div>
                     <div class="status-row">
-                        <span class="status-label">Heading</span>
+                        <span class="status-label">Heading (true)</span>
                         <span class="status-value" id="gps-track">--</span>
+                    </div>
+                    <div class="status-row">
+                        <span class="status-label">Heading (mag)</span>
+                        <span class="status-value" id="gps-magtrack">--</span>
+                    </div>
+                    <div class="status-row">
+                        <span class="status-label">Magnetic Variation</span>
+                        <span class="status-value" id="gps-magvar">--</span>
                     </div>
                     <div class="status-row">
                         <span class="status-label">Climb</span>
                         <span class="status-value" id="gps-climb">--</span>
                     </div>
-                </div>
-                <div>
                     <div class="status-row">
                         <span class="status-label">Time (UTC)</span>
                         <span class="status-value" id="gps-time">--</span>
                     </div>
+                </div>
+                <div>
+                    <div class="subhead">Accuracy (95% est.)</div>
+                    <div class="status-row">
+                        <span class="status-label">Lon error (epx)</span>
+                        <span class="status-value" id="gps-epx">--</span>
+                    </div>
+                    <div class="status-row">
+                        <span class="status-label">Lat error (epy)</span>
+                        <span class="status-value" id="gps-epy">--</span>
+                    </div>
+                    <div class="status-row">
+                        <span class="status-label">Alt error (epv)</span>
+                        <span class="status-value" id="gps-epv">--</span>
+                    </div>
+                    <div class="status-row">
+                        <span class="status-label">Speed error (eps)</span>
+                        <span class="status-value" id="gps-eps">--</span>
+                    </div>
+                    <div class="status-row">
+                        <span class="status-label">Heading error (epd)</span>
+                        <span class="status-value" id="gps-epd">--</span>
+                    </div>
+                    <div class="status-row">
+                        <span class="status-label">Climb error (epc)</span>
+                        <span class="status-value" id="gps-epc">--</span>
+                    </div>
+                    <div class="status-row">
+                        <span class="status-label">Time error (ept)</span>
+                        <span class="status-value" id="gps-ept">--</span>
+                    </div>
+                    <div class="subhead">Quality</div>
                     <div class="status-row">
                         <span class="status-label">Satellites Used</span>
                         <span class="status-value" id="gps-sats-used">--</span>
@@ -353,21 +449,37 @@
                         <span class="status-value" id="gps-sats-visible">--</span>
                     </div>
                     <div class="status-row">
-                        <span class="status-label">HDOP</span>
-                        <span class="status-value" id="gps-hdop">--</span>
+                        <span class="status-label">HDOP / VDOP / PDOP</span>
+                        <span class="status-value" id="gps-hvp-dop">--</span>
                     </div>
                     <div class="status-row">
-                        <span class="status-label">PDOP</span>
-                        <span class="status-value" id="gps-pdop">--</span>
-                    </div>
-                    <div class="status-row">
-                        <span class="status-label">VDOP</span>
-                        <span class="status-value" id="gps-vdop">--</span>
+                        <span class="status-label">TDOP / GDOP</span>
+                        <span class="status-value" id="gps-tg-dop">--</span>
                     </div>
                     <div class="status-row">
                         <span class="status-label">SNR (dB-Hz)</span>
                         <span class="status-value" id="gps-snr">--</span>
                     </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Constellations + Satellites -->
+        <div class="grid-2">
+            <div class="card">
+                <h2>Constellations</h2>
+                <table class="data-table" id="gps-constellations">
+                    <thead><tr><th>System</th><th>Used</th><th>Visible</th></tr></thead>
+                    <tbody><tr><td colspan="3" class="empty-state">--</td></tr></tbody>
+                </table>
+            </div>
+            <div class="card">
+                <h2>Satellites</h2>
+                <div class="scroll-area">
+                    <table class="data-table" id="gps-satellites">
+                        <thead><tr><th>PRN</th><th>System</th><th>Elev</th><th>Az</th><th>SNR</th><th>Used</th></tr></thead>
+                        <tbody><tr><td colspan="6" class="empty-state">--</td></tr></tbody>
+                    </table>
                 </div>
             </div>
         </div>
@@ -580,33 +692,112 @@
             return Number(val).toFixed(decimals) + (unit ? ' ' + unit : '');
         }
 
+        function fmtSpeed(mps) {
+            if (mps === null || mps === undefined) return '--';
+            const kmh = mps * 3.6;
+            const kt = mps * 1.94384;
+            return `${mps.toFixed(2)} m/s (${kmh.toFixed(1)} km/h, ${kt.toFixed(1)} kt)`;
+        }
+
+        function fmtDopPair(a, b) {
+            if (a === null && b === null) return '--';
+            return `${fmt(a, '', 1)} / ${fmt(b, '', 1)}`;
+        }
+
+        function setText(id, val) {
+            document.getElementById(id).textContent = val;
+        }
+
         async function refreshGps() {
             const data = await api('GET', 'gps');
             if (data.error) {
                 document.getElementById('gps-fix').innerHTML = '<span class="badge badge-red">Unavailable</span>';
+                document.getElementById('gps-status').innerHTML = '';
                 return;
             }
 
             const fixColors = { 'No fix': 'badge-red', '2D fix': 'badge-yellow', '3D fix': 'badge-green' };
             const fixClass = fixColors[data.fix] || 'badge-red';
             document.getElementById('gps-fix').innerHTML = `<span class="badge ${fixClass}">${data.fix}</span>`;
-            document.getElementById('gps-lat').textContent = fmt(data.lat, '\u00B0', 7);
-            document.getElementById('gps-lon').textContent = fmt(data.lon, '\u00B0', 7);
-            document.getElementById('gps-alt').textContent = fmt(data.alt, 'm', 1);
-            document.getElementById('gps-speed').textContent = fmt(data.speed, 'm/s', 2);
-            document.getElementById('gps-track').textContent = fmt(data.track, '\u00B0', 1);
-            document.getElementById('gps-climb').textContent = fmt(data.climb, 'm/s', 2);
-            document.getElementById('gps-time').textContent = data.time || '--';
-            document.getElementById('gps-sats-used').textContent = data.satellites_used ?? '--';
-            document.getElementById('gps-sats-visible').textContent = data.satellites_visible ?? '--';
-            document.getElementById('gps-hdop').textContent = fmt(data.hdop, '', 1);
-            document.getElementById('gps-pdop').textContent = fmt(data.pdop, '', 1);
-            document.getElementById('gps-vdop').textContent = fmt(data.vdop, '', 1);
-            if (data.snr_avg !== null) {
-                document.getElementById('gps-snr').textContent =
-                    `${data.snr_min} / ${data.snr_avg} / ${data.snr_max} (min/avg/max)`;
+            document.getElementById('gps-status').innerHTML = data.status
+                ? ` <span class="badge badge-yellow" style="margin-left:0.4rem;">${data.status}</span>`
+                : '';
+
+            // Position
+            setText('gps-lat', fmt(data.lat, '\u00B0', 7));
+            setText('gps-lon', fmt(data.lon, '\u00B0', 7));
+            setText('gps-alt', fmt(data.alt, 'm', 1));
+            setText('gps-alt-msl', fmt(data.alt_msl, 'm', 1));
+            setText('gps-geoid', fmt(data.geoid_sep, 'm', 2));
+
+            // Motion
+            document.getElementById('gps-speed').textContent =
+                data.speed === null || data.speed === undefined ? '--' : fmtSpeed(data.speed);
+            setText('gps-track', fmt(data.track, '\u00B0', 1));
+            setText('gps-magtrack', fmt(data.magtrack, '\u00B0', 1));
+            setText('gps-magvar', fmt(data.magvar, '\u00B0', 2));
+            setText('gps-climb', fmt(data.climb, 'm/s', 2));
+            setText('gps-time', data.time || '--');
+
+            // Accuracy
+            setText('gps-epx', fmt(data.epx, 'm', 2));
+            setText('gps-epy', fmt(data.epy, 'm', 2));
+            setText('gps-epv', fmt(data.epv, 'm', 2));
+            setText('gps-eps', fmt(data.eps, 'm/s', 2));
+            setText('gps-epd', fmt(data.epd, '\u00B0', 2));
+            setText('gps-epc', fmt(data.epc, 'm/s', 2));
+            setText('gps-ept', fmt(data.ept, 's', 4));
+
+            // Quality
+            setText('gps-sats-used', data.satellites_used ?? '--');
+            setText('gps-sats-visible', data.satellites_visible ?? '--');
+            setText('gps-hvp-dop',
+                (data.hdop === null && data.vdop === null && data.pdop === null) ? '--' :
+                `${fmt(data.hdop, '', 1)} / ${fmt(data.vdop, '', 1)} / ${fmt(data.pdop, '', 1)}`);
+            setText('gps-tg-dop', fmtDopPair(data.tdop, data.gdop));
+            if (data.snr_avg !== null && data.snr_avg !== undefined) {
+                setText('gps-snr', `${data.snr_min} / ${data.snr_avg} / ${data.snr_max} (min/avg/max)`);
             } else {
-                document.getElementById('gps-snr').textContent = '--';
+                setText('gps-snr', '--');
+            }
+
+            // Constellations table
+            const constBody = document.querySelector('#gps-constellations tbody');
+            const consts = data.constellations || {};
+            const constNames = Object.keys(consts).sort();
+            if (constNames.length === 0) {
+                constBody.innerHTML = '<tr><td colspan="3" class="empty-state">--</td></tr>';
+            } else {
+                constBody.innerHTML = constNames.map(name => {
+                    const c = consts[name];
+                    return `<tr><td>${name}</td><td class="num">${c.used}</td><td class="num">${c.visible}</td></tr>`;
+                }).join('');
+            }
+
+            // Satellite detail table
+            const satBody = document.querySelector('#gps-satellites tbody');
+            const sats = data.satellites || [];
+            if (sats.length === 0) {
+                satBody.innerHTML = '<tr><td colspan="6" class="empty-state">--</td></tr>';
+            } else {
+                satBody.innerHTML = sats.map(s => {
+                    const ss = s.ss ?? null;
+                    const barWidth = ss !== null ? Math.max(2, Math.min(60, ss)) : 0;
+                    const ssCell = ss !== null
+                        ? `<span class="snr-bar" style="width:${barWidth}px;"></span>${ss}`
+                        : '--';
+                    const usedBadge = s.used
+                        ? '<span class="badge badge-green">yes</span>'
+                        : '<span class="badge badge-red">no</span>';
+                    return `<tr>
+                        <td class="num">${s.prn ?? '--'}</td>
+                        <td>${s.gnss}</td>
+                        <td class="num">${s.elev ?? '--'}</td>
+                        <td class="num">${s.az ?? '--'}</td>
+                        <td class="num">${ssCell}</td>
+                        <td>${usedBadge}</td>
+                    </tr>`;
+                }).join('');
             }
         }
 
