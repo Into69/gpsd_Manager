@@ -211,6 +211,22 @@ async function enableSatReporting(btn) {
     }
 }
 
+async function restartReceiver(btn, mode) {
+    if (mode === 'cold' && !confirm('Cold restart will wipe all assistance data. Re-acquiring a fix will take 30+ seconds. Continue?')) {
+        return;
+    }
+    btn.disabled = true;
+    const original = btn.textContent;
+    btn.innerHTML = '<span class="spinner"></span>Sending...';
+    try {
+        const data = await api('POST', 'gps/restart-receiver', { mode });
+        toast(data.message, data.success ? 'success' : 'error');
+    } finally {
+        btn.disabled = false;
+        btn.textContent = original;
+    }
+}
+
 // ---------------------------------------------------------------------------
 // GPS info via WebSocket
 // ---------------------------------------------------------------------------

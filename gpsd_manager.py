@@ -319,6 +319,26 @@ class GpsdManager:
         result["constellations"] = constellations
         result["satellites"] = sorted(sat_list, key=lambda x: (x["gnss"], x["prn"] or 0))
 
+    _RECEIVER_RESET_PRESETS = {
+        "hot": "HOTBOOT",
+        "warm": "WARMBOOT",
+        "cold": "COLDBOOT",
+    }
+
+    def restart_receiver(self, mode: str) -> tuple[bool, str]:
+        """Send a hot/warm/cold reset to a u-blox receiver via ubxtool."""
+        preset = self._RECEIVER_RESET_PRESETS.get(mode)
+        if not preset:
+            return False, f"Unknown restart mode: {mode}"
+        if not shutil.which("ubxtool"):
+            return False, "ubxtool not found (install gpsd-clients)"
+
+        result = self._run(["ubxtool", "-p", preset], timeout=10)
+        if result.returncode != 0:
+            err = result.stderr.strip() or result.stdout.strip() or "failed"
+            return False, f"ubxtool -p {preset} failed: {err}"
+        return True, f"{mode.capitalize()} restart sent. Receiver re-acquiring satellites."
+
     def enable_satellite_reporting(self) -> tuple[bool, str]:
         """Enable the standard NMEA set on a u-blox device and persist to flash.
 
@@ -702,6 +722,15 @@ async def ws_gps(websocket: WebSocket):
 async def api_enable_satellite_reporting():
     """Enable GSV/GSA NMEA sentences on the GPS device (u-blox) and persist."""
     ok, msg = manager.enable_satellite_reporting()
+    return {"success": ok, "message": msg}
+
+
+@app.post("/api/gps/restart-receiver")
+async def api_restart_receiver(request: Request):
+    """Send hot/warm/cold restart to a u-blox receiver."""
+    body = await request.json()
+    mode = body.get("mode", "hot")
+    ok, msg = manager.restart_receiver(mode)
     return {"success": ok, "message": msg}
 
 

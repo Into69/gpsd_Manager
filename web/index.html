@@ -208,6 +208,18 @@
                         title="Runs 'ubxtool -e NMEA' then 'ubxtool -p SAVE' to enable the standard NMEA set (GGA/GSA/GSV/RMC/VTG) on u-blox receivers and persist to flash">
                     Enable NMEA (GSV/GSA)
                 </button>
+                <button class="btn" onclick="restartReceiver(this, 'hot')"
+                        title="Reboot the receiver, keep ephemeris + almanac. Fastest re-fix.">
+                    Hot Restart
+                </button>
+                <button class="btn" onclick="restartReceiver(this, 'warm')"
+                        title="Clear ephemeris (stale satellite positions) but keep almanac. Good when sats are visible but the receiver can't converge.">
+                    Warm Restart
+                </button>
+                <button class="btn btn-red" onclick="restartReceiver(this, 'cold')"
+                        title="Clear all assistance data and re-acquire from scratch. Takes 30+ seconds.">
+                    Cold Restart
+                </button>
             </div>
             <div class="scroll-area">
                 <table class="data-table" id="gps-satellites">
