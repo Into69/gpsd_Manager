@@ -475,6 +475,12 @@
             </div>
             <div class="card">
                 <h2>Satellites</h2>
+                <div class="btn-group" style="margin-top:0; margin-bottom:0.75rem;">
+                    <button class="btn btn-blue" onclick="enableSatReporting(this)"
+                            title="Sends UBX-CFG-MSG to enable GSV + GSA NMEA sentences (u-blox)">
+                        Enable GSV/GSA
+                    </button>
+                </div>
                 <div class="scroll-area">
                     <table class="data-table" id="gps-satellites">
                         <thead><tr><th>PRN</th><th>System</th><th>Elev</th><th>Az</th><th>SNR</th><th>Used</th></tr></thead>
@@ -687,6 +693,19 @@
         }
 
         // --- GPS Info ---
+        async function enableSatReporting(btn) {
+            btn.disabled = true;
+            const original = btn.textContent;
+            btn.innerHTML = '<span class="spinner"></span>Enabling...';
+            try {
+                const data = await api('POST', 'gps/enable-satellite-reporting');
+                toast(data.message, data.success ? 'success' : 'error');
+            } finally {
+                btn.disabled = false;
+                btn.textContent = original;
+            }
+        }
+
         function fmt(val, unit, decimals = 6) {
             if (val === null || val === undefined) return '--';
             return Number(val).toFixed(decimals) + (unit ? ' ' + unit : '');

@@ -389,6 +389,28 @@ class GpsdManager:
         result["constellations"] = constellations
         result["satellites"] = sorted(sat_list, key=lambda x: (x["gnss"], x["prn"] or 0))
 
+    def enable_satellite_reporting(self) -> tuple[bool, str]:
+        """Enable NMEA GSV/GSA sentences on the GPS device via ubxtool.
+
+        u-blox modules frequently ship with GSV (satellites in view) and GSA
+        (active satellites/DOP) disabled or rate-limited, which leaves gpsd
+        reporting zero satellites. ubxtool sends UBX-CFG-MSG commands through
+        the running gpsd to turn them on.
+        """
+        if not shutil.which("ubxtool"):
+            return False, "ubxtool not found (install gpsd-clients)"
+
+        failures = []
+        for msg in ("GSV", "GSA"):
+            result = self._run(["ubxtool", "-e", msg], timeout=10)
+            if result.returncode != 0:
+                err = result.stderr.strip() or result.stdout.strip() or "failed"
+                failures.append(f"{msg}: {err}")
+
+        if failures:
+            return False, "ubxtool failed: " + "; ".join(failures)
+        return True, "Enabled GSV + GSA. Allow a few seconds for satellites to populate."
+
     def get_logs(self, lines: int = 100) -> str:
         """Get recent gpsd log entries from journald."""
         result = self._run(["journalctl", "-u", self.GPSD_SYSTEMD_SERVICE, "-n", str(lines), "--no-pager"])
@@ -574,6 +596,13 @@ async def api_status():
 async def api_gps():
     """Get current GPS fix and satellite info."""
     return manager.get_gps_info()
+
+
+@app.post("/api/gps/enable-satellite-reporting")
+async def api_enable_satellite_reporting():
+    """Enable GSV/GSA NMEA sentences on the GPS device (u-blox)."""
+    ok, msg = manager.enable_satellite_reporting()
+    return {"success": ok, "message": msg}
 
 
 @app.post("/api/start")
