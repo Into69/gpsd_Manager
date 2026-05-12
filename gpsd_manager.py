@@ -1,19 +1,20 @@
 """GPSD Manager - FastAPI web application for managing a local gpsd instance."""
 
+import asyncio
 import glob
 import json
 import os
 import re
 import shutil
-import socket
 import subprocess
 import time
 from contextlib import asynccontextmanager
 from dataclasses import asdict, dataclass, field
 from pathlib import Path
 
-from fastapi import FastAPI, Request
+from fastapi import FastAPI, Request, WebSocket, WebSocketDisconnect
 from fastapi.responses import HTMLResponse
+from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 
 
@@ -235,87 +236,6 @@ class GpsdManager:
 
         return devices
 
-    def get_gps_info(self) -> dict:
-        """Query gpsd via its JSON socket for current GPS fix and satellite info."""
-        result = {
-            "fix": "No data", "status": None,
-            "lat": None, "lon": None,
-            "alt": None, "alt_msl": None, "geoid_sep": None,
-            "speed": None, "track": None,
-            "magtrack": None, "magvar": None,
-            "climb": None, "time": None,
-            "epx": None, "epy": None, "epv": None,
-            "eps": None, "ept": None, "epd": None, "epc": None,
-            "satellites_used": None, "satellites_visible": None,
-            "hdop": None, "pdop": None, "vdop": None,
-            "tdop": None, "gdop": None,
-            "snr_min": None, "snr_max": None, "snr_avg": None,
-            "constellations": {},
-            "satellites": [],
-            "error": None,
-        }
-
-        try:
-            sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-            sock.settimeout(3)
-            sock.connect(("127.0.0.1", 2947))
-
-            # gpsd sends a version line on connect
-            sock.recv(1024)
-            # Enable watching and immediately request a POLL for both TPV and SKY
-            sock.sendall(b'?WATCH={"enable":true,"json":true};\n?POLL;\n')
-
-            buf = b""
-            got_tpv = False
-            got_sky = False
-            sock.settimeout(1)
-            start = time.monotonic()
-
-            while time.monotonic() - start < 5:
-                try:
-                    chunk = sock.recv(4096)
-                    if not chunk:
-                        break
-                    buf += chunk
-                except socket.timeout:
-                    if got_tpv and got_sky:
-                        break
-                    continue
-
-                # Process complete lines
-                while b"\n" in buf:
-                    line, buf = buf.split(b"\n", 1)
-                    try:
-                        data = json.loads(line)
-                    except json.JSONDecodeError:
-                        continue
-
-                    if data.get("class") == "POLL":
-                        # POLL response contains tpv and sky arrays
-                        for tpv in data.get("tpv", []):
-                            self._parse_tpv(tpv, result)
-                            got_tpv = True
-                        for sky in data.get("sky", []):
-                            self._parse_sky(sky, result)
-                            got_sky = True
-
-                    elif data.get("class") == "TPV":
-                        self._parse_tpv(data, result)
-                        got_tpv = True
-
-                    elif data.get("class") == "SKY":
-                        self._parse_sky(data, result)
-                        got_sky = True
-
-                if got_tpv and got_sky:
-                    break
-
-            sock.close()
-        except (OSError, ConnectionRefusedError) as e:
-            result["error"] = str(e)
-
-        return result
-
     # See gpsd JSON protocol docs (TPV.status field)
     _STATUS_MAP = {
         1: "Normal", 2: "DGPS", 3: "RTK Fixed", 4: "RTK Float",
@@ -349,26 +269,36 @@ class GpsdManager:
             result[k] = data.get(k)
 
     @classmethod
-    def _parse_sky(cls, data: dict, result: dict):
-        sats = data.get("satellites", [])
-        result["satellites_visible"] = data.get("nSat", len(sats))
-        result["satellites_used"] = data.get("uSat", sum(1 for s in sats if s.get("used")))
-        result["hdop"] = data.get("hdop")
-        result["pdop"] = data.get("pdop")
-        result["vdop"] = data.get("vdop")
-        result["tdop"] = data.get("tdop")
-        result["gdop"] = data.get("gdop")
+    def _aggregate_sky(cls, sky_list: list[dict], result: dict):
+        """Combine one or more SKY messages (gpsd emits one per talker)."""
+        # Take the most recently-seen value for each DOP
+        for sky in sky_list:
+            for dop in ("hdop", "pdop", "vdop", "tdop", "gdop"):
+                if sky.get(dop) is not None:
+                    result[dop] = sky[dop]
 
-        # SNR/signal strength from satellites that report it (ss field, in dB-Hz)
+        # Dedupe satellites across messages by (gnssid, PRN)
+        merged: dict = {}
+        for sky in sky_list:
+            for s in sky.get("satellites", []):
+                key = (s.get("gnssid"), s.get("PRN"))
+                merged[key] = s
+        sats = list(merged.values())
+
+        if sats:
+            result["satellites_visible"] = len(sats)
+            result["satellites_used"] = sum(1 for s in sats if s.get("used"))
+        else:
+            # Fall back to summed nSat/uSat if the device didn't include
+            # a satellites array (e.g., GGA-only NMEA)
+            result["satellites_visible"] = sum(s.get("nSat", 0) for s in sky_list) or None
+            result["satellites_used"] = sum(s.get("uSat", 0) for s in sky_list) or None
+
         snr_values = [s["ss"] for s in sats if s.get("ss") is not None and s["ss"] > 0]
         if snr_values:
             result["snr_min"] = min(snr_values)
             result["snr_max"] = max(snr_values)
             result["snr_avg"] = round(sum(snr_values) / len(snr_values), 1)
-        else:
-            result["snr_min"] = None
-            result["snr_max"] = None
-            result["snr_avg"] = None
 
         constellations: dict = {}
         sat_list = []
@@ -390,11 +320,11 @@ class GpsdManager:
         result["satellites"] = sorted(sat_list, key=lambda x: (x["gnss"], x["prn"] or 0))
 
     def enable_satellite_reporting(self) -> tuple[bool, str]:
-        """Enable the standard NMEA message set on a u-blox device via ubxtool.
+        """Enable the standard NMEA set on a u-blox device and persist to flash.
 
-        u-blox modules often ship with NMEA output limited, leaving gpsd with
-        zero satellites. `ubxtool -e NMEA` turns on the standard set (GGA,
-        GSA, GSV, RMC, VTG) by sending UBX-CFG-MSG via the running gpsd.
+        `ubxtool -e NMEA` turns on the standard set (GGA, GSA, GSV, RMC, VTG)
+        in RAM. `ubxtool -p SAVE` then writes the config to BBR/flash so it
+        survives a power cycle.
         """
         if not shutil.which("ubxtool"):
             return False, "ubxtool not found (install gpsd-clients)"
@@ -403,7 +333,11 @@ class GpsdManager:
         if result.returncode != 0:
             err = result.stderr.strip() or result.stdout.strip() or "failed"
             return False, f"ubxtool -e NMEA failed: {err}"
-        return True, "Enabled NMEA (GGA/GSA/GSV/RMC/VTG). Allow a few seconds for satellites to populate."
+
+        save = self._run(["ubxtool", "-p", "SAVE"], timeout=10)
+        if save.returncode != 0:
+            return True, "Enabled NMEA (GGA/GSA/GSV/RMC/VTG), but failed to persist — will reset on power cycle."
+        return True, "Enabled NMEA (GGA/GSA/GSV/RMC/VTG) and saved to receiver flash."
 
     def get_logs(self, lines: int = 100) -> str:
         """Get recent gpsd log entries from journald."""
@@ -510,10 +444,161 @@ class GpsdManager:
 
 
 # ---------------------------------------------------------------------------
+# Async gpsd stream
+# ---------------------------------------------------------------------------
+
+class GpsdStream:
+    """Persistent async connection to gpsd that fans out updates to subscribers."""
+
+    GPSD_HOST = "127.0.0.1"
+    GPSD_PORT = 2947
+    RECONNECT_DELAY = 2.0
+    # Drop a talker's contribution if we haven't seen a SKY from it in this long.
+    TALKER_STALE_S = 15.0
+
+    def __init__(self):
+        self.state: dict = self._initial_state()
+        self.connected: bool = False
+        self.error: str | None = None
+        self.last_data_at: float = 0.0
+        self._sky_by_talker: dict[str, tuple[float, dict]] = {}
+        self._task: asyncio.Task | None = None
+        self._subscribers: set[asyncio.Queue] = set()
+
+    @staticmethod
+    def _initial_state() -> dict:
+        return {
+            "fix": "No data", "status": None,
+            "lat": None, "lon": None,
+            "alt": None, "alt_msl": None, "geoid_sep": None,
+            "speed": None, "track": None,
+            "magtrack": None, "magvar": None,
+            "climb": None, "time": None,
+            "epx": None, "epy": None, "epv": None,
+            "eps": None, "ept": None, "epd": None, "epc": None,
+            "satellites_used": None, "satellites_visible": None,
+            "hdop": None, "pdop": None, "vdop": None,
+            "tdop": None, "gdop": None,
+            "snr_min": None, "snr_max": None, "snr_avg": None,
+            "constellations": {},
+            "satellites": [],
+        }
+
+    async def start(self):
+        self._task = asyncio.create_task(self._run())
+
+    async def stop(self):
+        if self._task:
+            self._task.cancel()
+            try:
+                await self._task
+            except asyncio.CancelledError:
+                pass
+
+    async def _run(self):
+        while True:
+            try:
+                await self._stream()
+            except asyncio.CancelledError:
+                raise
+            except (OSError, ConnectionError) as e:
+                self.connected = False
+                self.error = f"gpsd connection error: {e}"
+                self._sky_by_talker.clear()
+                self._broadcast()
+            except Exception as e:
+                self.connected = False
+                self.error = f"gpsd stream error: {e!r}"
+                self._broadcast()
+            await asyncio.sleep(self.RECONNECT_DELAY)
+
+    async def _stream(self):
+        reader, writer = await asyncio.open_connection(self.GPSD_HOST, self.GPSD_PORT)
+        try:
+            try:
+                await asyncio.wait_for(reader.readline(), timeout=3.0)
+            except asyncio.TimeoutError:
+                pass
+
+            writer.write(b'?WATCH={"enable":true,"json":true};\n')
+            await writer.drain()
+
+            self.connected = True
+            self.error = None
+            self._broadcast()
+
+            while True:
+                line = await reader.readline()
+                if not line:
+                    raise ConnectionError("gpsd closed the connection")
+                try:
+                    data = json.loads(line)
+                except json.JSONDecodeError:
+                    continue
+                self._handle_message(data)
+        finally:
+            writer.close()
+            try:
+                await writer.wait_closed()
+            except Exception:
+                pass
+
+    def _handle_message(self, data: dict):
+        cls = data.get("class")
+        if cls == "TPV":
+            GpsdManager._parse_tpv(data, self.state)
+            self.last_data_at = time.monotonic()
+            self._broadcast()
+        elif cls == "SKY":
+            talker = data.get("talker") or "_default"
+            now = time.monotonic()
+            self._sky_by_talker[talker] = (now, data)
+            cutoff = now - self.TALKER_STALE_S
+            self._sky_by_talker = {
+                k: v for k, v in self._sky_by_talker.items() if v[0] > cutoff
+            }
+            sky_list = [v[1] for v in self._sky_by_talker.values()]
+            GpsdManager._aggregate_sky(sky_list, self.state)
+            self.last_data_at = now
+            self._broadcast()
+
+    def snapshot(self) -> dict:
+        age = (time.monotonic() - self.last_data_at) if self.last_data_at else None
+        return {
+            "connected": self.connected,
+            "error": self.error,
+            "data_age_s": age,
+            **self.state,
+        }
+
+    def _broadcast(self):
+        snap = self.snapshot()
+        for q in list(self._subscribers):
+            if q.full():
+                try:
+                    q.get_nowait()
+                except asyncio.QueueEmpty:
+                    pass
+            try:
+                q.put_nowait(snap)
+            except asyncio.QueueFull:
+                pass
+
+    def subscribe(self) -> asyncio.Queue:
+        q: asyncio.Queue = asyncio.Queue(maxsize=4)
+        self._subscribers.add(q)
+        return q
+
+    def unsubscribe(self, q: asyncio.Queue):
+        self._subscribers.discard(q)
+
+
+# ---------------------------------------------------------------------------
 # FastAPI application
 # ---------------------------------------------------------------------------
 
 manager = GpsdManager()
+gps_stream = GpsdStream()
 startup_report: dict = {}
 
 
@@ -555,13 +640,16 @@ def run_startup_checks() -> dict:
 async def lifespan(app: FastAPI):
     global startup_report
     startup_report = run_startup_checks()
+    await gps_stream.start()
     yield
+    await gps_stream.stop()
 
 
 app = FastAPI(title="GPSD Manager", lifespan=lifespan)
 
 templates_dir = Path(__file__).parent / "web"
 templates = Jinja2Templates(directory=str(templates_dir))
+app.mount("/static", StaticFiles(directory=str(templates_dir)), name="static")
 
 
 # --- Pages ---
@@ -588,13 +676,31 @@ async def api_status():
 
 @app.get("/api/gps")
 async def api_gps():
-    """Get current GPS fix and satellite info."""
-    return manager.get_gps_info()
+    """Return the current GPS snapshot from the streaming connection."""
+    return gps_stream.snapshot()
+
+
+@app.websocket("/ws/gps")
+async def ws_gps(websocket: WebSocket):
+    """Push GPS state to the client whenever it changes."""
+    await websocket.accept()
+    q = gps_stream.subscribe()
+    try:
+        await websocket.send_json(gps_stream.snapshot())
+        while True:
+            snap = await q.get()
+            await websocket.send_json(snap)
+    except WebSocketDisconnect:
+        pass
+    except Exception:
+        pass
+    finally:
+        gps_stream.unsubscribe(q)
 
 
 @app.post("/api/gps/enable-satellite-reporting")
 async def api_enable_satellite_reporting():
-    """Enable GSV/GSA NMEA sentences on the GPS device (u-blox)."""
+    """Enable GSV/GSA NMEA sentences on the GPS device (u-blox) and persist."""
     ok, msg = manager.enable_satellite_reporting()
     return {"success": ok, "message": msg}
 
