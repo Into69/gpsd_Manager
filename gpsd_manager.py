@@ -390,26 +390,20 @@ class GpsdManager:
         result["satellites"] = sorted(sat_list, key=lambda x: (x["gnss"], x["prn"] or 0))
 
     def enable_satellite_reporting(self) -> tuple[bool, str]:
-        """Enable NMEA GSV/GSA sentences on the GPS device via ubxtool.
+        """Enable the standard NMEA message set on a u-blox device via ubxtool.
 
-        u-blox modules frequently ship with GSV (satellites in view) and GSA
-        (active satellites/DOP) disabled or rate-limited, which leaves gpsd
-        reporting zero satellites. ubxtool sends UBX-CFG-MSG commands through
-        the running gpsd to turn them on.
+        u-blox modules often ship with NMEA output limited, leaving gpsd with
+        zero satellites. `ubxtool -e NMEA` turns on the standard set (GGA,
+        GSA, GSV, RMC, VTG) by sending UBX-CFG-MSG via the running gpsd.
         """
         if not shutil.which("ubxtool"):
             return False, "ubxtool not found (install gpsd-clients)"
 
-        failures = []
-        for msg in ("GSV", "GSA"):
-            result = self._run(["ubxtool", "-e", msg], timeout=10)
-            if result.returncode != 0:
-                err = result.stderr.strip() or result.stdout.strip() or "failed"
-                failures.append(f"{msg}: {err}")
-
-        if failures:
-            return False, "ubxtool failed: " + "; ".join(failures)
-        return True, "Enabled GSV + GSA. Allow a few seconds for satellites to populate."
+        result = self._run(["ubxtool", "-e", "NMEA"], timeout=10)
+        if result.returncode != 0:
+            err = result.stderr.strip() or result.stdout.strip() or "failed"
+            return False, f"ubxtool -e NMEA failed: {err}"
+        return True, "Enabled NMEA (GGA/GSA/GSV/RMC/VTG). Allow a few seconds for satellites to populate."
 
     def get_logs(self, lines: int = 100) -> str:
         """Get recent gpsd log entries from journald."""
