@@ -222,8 +222,23 @@
                 </button>
             </div>
             <div class="scroll-area">
-                <table class="data-table" id="gps-satellites">
-                    <thead><tr><th>PRN</th><th>System</th><th>Elev</th><th>Az</th><th>SNR</th><th>Used</th></tr></thead>
+                <table class="data-table sat-table" id="gps-satellites">
+                    <colgroup>
+                        <col class="sat-col-prn">
+                        <col class="sat-col-sys">
+                        <col class="sat-col-elev">
+                        <col class="sat-col-az">
+                        <col class="sat-col-snr">
+                        <col class="sat-col-used">
+                    </colgroup>
+                    <thead><tr>
+                        <th class="num">PRN</th>
+                        <th>System</th>
+                        <th class="num">Elev</th>
+                        <th class="num">Az</th>
+                        <th class="num">SNR (dB-Hz)</th>
+                        <th class="center">Used</th>
+                    </tr></thead>
                     <tbody><tr><td colspan="6" class="empty-state">--</td></tr></tbody>
                 </table>
             </div>

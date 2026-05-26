@@ -278,15 +278,64 @@ header h1 { font-size: 1.25rem; font-weight: 600; }
     letter-spacing: 0.04em;
 }
 .data-table td.num { text-align: right; font-variant-numeric: tabular-nums; }
+.data-table th.num { text-align: right; }
+.data-table th.center, .data-table td.center { text-align: center; }
 .data-table tbody tr:last-child td { border-bottom: none; }
 
-.snr-bar {
-    display: inline-block;
-    height: 6px;
-    border-radius: 3px;
-    vertical-align: middle;
-    margin-right: 0.4rem;
+/* Satellite table column sizing */
+.sat-table { table-layout: fixed; }
+.sat-col-prn  { width: 3rem; }
+.sat-col-sys  { width: 5.5rem; }
+.sat-col-elev { width: auto; }
+.sat-col-az   { width: auto; }
+.sat-col-snr  { width: 9.5rem; }
+.sat-col-used { width: 3.5rem; }
+
+/* SNR cell: fixed-width bar track + right-aligned number */
+.snr-cell {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 0.5rem;
+    font-variant-numeric: tabular-nums;
 }
+.snr-track {
+    width: 60px;
+    height: 6px;
+    background: var(--surface2);
+    border-radius: 3px;
+    overflow: hidden;
+    flex-shrink: 0;
+}
+.snr-fill {
+    display: block;
+    height: 100%;
+    border-radius: 3px;
+}
+.snr-num {
+    min-width: 1.75em;
+    text-align: right;
+}
+.snr-empty { color: var(--text-dim); }
+
+/* Constellation badges */
+.gnss-badge {
+    display: inline-block;
+    padding: 0.05rem 0.4rem;
+    border-radius: 4px;
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    min-width: 4.5rem;
+    text-align: center;
+}
+.gnss-gps     { background: #172554; color: var(--blue); }
+.gnss-glonass { background: #450a0a; color: var(--red); }
+.gnss-galileo { background: #422006; color: var(--yellow); }
+.gnss-beidou  { background: #052e16; color: var(--green); }
+.gnss-qzss    { background: #2e1065; color: var(--accent); }
+.gnss-sbas    { background: #1f2937; color: var(--text-dim); }
+.gnss-other   { background: #1f2937; color: var(--text-dim); }
 
 .scroll-area {
     max-height: 320px;

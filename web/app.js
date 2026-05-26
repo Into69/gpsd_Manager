@@ -371,6 +371,18 @@ function renderConstellations(consts) {
     }).join('');
 }
 
+function gnssClass(name) {
+    switch ((name || '').toLowerCase()) {
+        case 'gps':     return 'gnss-gps';
+        case 'glonass': return 'gnss-glonass';
+        case 'galileo': return 'gnss-galileo';
+        case 'beidou':  return 'gnss-beidou';
+        case 'qzss':    return 'gnss-qzss';
+        case 'sbas':    return 'gnss-sbas';
+        default:        return 'gnss-other';
+    }
+}
+
 function renderSatTable(sats) {
     const body = document.querySelector('#gps-satellites tbody');
     if (sats.length === 0) {
@@ -379,21 +391,31 @@ function renderSatTable(sats) {
     }
     body.innerHTML = sats.map(s => {
         const ss = s.ss ?? null;
-        const barWidth = ss !== null ? Math.max(2, Math.min(60, ss)) : 0;
-        const color = snrColor(ss);
-        const ssCell = ss !== null
-            ? `<span class="snr-bar" style="width:${barWidth}px; background:${color};"></span>${ss}`
-            : '--';
+        let ssCell;
+        if (ss !== null && ss > 0) {
+            // Map 0-50 dB-Hz onto the 60px track (clamped, with a 4% floor so faint sats show).
+            const fillPct = Math.max(4, Math.min(100, (ss / 50) * 100));
+            const color = snrColor(ss);
+            ssCell = `<div class="snr-cell">`
+                + `<span class="snr-track"><span class="snr-fill" style="width:${fillPct}%; background:${color};"></span></span>`
+                + `<span class="snr-num">${ss}</span>`
+                + `</div>`;
+        } else {
+            ssCell = '<span class="snr-empty">--</span>';
+        }
         const usedBadge = s.used
             ? '<span class="badge badge-green">yes</span>'
             : '<span class="badge badge-gray">no</span>';
+        const gnssName = s.gnss || '--';
+        const elev = (s.elev !== null && s.elev !== undefined) ? `${s.elev}°` : '--';
+        const az   = (s.az   !== null && s.az   !== undefined) ? `${s.az}°`   : '--';
         return `<tr>
             <td class="num">${s.prn ?? '--'}</td>
-            <td>${s.gnss}</td>
-            <td class="num">${s.elev ?? '--'}</td>
-            <td class="num">${s.az ?? '--'}</td>
+            <td><span class="gnss-badge ${gnssClass(gnssName)}">${gnssName}</span></td>
+            <td class="num">${elev}</td>
+            <td class="num">${az}</td>
             <td class="num">${ssCell}</td>
-            <td>${usedBadge}</td>
+            <td class="center">${usedBadge}</td>
         </tr>`;
     }).join('');
 }
