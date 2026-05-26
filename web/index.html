@@ -193,8 +193,17 @@
             </div>
             <div class="card">
                 <h2>Constellations</h2>
-                <table class="data-table" id="gps-constellations">
-                    <thead><tr><th>System</th><th>Used</th><th>Visible</th></tr></thead>
+                <table class="data-table const-table" id="gps-constellations">
+                    <colgroup>
+                        <col class="const-col-sys">
+                        <col class="const-col-num">
+                        <col class="const-col-num">
+                    </colgroup>
+                    <thead><tr>
+                        <th>System</th>
+                        <th class="num">Used</th>
+                        <th class="num">Visible</th>
+                    </tr></thead>
                     <tbody><tr><td colspan="3" class="empty-state">--</td></tr></tbody>
                 </table>
             </div>

@@ -367,7 +367,11 @@ function renderConstellations(consts) {
     }
     body.innerHTML = names.map(name => {
         const c = consts[name];
-        return `<tr><td>${name}</td><td class="num">${c.used}</td><td class="num">${c.visible}</td></tr>`;
+        return `<tr>`
+            + `<td><span class="gnss-badge ${gnssClass(name)}">${name}</span></td>`
+            + `<td class="num">${c.used}</td>`
+            + `<td class="num">${c.visible}</td>`
+            + `</tr>`;
     }).join('');
 }
 

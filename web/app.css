@@ -291,6 +291,11 @@ header h1 { font-size: 1.25rem; font-weight: 600; }
 .sat-col-snr  { width: 9.5rem; }
 .sat-col-used { width: 3.5rem; }
 
+/* Constellation table column sizing */
+.const-table { table-layout: fixed; }
+.const-col-sys { width: auto; }
+.const-col-num { width: 5rem; }
+
 /* SNR cell: fixed-width bar track + right-aligned number */
 .snr-cell {
     display: flex;
