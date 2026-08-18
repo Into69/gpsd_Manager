@@ -503,6 +503,137 @@ function formatAge(s) {
 }
 
 // ---------------------------------------------------------------------------
+// MCODE Converter
+// ---------------------------------------------------------------------------
+async function scanMCodePorts() {
+    const select = document.getElementById('mcode-port');
+    select.innerHTML = '<option>Scanning...</option>';
+
+    const data = await api('GET', 'devices');
+    if (!data.devices || data.devices.length === 0) {
+        select.innerHTML = '<option>No serial ports found</option>';
+        return;
+    }
+
+    select.innerHTML = data.devices.map(d => `
+        <option value="${d.path}" title="${d.description}">${d.path} ${d.description ? '(' + d.description + ')' : ''}</option>
+    `).join('');
+}
+
+async function refreshMCodeStatus() {
+    const data = await api('GET', 'converter/status');
+    const statusEl = document.getElementById('mcode-status');
+    const platformEl = document.getElementById('mcode-platform');
+    const startBtn = document.getElementById('mcode-start-btn');
+    const stopBtn = document.getElementById('mcode-stop-btn');
+    const addBtn = document.getElementById('mcode-add-btn');
+    const gpsdRow = document.getElementById('mcode-gpsd-row');
+    const gpsdStatus = document.getElementById('mcode-in-config');
+    const errorsDiv = document.getElementById('mcode-errors');
+    const errorsList = document.getElementById('mcode-errors-list');
+
+    // Show platform
+    if (data.platform) {
+        platformEl.textContent = data.platform;
+    }
+
+    if (data.running) {
+        statusEl.className = 'badge badge-green';
+        statusEl.textContent = 'Enabled';
+        startBtn.disabled = true;
+        stopBtn.disabled = false;
+        errorsDiv.style.display = 'none';
+
+        // Show GPSD config status (Linux only)
+        if (data.platform === 'Linux') {
+            gpsdRow.style.display = '';
+            if (data.device_in_config) {
+                gpsdStatus.className = 'badge badge-green';
+                gpsdStatus.textContent = 'Configured';
+                addBtn.style.display = 'none';
+            } else {
+                gpsdStatus.className = 'badge badge-yellow';
+                gpsdStatus.textContent = 'Not Configured';
+                addBtn.style.display = 'inline-block';
+                addBtn.disabled = false;
+            }
+        } else {
+            gpsdRow.style.display = 'none';
+            addBtn.style.display = 'none';
+        }
+    } else {
+        statusEl.className = 'badge badge-red';
+        statusEl.textContent = 'Disabled';
+        startBtn.disabled = false;
+        stopBtn.disabled = true;
+        addBtn.disabled = true;
+        addBtn.style.display = 'none';
+        gpsdRow.style.display = 'none';
+
+        if (data.errors && data.errors.length > 0) {
+            errorsDiv.style.display = 'block';
+            errorsList.innerHTML = data.errors.map(e => `<li>${e}</li>`).join('');
+        } else {
+            errorsDiv.style.display = 'none';
+        }
+    }
+}
+
+async function startMCodeConverter() {
+    const port = document.getElementById('mcode-port').value;
+    const baudrate = parseInt(document.getElementById('mcode-baudrate').value);
+
+    const btn = document.getElementById('mcode-start-btn');
+    btn.disabled = true;
+    const original = btn.textContent;
+    btn.innerHTML = '<span class="spinner"></span>Enabling...';
+
+    try {
+        const data = await api('POST', 'converter/start', { port, baudrate });
+        toast(data.message, data.success ? 'success' : 'error');
+        setTimeout(refreshMCodeStatus, 500);
+    } finally {
+        btn.disabled = false;
+        btn.textContent = original;
+    }
+}
+
+async function stopMCodeConverter() {
+    const btn = document.getElementById('mcode-stop-btn');
+    btn.disabled = true;
+    const original = btn.textContent;
+    btn.innerHTML = '<span class="spinner"></span>Disabling...';
+
+    try {
+        const data = await api('POST', 'converter/stop');
+        toast(data.message, data.success ? 'success' : 'error');
+        setTimeout(refreshMCodeStatus, 500);
+    } finally {
+        btn.disabled = false;
+        btn.textContent = original;
+    }
+}
+
+async function addConverterToGpsd() {
+    const btn = document.getElementById('mcode-add-btn');
+    btn.disabled = true;
+    const original = btn.textContent;
+    btn.innerHTML = '<span class="spinner"></span>Adding...';
+
+    try {
+        const data = await api('POST', 'converter/add-to-gpsd');
+        toast(data.message, data.success ? 'success' : 'error');
+        setTimeout(() => {
+            refreshMCodeStatus();
+            refreshStatus();
+        }, 1000);
+    } finally {
+        btn.disabled = false;
+        btn.textContent = original;
+    }
+}
+
+// ---------------------------------------------------------------------------
 // Logs
 // ---------------------------------------------------------------------------
 async function refreshLogs() {
@@ -523,9 +654,12 @@ async function init() {
     refreshStatus();
     loadOptions();
     scanDevices();
+    scanMCodePorts();
+    refreshMCodeStatus();
     connectGpsWs();
 }
 init();
 
 setInterval(refreshStatus, 15000);
+setInterval(refreshMCodeStatus, 15000);
 setInterval(tickStaleness, 1000);

@@ -4,9 +4,11 @@ import asyncio
 import glob
 import json
 import os
+import platform
 import re
 import shutil
 import subprocess
+import tempfile
 import time
 from contextlib import asynccontextmanager
 from dataclasses import asdict, dataclass, field
@@ -16,6 +18,9 @@ from fastapi import FastAPI, Request, WebSocket, WebSocketDisconnect
 from fastapi.responses import HTMLResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
+
+IS_WINDOWS = platform.system() == "Windows"
+IS_LINUX = platform.system() == "Linux"
 
 
 # ---------------------------------------------------------------------------
@@ -215,6 +220,55 @@ class GpsdManager:
 
     def discover_devices(self) -> list[dict]:
         """Discover available serial/USB GPS devices on the system."""
+        if IS_WINDOWS:
+            return self._discover_devices_windows()
+        else:
+            return self._discover_devices_linux()
+
+    def _discover_devices_windows(self) -> list[dict]:
+        """Discover COM ports on Windows."""
+        devices = []
+        try:
+            import winreg
+            # Check HKEY_LOCAL_MACHINE\HARDWARE\DEVICEMAP\SERIALCOMM
+            key = winreg.OpenKey(winreg.HKEY_LOCAL_MACHINE, r"HARDWARE\DEVICEMAP\SERIALCOMM")
+            i = 0
+            while True:
+                try:
+                    name, port, _ = winreg.EnumValue(key, i)
+                    devices.append({
+                        "path": port,
+                        "type": "serial",
+                        "description": name.replace("\\", " "),
+                    })
+                    i += 1
+                except OSError:
+                    break
+            winreg.CloseKey(key)
+        except Exception:
+            pass
+
+        # Also check common COM ports
+        for i in range(1, 9):
+            com_port = f"COM{i}"
+            if not any(d["path"] == com_port for d in devices):
+                try:
+                    # Try to open it to see if it exists
+                    import serial
+                    ser = serial.Serial(com_port, timeout=0.1)
+                    ser.close()
+                    devices.append({
+                        "path": com_port,
+                        "type": "serial",
+                        "description": "Serial Port",
+                    })
+                except Exception:
+                    pass
+
+        return sorted(devices, key=lambda d: d["path"])
+
+    def _discover_devices_linux(self) -> list[dict]:
+        """Discover serial devices on Linux."""
         devices = []
         serial_paths = ["/dev/ttyUSB*", "/dev/ttyACM*", "/dev/ttyS*", "/dev/ttyAMA*", "/dev/gps*", "/dev/pps*"]
 
@@ -464,6 +518,166 @@ class GpsdManager:
 
 
 # ---------------------------------------------------------------------------
+# MCODE converter management
+# ---------------------------------------------------------------------------
+
+class MCODEConverterManager:
+    """Manage MCODE to NMEA converter subprocess."""
+
+    def __init__(self):
+        self.process: subprocess.Popen | None = None
+        self.device_path: str | None = None
+        self.errors: list[str] = []
+        self._setup_output_path()
+
+    def _setup_output_path(self):
+        """Setup platform-appropriate output path."""
+        if IS_WINDOWS:
+            # On Windows, use a file in temp directory
+            self.output_path = str(Path(tempfile.gettempdir()) / "mcode_output.txt")
+            self.output_mode = "file"
+        else:
+            # On Linux/Unix, use FIFO
+            fifo_dir = "/tmp/gpsd-manager"
+            try:
+                Path(fifo_dir).mkdir(parents=True, exist_ok=True)
+            except OSError:
+                pass
+            self.output_path = f"{fifo_dir}/mcode.fifo"
+            self.output_mode = "pipe"
+            # Try to create FIFO
+            try:
+                if not Path(self.output_path).exists():
+                    os.mkfifo(self.output_path)
+            except (FileExistsError, OSError):
+                pass
+
+    def start(self, serial_port: str, baudrate: int = 9600) -> tuple[bool, str]:
+        """Start the MCODE converter."""
+        if self.process is not None:
+            return False, "Converter already running"
+
+        self.errors.clear()
+
+        try:
+            converter_script = Path(__file__).parent / "mcode_converter.py"
+            cmd = [
+                "python", str(converter_script),
+                "--port", serial_port,
+                "--baudrate", str(baudrate),
+                "--output", self.output_path,
+                "--mode", self.output_mode,
+            ]
+
+            self.process = subprocess.Popen(
+                cmd,
+                stdout=subprocess.PIPE,
+                stderr=subprocess.PIPE,
+                text=True,
+            )
+
+            self.device_path = self.output_path
+
+            # Give it a moment to start
+            time.sleep(0.5)
+
+            # Check if process died immediately
+            if self.process.poll() is not None:
+                _, stderr = self.process.communicate()
+                self.process = None
+                return False, f"Converter failed to start: {stderr}"
+
+            return True, f"MCODE converter started. Device: {serial_port}, Output: {self.output_path}"
+
+        except Exception as e:
+            self.errors.append(str(e))
+            self.process = None
+            return False, f"Failed to start converter: {e}"
+
+    def stop(self) -> tuple[bool, str]:
+        """Stop the MCODE converter."""
+        if self.process is None:
+            return False, "Converter not running"
+
+        try:
+            self.process.terminate()
+            try:
+                self.process.wait(timeout=5)
+            except subprocess.TimeoutExpired:
+                self.process.kill()
+                self.process.wait()
+
+            self.process = None
+            self.device_path = None
+
+            return True, "MCODE converter stopped"
+        except Exception as e:
+            self.errors.append(str(e))
+            return False, f"Error stopping converter: {e}"
+
+    def get_status(self) -> dict:
+        """Get converter status."""
+        running = self.process is not None and self.process.poll() is None
+        device_in_config = False
+        if running:
+            device_in_config = self._is_device_in_gpsd_config()
+
+        return {
+            "running": running,
+            "output_path": self.device_path if running else None,
+            "output_mode": self.output_mode,
+            "platform": "Windows" if IS_WINDOWS else "Linux",
+            "device_in_config": device_in_config,
+            "errors": self.errors[-5:],
+        }
+
+    def _is_device_in_gpsd_config(self) -> bool:
+        """Check if converter output device is in gpsd config."""
+        if not self.device_path or not IS_LINUX:
+            return False
+        try:
+            conf = Path("/etc/default/gpsd")
+            if not conf.exists():
+                return False
+            content = conf.read_text()
+            return self.device_path in content
+        except OSError:
+            return False
+
+    def add_to_gpsd_config(self) -> tuple[bool, str]:
+        """Add converter device to gpsd config and restart gpsd."""
+        if not self.device_path:
+            return False, "Converter not running"
+
+        if IS_WINDOWS:
+            return False, "gpsd service control not available on Windows"
+
+        if not IS_LINUX:
+            return False, "Only supported on Linux"
+
+        try:
+            # Get current devices
+            current_devices = manager.get_configured_devices()
+            if self.device_path not in current_devices:
+                current_devices.append(self.device_path)
+
+            # Write config
+            ok, msg = manager.set_devices(current_devices)
+            if not ok:
+                return False, f"Failed to update config: {msg}"
+
+            # Restart gpsd
+            ok, msg = manager.restart()
+            if not ok:
+                return False, f"Config updated but failed to restart gpsd: {msg}"
+
+            return True, f"Converter device added to gpsd and service restarted"
+        except Exception as e:
+            self.errors.append(str(e))
+            return False, f"Error: {e}"
+
+
+# ---------------------------------------------------------------------------
 # Async gpsd stream
 # ---------------------------------------------------------------------------
 
@@ -618,6 +832,7 @@ class GpsdStream:
 # ---------------------------------------------------------------------------
 
 manager = GpsdManager()
+converter_manager = MCODEConverterManager()
 gps_stream = GpsdStream()
 startup_report: dict = {}
 
@@ -805,6 +1020,36 @@ async def api_save_options():
 async def api_config():
     """Get the raw gpsd config file."""
     return manager.get_config()
+
+
+@app.get("/api/converter/status")
+async def api_converter_status():
+    """Get MCODE converter status."""
+    return converter_manager.get_status()
+
+
+@app.post("/api/converter/start")
+async def api_converter_start(request: Request):
+    """Start the MCODE converter."""
+    body = await request.json()
+    port = body.get("port", "/dev/ttyUSB0")
+    baudrate = body.get("baudrate", 9600)
+    ok, msg = converter_manager.start(port, baudrate)
+    return {"success": ok, "message": msg}
+
+
+@app.post("/api/converter/stop")
+async def api_converter_stop():
+    """Stop the MCODE converter."""
+    ok, msg = converter_manager.stop()
+    return {"success": ok, "message": msg}
+
+
+@app.post("/api/converter/add-to-gpsd")
+async def api_converter_add_to_gpsd():
+    """Add converter device to gpsd config and restart."""
+    ok, msg = converter_manager.add_to_gpsd_config()
+    return {"success": ok, "message": msg}
 
 
 if __name__ == "__main__":

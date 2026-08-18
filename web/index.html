@@ -253,6 +253,55 @@
             </div>
         </div>
 
+        <!-- MCODE Converter -->
+        <div class="card">
+            <h2>Custom GPS Receiver (MCODE)</h2>
+            <div class="status-row">
+                <span class="status-label">Status</span>
+                <span class="status-value">
+                    <span id="mcode-status" class="badge badge-red">Disabled</span>
+                    <span id="mcode-platform" style="margin-left:0.5rem; font-size:0.75rem; color:var(--text-dim);"></span>
+                </span>
+            </div>
+            <div class="status-row">
+                <span class="status-label">Serial Port</span>
+                <div style="display:flex; gap:0.5rem; align-items:center;">
+                    <select id="mcode-port" style="flex:1;">
+                        <option>Scanning...</option>
+                    </select>
+                    <button class="btn" onclick="scanMCodePorts()" style="padding:0.35rem 0.75rem;">Rescan</button>
+                </div>
+            </div>
+            <div class="status-row">
+                <span class="status-label">Baud Rate</span>
+                <div style="display:flex; gap:0.5rem; align-items:center;">
+                    <select id="mcode-baudrate" style="flex:1;">
+                        <option value="9600">9600</option>
+                        <option value="19200">19200</option>
+                        <option value="38400">38400</option>
+                        <option value="57600">57600</option>
+                        <option value="115200">115200</option>
+                    </select>
+                </div>
+            </div>
+            <div class="status-row" style="display:none;" id="mcode-gpsd-row">
+                <span class="status-label">In GPSD Config</span>
+                <span class="status-value">
+                    <span id="mcode-in-config" class="badge badge-red">Not Configured</span>
+                </span>
+            </div>
+            <div id="mcode-errors" style="display:none; margin-top:1rem;">
+                <div style="color:var(--red); font-size:0.875rem;"><strong>Errors:</strong></div>
+                <ul id="mcode-errors-list" style="margin:0.5rem 0 0 1.5rem; color:var(--red); font-size:0.875rem;"></ul>
+            </div>
+            <div class="btn-group">
+                <button class="btn btn-green" id="mcode-start-btn" onclick="startMCodeConverter()">Enable</button>
+                <button class="btn btn-red" id="mcode-stop-btn" onclick="stopMCodeConverter()" disabled>Disable</button>
+                <button class="btn btn-blue" id="mcode-add-btn" onclick="addConverterToGpsd()" disabled style="display:none;">Add to GPSD</button>
+                <button class="btn" onclick="refreshMCodeStatus()">Refresh Status</button>
+            </div>
+        </div>
+
         <!-- Devices -->
         <div class="card">
             <h2>GPS Devices</h2>

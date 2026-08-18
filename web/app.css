@@ -435,3 +435,18 @@ header h1 { font-size: 1.25rem; font-weight: 600; }
 .fix-age { color: var(--text-dim); font-size: 0.75rem; margin-left: 0.5rem; }
 .fix-age.stale { color: var(--yellow); }
 .fix-age.very-stale { color: var(--red); }
+
+/* Select inputs */
+select {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    color: var(--text);
+    padding: 0.5rem;
+    font-size: 0.875rem;
+    cursor: pointer;
+    transition: border-color 0.15s;
+}
+select:hover { border-color: var(--accent); }
+select:focus { outline: none; border-color: var(--blue); }
+select option { background: var(--surface); color: var(--text); }
