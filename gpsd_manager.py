@@ -8,6 +8,7 @@ import platform
 import re
 import shutil
 import subprocess
+import sys
 import tempfile
 import time
 from contextlib import asynccontextmanager
@@ -561,8 +562,9 @@ class MCODEConverterManager:
 
         try:
             converter_script = Path(__file__).parent / "mcode_converter.py"
+            python_exe = sys.executable  # Use the same Python that's running this app
             cmd = [
-                "python", str(converter_script),
+                python_exe, str(converter_script),
                 "--port", serial_port,
                 "--baudrate", str(baudrate),
                 "--output", self.output_path,
