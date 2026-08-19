@@ -525,6 +525,8 @@ class GpsdManager:
 class MCODEConverterManager:
     """Manage MCODE to NMEA converter subprocess."""
 
+    CONFIG_FILE = str(Path(tempfile.gettempdir()) / "mcode_converter_config.json")
+
     def __init__(self):
         self.process: subprocess.Popen | None = None
         self.device_path: str | None = None
@@ -533,7 +535,35 @@ class MCODEConverterManager:
         self.last_mcode_parsed: dict | None = None
         self.last_nmea_gga: str | None = None
         self.last_nmea_rmc: str | None = None
+        self.serial_port: str = "/dev/ttyUSB0"
+        self.baudrate: int = 9600
+        self.add_to_gpsd_on_start: bool = False
         self._setup_output_path()
+        self._load_config()
+
+    def _load_config(self):
+        """Load saved converter configuration."""
+        try:
+            config_path = Path(self.CONFIG_FILE)
+            if config_path.exists():
+                data = json.loads(config_path.read_text())
+                self.serial_port = data.get("serial_port", self.serial_port)
+                self.baudrate = data.get("baudrate", self.baudrate)
+                self.add_to_gpsd_on_start = data.get("add_to_gpsd_on_start", False)
+        except Exception:
+            pass
+
+    def _save_config(self):
+        """Save converter configuration."""
+        try:
+            config = {
+                "serial_port": self.serial_port,
+                "baudrate": self.baudrate,
+                "add_to_gpsd_on_start": self.add_to_gpsd_on_start,
+            }
+            Path(self.CONFIG_FILE).write_text(json.dumps(config, indent=2))
+        except Exception:
+            pass
 
     def _setup_output_path(self):
         """Setup platform-appropriate output path."""
@@ -572,6 +602,11 @@ class MCODEConverterManager:
             return False, "Converter already running"
 
         self.errors.clear()
+
+        # Store configuration
+        self.serial_port = serial_port
+        self.baudrate = baudrate
+        self._save_config()
 
         try:
             converter_script = Path(__file__).parent / "mcode_converter.py"
@@ -699,6 +734,10 @@ class MCODEConverterManager:
             ok, msg = manager.restart()
             if not ok:
                 return False, f"Config updated but failed to restart gpsd: {msg}"
+
+            # Save that user added to GPSD
+            self.add_to_gpsd_on_start = True
+            self._save_config()
 
             return True, f"Converter device added to gpsd and service restarted"
         except Exception as e:
@@ -1049,6 +1088,16 @@ async def api_save_options():
 async def api_config():
     """Get the raw gpsd config file."""
     return manager.get_config()
+
+
+@app.get("/api/converter/config")
+async def api_converter_config():
+    """Get saved MCODE converter configuration."""
+    return {
+        "serial_port": converter_manager.serial_port,
+        "baudrate": converter_manager.baudrate,
+        "add_to_gpsd_on_start": converter_manager.add_to_gpsd_on_start,
+    }
 
 
 @app.get("/api/converter/status")

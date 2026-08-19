@@ -520,6 +520,24 @@ async function scanMCodePorts() {
     `).join('');
 }
 
+async function loadMCodeConfig() {
+    try {
+        const data = await api('GET', 'converter/config');
+        const portSelect = document.getElementById('mcode-port');
+        const baudrateSelect = document.getElementById('mcode-baudrate');
+
+        // Set saved values
+        if (data.serial_port) {
+            portSelect.value = data.serial_port;
+        }
+        if (data.baudrate) {
+            baudrateSelect.value = data.baudrate;
+        }
+    } catch (e) {
+        // Silently fail if config doesn't exist
+    }
+}
+
 async function refreshMCodeStatus() {
     const data = await api('GET', 'converter/status');
     const statusEl = document.getElementById('mcode-status');
@@ -673,6 +691,7 @@ async function init() {
     loadOptions();
     scanDevices();
     scanMCodePorts();
+    loadMCodeConfig();
     refreshMCodeStatus();
     connectGpsWs();
 }
