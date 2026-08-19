@@ -238,6 +238,14 @@ class MCODEConverter:
     def _open_output_unix(self):
         """Unix/Linux output (FIFO)."""
         print(f"Opening FIFO at {self.output_path}...", file=sys.stderr)
+
+        # Ensure FIFO has proper permissions (rw-rw-rw-)
+        try:
+            os.chmod(self.output_path, 0o666)
+            print(f"Set FIFO permissions to 0666", file=sys.stderr)
+        except OSError as e:
+            print(f"Warning: Could not set FIFO permissions: {e}", file=sys.stderr)
+
         try:
             # Try non-blocking open
             fd = os.open(self.output_path, os.O_WRONLY | os.O_NONBLOCK)

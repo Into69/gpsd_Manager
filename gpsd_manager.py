@@ -546,16 +546,25 @@ class MCODEConverterManager:
             fifo_dir = "/tmp/gpsd-manager"
             try:
                 Path(fifo_dir).mkdir(parents=True, exist_ok=True)
+                # Ensure directory is world-accessible
+                os.chmod(fifo_dir, 0o777)
             except OSError:
                 pass
             self.output_path = f"{fifo_dir}/mcode.fifo"
             self.output_mode = "pipe"
-            # Try to create FIFO
+            # Try to create FIFO with permissive permissions
             try:
                 if not Path(self.output_path).exists():
-                    os.mkfifo(self.output_path)
+                    os.mkfifo(self.output_path, 0o666)
+                else:
+                    # Ensure existing FIFO has proper permissions
+                    os.chmod(self.output_path, 0o666)
             except (FileExistsError, OSError):
-                pass
+                # Try to at least fix permissions on existing FIFO
+                try:
+                    os.chmod(self.output_path, 0o666)
+                except OSError:
+                    pass
 
     def start(self, serial_port: str, baudrate: int = 9600) -> tuple[bool, str]:
         """Start the MCODE converter."""
