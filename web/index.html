@@ -209,50 +209,6 @@
             </div>
         </div>
 
-        <!-- Satellites table -->
-        <div class="card">
-            <h2>Satellites</h2>
-            <div class="btn-group btn-tight">
-                <button class="btn btn-blue" onclick="enableSatReporting(this)"
-                        title="Runs 'ubxtool -e NMEA' then 'ubxtool -p SAVE' to enable the standard NMEA set (GGA/GSA/GSV/RMC/VTG) on u-blox receivers and persist to flash">
-                    Enable NMEA (GSV/GSA)
-                </button>
-                <button class="btn" onclick="restartReceiver(this, 'hot')"
-                        title="Reboot the receiver, keep ephemeris + almanac. Fastest re-fix.">
-                    Hot Restart
-                </button>
-                <button class="btn" onclick="restartReceiver(this, 'warm')"
-                        title="Clear ephemeris (stale satellite positions) but keep almanac. Good when sats are visible but the receiver can't converge.">
-                    Warm Restart
-                </button>
-                <button class="btn btn-red" onclick="restartReceiver(this, 'cold')"
-                        title="Clear all assistance data and re-acquire from scratch. Takes 30+ seconds.">
-                    Cold Restart
-                </button>
-            </div>
-            <div class="scroll-area">
-                <table class="data-table sat-table" id="gps-satellites">
-                    <colgroup>
-                        <col class="sat-col-prn">
-                        <col class="sat-col-sys">
-                        <col class="sat-col-elev">
-                        <col class="sat-col-az">
-                        <col class="sat-col-snr">
-                        <col class="sat-col-used">
-                    </colgroup>
-                    <thead><tr>
-                        <th class="num">PRN</th>
-                        <th>System</th>
-                        <th class="num">Elev</th>
-                        <th class="num">Az</th>
-                        <th class="num">SNR (dB-Hz)</th>
-                        <th class="center">Used</th>
-                    </tr></thead>
-                    <tbody><tr><td colspan="6" class="empty-state">--</td></tr></tbody>
-                </table>
-            </div>
-        </div>
-
         <!-- MCODE Converter -->
         <div class="card">
             <h2>Custom GPS Receiver (MCODE)</h2>
@@ -299,6 +255,50 @@
                 <button class="btn btn-red" id="mcode-stop-btn" onclick="stopMCodeConverter()" disabled>Disable</button>
                 <button class="btn btn-blue" id="mcode-add-btn" onclick="addConverterToGpsd()" disabled style="display:none;">Add to GPSD</button>
                 <button class="btn" onclick="refreshMCodeStatus()">Refresh Status</button>
+            </div>
+        </div>
+
+        <!-- Satellites table -->
+        <div class="card">
+            <h2>Satellites</h2>
+            <div class="btn-group btn-tight">
+                <button class="btn btn-blue" onclick="enableSatReporting(this)"
+                        title="Runs 'ubxtool -e NMEA' then 'ubxtool -p SAVE' to enable the standard NMEA set (GGA/GSA/GSV/RMC/VTG) on u-blox receivers and persist to flash">
+                    Enable NMEA (GSV/GSA)
+                </button>
+                <button class="btn" onclick="restartReceiver(this, 'hot')"
+                        title="Reboot the receiver, keep ephemeris + almanac. Fastest re-fix.">
+                    Hot Restart
+                </button>
+                <button class="btn" onclick="restartReceiver(this, 'warm')"
+                        title="Clear ephemeris (stale satellite positions) but keep almanac. Good when sats are visible but the receiver can't converge.">
+                    Warm Restart
+                </button>
+                <button class="btn btn-red" onclick="restartReceiver(this, 'cold')"
+                        title="Clear all assistance data and re-acquire from scratch. Takes 30+ seconds.">
+                    Cold Restart
+                </button>
+            </div>
+            <div class="scroll-area">
+                <table class="data-table sat-table" id="gps-satellites">
+                    <colgroup>
+                        <col class="sat-col-prn">
+                        <col class="sat-col-sys">
+                        <col class="sat-col-elev">
+                        <col class="sat-col-az">
+                        <col class="sat-col-snr">
+                        <col class="sat-col-used">
+                    </colgroup>
+                    <thead><tr>
+                        <th class="num">PRN</th>
+                        <th>System</th>
+                        <th class="num">Elev</th>
+                        <th class="num">Az</th>
+                        <th class="num">SNR (dB-Hz)</th>
+                        <th class="center">Used</th>
+                    </tr></thead>
+                    <tbody><tr><td colspan="6" class="empty-state">--</td></tr></tbody>
+                </table>
             </div>
         </div>
 
