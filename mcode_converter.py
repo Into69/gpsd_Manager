@@ -1,5 +1,6 @@
 """Convert MCODE serial GPS data to NMEA format for gpsd consumption."""
 
+import json
 import os
 import platform
 import re
@@ -153,6 +154,7 @@ class MCODEConverter:
         self.parser = MCodeParser()
         self.running = False
         self.is_windows = platform.system() == "Windows"
+        self.debug_file = self._get_debug_file_path()
 
     def run(self):
         """Main loop: read from serial, convert, output."""
@@ -196,6 +198,9 @@ class MCODEConverter:
                             now = datetime.now(datetime.now().astimezone().tzinfo)
                             gga = NMEAGenerator.gga(parsed, now)
                             rmc = NMEAGenerator.rmc(parsed, now)
+
+                            # Store raw MCODE for debugging
+                            self._write_debug_info(data, parsed, gga, rmc)
 
                             try:
                                 if output:
@@ -241,6 +246,26 @@ class MCODEConverter:
             # Fall back to blocking open
             print(f"FIFO not ready, opening blocking...", file=sys.stderr)
             return open(self.output_path, "w", buffering=1)
+
+    def _get_debug_file_path(self) -> str:
+        """Get path for debug file."""
+        temp_dir = Path(os.environ.get("TEMP") if self.is_windows else "/tmp")
+        return str(temp_dir / "mcode_debug.json")
+
+    def _write_debug_info(self, raw_line: str, parsed: dict, nmea_gga: str, nmea_rmc: str):
+        """Write debug info to JSON file."""
+        try:
+            debug_info = {
+                "timestamp": datetime.now().isoformat(),
+                "raw_mcode": raw_line,
+                "parsed_fields": parsed,
+                "nmea_gga": nmea_gga.strip(),
+                "nmea_rmc": nmea_rmc.strip(),
+            }
+            with open(self.debug_file, "w") as f:
+                json.dump(debug_info, f, indent=2)
+        except Exception:
+            pass  # Silently ignore debug write errors
 
     def _open_output_windows(self):
         """Windows output (file or named pipe)."""

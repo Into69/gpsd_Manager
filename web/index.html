@@ -246,6 +246,25 @@
                     <span id="mcode-in-config" class="badge badge-red">Not Configured</span>
                 </span>
             </div>
+            <div id="mcode-debug" style="display:none; margin-top:1rem; background:var(--surface2); padding:0.75rem; border-radius:4px; border:1px solid var(--border); font-size:0.8125rem;">
+                <div style="color:var(--text-dim); margin-bottom:0.5rem;"><strong>Last Parsed Data:</strong></div>
+                <div style="font-family:'Cascadia Code','Fira Code',monospace; color:var(--accent); margin-bottom:0.5rem;">
+                    <div style="word-break:break-all; margin-bottom:0.5rem;">
+                        <span style="color:var(--text-dim);">Raw:</span> <span id="mcode-debug-raw"></span>
+                    </div>
+                </div>
+                <div style="margin-bottom:0.5rem;">
+                    <span style="color:var(--text-dim);">Parsed:</span>
+                    <div id="mcode-debug-parsed" style="margin-left:1rem; font-family:'Cascadia Code','Fira Code',monospace; color:var(--text);"></div>
+                </div>
+                <div style="margin-bottom:0.5rem;">
+                    <span style="color:var(--text-dim);">NMEA Output:</span>
+                    <div style="margin-left:1rem; font-family:'Cascadia Code','Fira Code',monospace; color:var(--green); font-size:0.75rem;">
+                        <div id="mcode-debug-gga"></div>
+                        <div id="mcode-debug-rmc"></div>
+                    </div>
+                </div>
+            </div>
             <div id="mcode-errors" style="display:none; margin-top:1rem;">
                 <div style="color:var(--red); font-size:0.875rem;"><strong>Errors:</strong></div>
                 <ul id="mcode-errors-list" style="margin:0.5rem 0 0 1.5rem; color:var(--red); font-size:0.875rem;"></ul>

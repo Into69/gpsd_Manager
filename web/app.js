@@ -529,6 +529,7 @@ async function refreshMCodeStatus() {
     const addBtn = document.getElementById('mcode-add-btn');
     const gpsdRow = document.getElementById('mcode-gpsd-row');
     const gpsdStatus = document.getElementById('mcode-in-config');
+    const debugDiv = document.getElementById('mcode-debug');
     const errorsDiv = document.getElementById('mcode-errors');
     const errorsList = document.getElementById('mcode-errors-list');
 
@@ -543,6 +544,22 @@ async function refreshMCodeStatus() {
         startBtn.disabled = true;
         stopBtn.disabled = false;
         errorsDiv.style.display = 'none';
+
+        // Show debug info if available
+        if (data.debug) {
+            debugDiv.style.display = 'block';
+            document.getElementById('mcode-debug-raw').textContent = data.debug.raw_mcode || '';
+
+            const parsedHtml = Object.entries(data.debug.parsed_fields || {})
+                .map(([k, v]) => `<div>${k}: <span style="color:var(--blue);">${v}</span></div>`)
+                .join('');
+            document.getElementById('mcode-debug-parsed').innerHTML = parsedHtml;
+
+            document.getElementById('mcode-debug-gga').textContent = data.debug.nmea_gga || '';
+            document.getElementById('mcode-debug-rmc').textContent = data.debug.nmea_rmc || '';
+        } else {
+            debugDiv.style.display = 'none';
+        }
 
         // Show GPSD config status (Linux only)
         if (data.platform === 'Linux') {
@@ -569,6 +586,7 @@ async function refreshMCodeStatus() {
         addBtn.disabled = true;
         addBtn.style.display = 'none';
         gpsdRow.style.display = 'none';
+        debugDiv.style.display = 'none';
 
         if (data.errors && data.errors.length > 0) {
             errorsDiv.style.display = 'block';

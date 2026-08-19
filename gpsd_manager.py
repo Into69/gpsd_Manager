@@ -529,6 +529,10 @@ class MCODEConverterManager:
         self.process: subprocess.Popen | None = None
         self.device_path: str | None = None
         self.errors: list[str] = []
+        self.last_mcode_raw: str | None = None
+        self.last_mcode_parsed: dict | None = None
+        self.last_nmea_gga: str | None = None
+        self.last_nmea_rmc: str | None = None
         self._setup_output_path()
 
     def _setup_output_path(self):
@@ -621,8 +625,11 @@ class MCODEConverterManager:
         """Get converter status."""
         running = self.process is not None and self.process.poll() is None
         device_in_config = False
+        debug_info = None
+
         if running:
             device_in_config = self._is_device_in_gpsd_config()
+            debug_info = self._read_debug_info()
 
         return {
             "running": running,
@@ -630,8 +637,19 @@ class MCODEConverterManager:
             "output_mode": self.output_mode,
             "platform": "Windows" if IS_WINDOWS else "Linux",
             "device_in_config": device_in_config,
+            "debug": debug_info,
             "errors": self.errors[-5:],
         }
+
+    def _read_debug_info(self) -> dict | None:
+        """Read last debug info from converter."""
+        debug_file = Path(tempfile.gettempdir()) / "mcode_debug.json"
+        try:
+            if debug_file.exists():
+                return json.loads(debug_file.read_text())
+        except (OSError, json.JSONDecodeError):
+            pass
+        return None
 
     def _is_device_in_gpsd_config(self) -> bool:
         """Check if converter output device is in gpsd config."""
