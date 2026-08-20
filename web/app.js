@@ -640,7 +640,11 @@ async function refreshMCodeStatus() {
 
         // Show debug info if available
         if (data.debug) {
-            debugDiv.style.display = 'block';
+            if (debugDiv) {
+                debugDiv.style.display = 'block';
+            } else {
+                console.error('mcode-debug element not found');
+            }
 
             // Display raw source data
             const rawData = data.debug.raw_mcode || '';
@@ -653,8 +657,10 @@ async function refreshMCodeStatus() {
                 if (data.debug.serial_data_buffer && Array.isArray(data.debug.serial_data_buffer)) {
                     serialDataBuffer.length = 0;
                     serialDataBuffer.push(...data.debug.serial_data_buffer);
+                    console.log('Updated serial data buffer:', data.debug.serial_data_buffer.length, 'lines');
                 } else if (rawData) {
                     // Fallback: add current raw data
+                    console.log('Using raw data fallback');
                     addSerialData(rawData);
                 }
                 updateSerialDisplay();
