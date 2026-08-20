@@ -375,5 +375,5 @@ if __name__ == "__main__":
             print(f"Invalid manual position JSON: {e}", file=sys.stderr)
             sys.exit(1)
 
-    converter = MCODEConverter(args.port, args.baudrate, args.output, args.mode, manual_pos)
+    converter = MCODEConverter(args.port, args.baudrate, None, args.mode, manual_pos)
     converter.run()
