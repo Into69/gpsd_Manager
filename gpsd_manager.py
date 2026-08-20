@@ -490,7 +490,7 @@ class GpsdManager:
         conf = Path(self.GPSD_CONF_PATH)
 
         active_flags = [f for f, v in self.options.items() if v["enabled"]]
-        options_str = " ".join(active_flags)
+        options_list = list(active_flags)
 
         try:
             if conf.exists():
@@ -500,13 +500,27 @@ class GpsdManager:
         except OSError:
             content = '# Default settings for gpsd\nSTART_DAEMON="true"\nGPSD_OPTIONS=""\nDEVICES=""\nUSBAUTO="true"\n'
 
+        # Separate file-based and network-based devices
+        file_devices = []
+        network_devices = []
+        if devices is not None:
+            for dev in devices:
+                if dev.startswith("tcp://") or dev.startswith("udp://"):
+                    network_devices.append(dev)
+                else:
+                    file_devices.append(dev)
+
+        # Add network devices to options
+        options_list.extend(network_devices)
+        options_str = " ".join(options_list)
+
         if re.search(r'GPSD_OPTIONS=', content):
             content = re.sub(r'GPSD_OPTIONS="[^"]*"', f'GPSD_OPTIONS="{options_str}"', content)
         else:
             content += f'\nGPSD_OPTIONS="{options_str}"\n'
 
         if devices is not None:
-            devices_str = " ".join(devices)
+            devices_str = " ".join(file_devices)
             if re.search(r'DEVICES=', content):
                 content = re.sub(r'DEVICES="[^"]*"', f'DEVICES="{devices_str}"', content)
             else:
