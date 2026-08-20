@@ -8,8 +8,28 @@ import serial
 import socket
 import sys
 import time
-from datetime import datetime
+from datetime import datetime, timedelta
 from pathlib import Path
+
+
+def gps_time_to_datetime(gps_week: int, tow_seconds: float) -> datetime:
+    """Convert GPS week and time of week to UTC datetime.
+
+    GPS epoch: January 6, 1980 00:00:00 UTC
+    Each GPS week has 604800 seconds (7 days).
+    Does not account for leap seconds (GPS time is continuous, UTC has leap seconds).
+    """
+    # GPS epoch in Unix time (seconds since Jan 1, 1970)
+    GPS_EPOCH_UNIX = 315964800
+
+    # Calculate total seconds since GPS epoch
+    total_seconds = (gps_week * 604800) + tow_seconds
+
+    # Convert to Unix timestamp
+    unix_timestamp = GPS_EPOCH_UNIX + total_seconds
+
+    # Convert to datetime
+    return datetime.utcfromtimestamp(unix_timestamp)
 
 
 class MCodeParser:
@@ -136,12 +156,21 @@ class GPSPrintParser:
     def _parse_complete(self) -> dict | None:
         """Combine GPS time and ZED data into standard format."""
         try:
+            # Convert GPS time to datetime
+            gps_datetime = None
+            if self.gps_time_data.get('week') is not None and self.gps_time_data.get('tow') is not None:
+                gps_datetime = gps_time_to_datetime(
+                    self.gps_time_data['week'],
+                    self.gps_time_data['tow']
+                )
+
             # Combine all decoded info
             result = {
                 "lat": self.zed_data['lat'],
                 "lon": self.zed_data['lon'],
                 "alt": self.zed_data['alt'],
                 "speed_ms": 0,  # Speed not provided in this format
+                "timestamp": gps_datetime,  # Converted GPS time
                 # Additional decoded fields
                 "week": self.gps_time_data.get('week'),
                 "tow": self.gps_time_data.get('tow'),
@@ -317,7 +346,11 @@ class MCODEConverter:
                         parsed = self.parser.feed(data)
 
                         if parsed:
-                            now = datetime.now(datetime.now().astimezone().tzinfo)
+                            # Use GPS timestamp if available, otherwise use current time
+                            if parsed.get('timestamp'):
+                                now = parsed['timestamp']
+                            else:
+                                now = datetime.now(datetime.now().astimezone().tzinfo)
                             gga = NMEAGenerator.gga(parsed, now)
                             rmc = NMEAGenerator.rmc(parsed, now)
 
