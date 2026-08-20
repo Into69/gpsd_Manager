@@ -722,8 +722,15 @@ async function refreshMCodeStatus() {
                     qualityDiv.style.display = 'block';
 
                     // Fix quality
-                    const fixMap = { 0: '2D Fix', 1: '3D Fix', 2: 'DGPS', 3: 'PPS', 4: 'RTK', 5: 'Float RTK', 9: 'SBAS' };
-                    const fixVal = parsed.fix_quality !== undefined ? fixMap[parsed.fix_quality] || `${parsed.fix_quality}` : '--';
+                    const fixMap = { 0: '2D Fix', 1: '3D Fix' };
+                    let fixVal = '--';
+                    if (parsed.fix_quality !== undefined) {
+                        if (parsed.fix_quality in fixMap) {
+                            fixVal = fixMap[parsed.fix_quality];
+                        } else {
+                            fixVal = `${parsed.fix_quality} (Unknown)`;
+                        }
+                    }
                     document.getElementById('mcode-fix-quality').textContent = fixVal;
 
                     // Satellites
