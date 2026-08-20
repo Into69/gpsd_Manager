@@ -292,7 +292,7 @@ class MCODEConverter:
             self.tcp_server.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
             self.tcp_server.bind(('127.0.0.1', self.TCP_PORT))
             self.tcp_server.listen(5)
-            self.tcp_server.setblocking(False)
+            self.tcp_server.settimeout(0.1)  # Non-blocking with timeout
             print(f"TCP server listening on port {self.TCP_PORT}", file=sys.stderr)
         except Exception as e:
             print(f"Failed to start TCP server: {e}", file=sys.stderr)
@@ -311,22 +311,40 @@ class MCODEConverter:
             except OSError:
                 pass
 
+    def _accept_clients(self):
+        """Accept any new client connections."""
+        if not self.tcp_server:
+            return
+        try:
+            while True:
+                client, addr = self.tcp_server.accept()
+                client.settimeout(None)
+                self.tcp_clients.append(client)
+                print(f"Client connected from {addr}: {len(self.tcp_clients)} total clients", file=sys.stderr)
+        except socket.timeout:
+            pass
+        except Exception as e:
+            print(f"Error accepting client: {e}", file=sys.stderr)
+
     def _send_to_clients(self, data: str):
         """Send data to all connected TCP clients."""
         if not self.tcp_server:
             return
-        try:
-            client, _ = self.tcp_server.accept()
-            self.tcp_clients.append(client)
-            print(f"Client connected: {len(self.tcp_clients)} clients", file=sys.stderr)
-        except (BlockingIOError, OSError):
-            pass
+
+        # Accept any new connections first
+        self._accept_clients()
+
+        # Send data to all connected clients
         dead_clients = []
+        data_bytes = data.encode('utf-8')
         for i, client in enumerate(self.tcp_clients):
             try:
-                client.sendall(data.encode('utf-8'))
-            except (BrokenPipeError, OSError):
+                client.sendall(data_bytes)
+            except (BrokenPipeError, OSError) as e:
                 dead_clients.append(i)
+                print(f"Client {i} disconnected", file=sys.stderr)
+
+        # Remove dead clients
         for i in reversed(dead_clients):
             try:
                 self.tcp_clients[i].close()
