@@ -150,6 +150,14 @@ class GPSPrintParser:
                     # If we have both GPS time and ZED data, return the parsed result
                     if self.gps_time_data and self.zed_data:
                         parsed = self._parse_complete()
+                else:
+                    # Debug: log which matches failed
+                    if not alt_match:
+                        print(f"GPSPrint: Alt match failed on line: {line}", file=sys.stderr)
+                    if not lat_match:
+                        print(f"GPSPrint: Lat match failed on line: {line}", file=sys.stderr)
+                    if not lon_match:
+                        print(f"GPSPrint: Lon match failed on line: {line}", file=sys.stderr)
 
         return parsed
 
