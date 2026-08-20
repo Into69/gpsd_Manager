@@ -193,7 +193,7 @@ class MCODEConverter:
             self._stop_tcp_server()
 
     def _run_serial_mode(self):
-        """Read from serial port and output NMEA."""
+        """Read from serial port and output NMEA via TCP."""
         try:
             ser = serial.Serial(self.port, self.baudrate, timeout=1)
         except serial.SerialException as e:
@@ -210,19 +210,12 @@ class MCODEConverter:
         except Exception as e:
             print(f"Warning: Failed to send enable command: {e}", file=sys.stderr)
 
-        # Open output based on platform and mode
-        output = None
-        try:
-            output = self._open_output()
-        except Exception as e:
-            print(f"Failed to open output: {e}", file=sys.stderr)
-            ser.close()
-            return
+        # Start TCP server
+        self._start_tcp_server()
 
         try:
             self.running = True
-            output_desc = self.output_path or "stdout"
-            print(f"MCODE converter: reading from {self.port}, outputting to {output_desc}", file=sys.stderr)
+            print(f"MCODE converter: reading from {self.port}, streaming NMEA via TCP port {self.TCP_PORT}", file=sys.stderr)
 
             while self.running:
                 try:
@@ -238,13 +231,9 @@ class MCODEConverter:
                             # Store raw MCODE for debugging
                             self._write_debug_info(data, parsed, gga, rmc)
 
-                            try:
-                                if output:
-                                    output.write(gga)
-                                    output.write(rmc)
-                                    output.flush()
-                            except (BrokenPipeError, OSError):
-                                pass
+                            # Send to all connected TCP clients
+                            self._send_to_clients(gga)
+                            self._send_to_clients(rmc)
                     else:
                         time.sleep(0.01)
                 except Exception as e:
@@ -255,11 +244,7 @@ class MCODEConverter:
         finally:
             self.running = False
             ser.close()
-            if output and output != sys.stdout:
-                try:
-                    output.close()
-                except OSError:
-                    pass
+            self._stop_tcp_server()
 
     def _open_output(self):
         """Open output stream (file-based for simplicity)."""
@@ -358,9 +343,8 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Convert MCODE GPS to NMEA")
     parser.add_argument("--port", default=default_port, help=f"Serial port (default: {default_port})")
     parser.add_argument("--baudrate", type=int, default=9600, help="Baud rate (default: 9600)")
-    parser.add_argument("--output", help="Output path (FIFO on Unix, file/pipe on Windows)")
-    parser.add_argument("--mode", default="auto", choices=["auto", "file", "pipe", "tcp"],
-                        help="Output mode (default: auto)")
+    parser.add_argument("--mode", default="tcp", choices=["tcp"],
+                        help="Output mode (TCP only)")
     parser.add_argument("--manual-position", help="Manual position JSON: {\"lat\": ..., \"lon\": ..., \"alt\": ..., \"speed_ms\": ...}")
 
     args = parser.parse_args()

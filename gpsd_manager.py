@@ -607,15 +607,10 @@ class MCODEConverterManager:
             pass
 
     def _setup_output_path(self):
-        """Setup platform-appropriate output path."""
-        if IS_WINDOWS:
-            # On Windows, use a file in temp directory
-            self.output_path = str(Path(tempfile.gettempdir()) / "mcode_output.txt")
-        else:
-            # On Linux/Unix, use /tmp (simpler permissions than /var/run)
-            self.output_path = "/tmp/mcode_nmea.txt"
-
-        self.output_mode = "file"
+        """Setup TCP output (no file-based output due to permission issues)."""
+        # All modes now use TCP for GPSD communication
+        self.output_path = "tcp://127.0.0.1:2948"
+        self.output_mode = "tcp"
 
 
     def start(self, serial_port: str, baudrate: int = 9600) -> tuple[bool, str]:
@@ -637,8 +632,7 @@ class MCODEConverterManager:
                 python_exe, str(converter_script),
                 "--port", serial_port,
                 "--baudrate", str(baudrate),
-                "--output", self.output_path,
-                "--mode", self.output_mode,
+                "--mode", "tcp",
             ]
 
             self.process = subprocess.Popen(
@@ -648,7 +642,7 @@ class MCODEConverterManager:
                 text=True,
             )
 
-            self.device_path = self.output_path
+            self.device_path = "tcp://127.0.0.1:2948"
 
             # Give it a moment to start
             time.sleep(0.5)
@@ -667,11 +661,11 @@ class MCODEConverterManager:
             if IS_LINUX:
                 ok, msg = self.add_to_gpsd_config()
                 if ok:
-                    return True, f"MCODE converter started and added to GPSD. {msg}"
+                    return True, f"Custom GPS converter started on TCP port 2948 and added to GPSD. {msg}"
                 else:
-                    return True, f"MCODE converter started but couldn't add to GPSD: {msg}. Device: {serial_port}"
+                    return True, f"Custom GPS converter started but couldn't add to GPSD: {msg}. Converter running on TCP 2948."
 
-            return True, f"MCODE converter started. Device: {serial_port}, Output: {self.output_path}"
+            return True, f"Custom GPS converter started on TCP port 2948. Serial port: {serial_port}"
 
         except Exception as e:
             self.errors.append(str(e))
