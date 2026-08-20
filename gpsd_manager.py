@@ -702,11 +702,15 @@ class MCODEConverterManager:
             # Give it a moment to start
             time.sleep(0.5)
 
-            # Check if process died immediately
+            # Give it a bit longer to ensure it's really running
+            time.sleep(1)
+
+            # Check if process died
             if self.process.poll() is not None:
-                _, stderr = self.process.communicate()
+                stdout, stderr = self.process.communicate()
                 self.process = None
-                return False, f"Converter failed to start: {stderr}"
+                error_msg = stderr or stdout or "Unknown error"
+                return False, f"Converter failed to start: {error_msg}"
 
             return True, f"MCODE converter started. Device: {serial_port}, Output: {self.output_path}"
 
@@ -812,6 +816,13 @@ class MCODEConverterManager:
             return False, "Only supported on Linux"
 
         try:
+            # Wait a moment to ensure converter has FIFO open
+            time.sleep(1)
+
+            # Verify FIFO exists before adding to gpsd
+            if not Path(self.device_path).exists():
+                return False, f"FIFO not created yet: {self.device_path}. Try again in a moment."
+
             # Get current devices
             current_devices = manager.get_configured_devices()
             if self.device_path not in current_devices:
@@ -822,6 +833,9 @@ class MCODEConverterManager:
             if not ok:
                 return False, f"Failed to update config: {msg}"
 
+            # Wait before restart to ensure FIFO is stable
+            time.sleep(0.5)
+
             # Restart gpsd
             ok, msg = manager.restart()
             if not ok:
@@ -831,7 +845,7 @@ class MCODEConverterManager:
             self.add_to_gpsd_on_start = True
             self._save_config()
 
-            return True, f"Converter device added to gpsd and service restarted"
+            return True, f"Converter device added to gpsd and service restarted. Monitor logs with: sudo journalctl -u gpsd -f"
         except Exception as e:
             self.errors.append(str(e))
             return False, f"Error: {e}"
