@@ -582,19 +582,35 @@ class MCODEConverterManager:
                 pass
             self.output_path = f"{fifo_dir}/mcode.fifo"
             self.output_mode = "pipe"
-            # Try to create FIFO with permissive permissions
-            try:
-                if not Path(self.output_path).exists():
-                    os.mkfifo(self.output_path, 0o666)
-                else:
-                    # Ensure existing FIFO has proper permissions
-                    os.chmod(self.output_path, 0o666)
-            except (FileExistsError, OSError):
-                # Try to at least fix permissions on existing FIFO
-                try:
-                    os.chmod(self.output_path, 0o666)
-                except OSError:
-                    pass
+            # Remove and recreate FIFO with permissive permissions
+            self._recreate_fifo()
+
+    def _recreate_fifo(self):
+        """Remove old FIFO and create new one with proper permissions."""
+        if IS_WINDOWS:
+            return
+
+        fifo_path = Path(self.output_path)
+        try:
+            # Remove existing FIFO
+            if fifo_path.exists():
+                fifo_path.unlink()
+        except OSError:
+            pass
+
+        # Create new FIFO with 0o666 permissions
+        try:
+            os.mkfifo(self.output_path, 0o666)
+        except FileExistsError:
+            pass  # Another process created it
+        except OSError:
+            pass
+
+        # Verify and fix permissions
+        try:
+            os.chmod(self.output_path, 0o666)
+        except OSError:
+            pass
 
     def start(self, serial_port: str, baudrate: int = 9600) -> tuple[bool, str]:
         """Start the MCODE converter."""
@@ -607,6 +623,10 @@ class MCODEConverterManager:
         self.serial_port = serial_port
         self.baudrate = baudrate
         self._save_config()
+
+        # Ensure FIFO has correct permissions before starting
+        if IS_LINUX:
+            self._recreate_fifo()
 
         try:
             converter_script = Path(__file__).parent / "mcode_converter.py"
@@ -670,16 +690,27 @@ class MCODEConverterManager:
         running = self.process is not None and self.process.poll() is None
         device_in_config = False
         debug_info = None
+        fifo_perms = None
 
         if running:
             device_in_config = self._is_device_in_gpsd_config()
             debug_info = self._read_debug_info()
+
+        # Get FIFO permissions for diagnostics
+        if not IS_WINDOWS and Path(self.output_path).exists():
+            try:
+                stat_info = os.stat(self.output_path)
+                mode = stat_info.st_mode & 0o777
+                fifo_perms = f"0o{mode:03o}"
+            except OSError:
+                pass
 
         return {
             "running": running,
             "output_path": self.device_path if running else None,
             "output_mode": self.output_mode,
             "platform": "Windows" if IS_WINDOWS else "Linux",
+            "fifo_permissions": fifo_perms,
             "device_in_config": device_in_config,
             "debug": debug_info,
             "errors": self.errors[-5:],
