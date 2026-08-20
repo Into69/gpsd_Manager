@@ -289,6 +289,7 @@ header h1 { font-size: 1.25rem; font-weight: 600; }
     top: 0;
     background: var(--surface);
     z-index: 10;
+    border-bottom: 1px solid var(--border);
 }
 .sat-col-prn  { width: 3rem; }
 .sat-col-sys  { width: 5.5rem; }
@@ -351,8 +352,10 @@ header h1 { font-size: 1.25rem; font-weight: 600; }
 .scroll-area {
     height: 280px;
     overflow-y: auto;
+    overflow-x: hidden;
     border: 1px solid var(--border);
     border-radius: 4px;
+    display: block;
 }
 
 .errors-list {
