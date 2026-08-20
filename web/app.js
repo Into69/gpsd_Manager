@@ -721,6 +721,7 @@ async function setManualPosition() {
     const lat = parseFloat(document.getElementById('manual-lat').value);
     const lon = parseFloat(document.getElementById('manual-lon').value);
     const alt = parseFloat(document.getElementById('manual-alt').value);
+    const speed_ms = 0;
 
     if (isNaN(lat) || isNaN(lon) || isNaN(alt)) {
         toast('Please enter valid coordinates', 'error');
@@ -737,20 +738,27 @@ async function setManualPosition() {
         return;
     }
 
-    const position = { lat, lon, alt, timestamp: new Date().toISOString() };
+    const position = { lat, lon, alt, speed_ms, timestamp: new Date().toISOString() };
 
     try {
+        // Stop serial converter if running
+        await api('POST', 'converter/stop', {});
+
+        // Save position and start converter
         await api('POST', 'gps/manual-position', { position });
 
         // Clear all configured devices when manual position is set
         await api('POST', 'devices', { devices: [] });
 
         document.getElementById('manual-position-status').innerHTML =
-            `<span style="color:var(--green);">✓ Position set: ${lat.toFixed(6)}, ${lon.toFixed(6)}, ${alt.toFixed(1)}m (Devices disabled)</span>`;
+            `<span style="color:var(--green);">✓ Position set: ${lat.toFixed(6)}, ${lon.toFixed(6)}, ${alt.toFixed(1)}m (TCP mode)</span>`;
 
-        toast('Manual position saved', 'success');
+        toast('Manual position active - converter running on TCP port 2948', 'success');
+
+        // Refresh converter status to show it's running
+        await refreshMCodeStatus();
     } catch (e) {
-        toast('Failed to save position', 'error');
+        toast('Failed to set position', 'error');
     }
 }
 
