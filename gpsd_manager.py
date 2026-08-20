@@ -53,11 +53,14 @@ class GpsdManager:
 
     GPSD_CONF_PATH = "/etc/default/gpsd"
     GPSD_SYSTEMD_SERVICE = "gpsd"
+    MANUAL_POSITION_FILE = str(Path(tempfile.gettempdir()) / "manual_gps_position.json")
 
     def __init__(self):
         self.errors: list[str] = []
         self.options: dict = {k: dict(v) for k, v in self.GPSD_DEFAULT_OPTIONS.items()}
+        self.manual_position: dict | None = None
         self._load_config()
+        self._load_manual_position()
 
     def _run(self, cmd: list[str], check: bool = False, timeout: int = 10) -> subprocess.CompletedProcess:
         """Run a shell command and return the result."""
@@ -103,6 +106,27 @@ class GpsdManager:
                 flags = self._expand_flags(match.group(1).split())
                 self._apply_flags(flags)
         except OSError:
+            pass
+
+    def _load_manual_position(self):
+        """Load saved manual GPS position."""
+        try:
+            config_path = Path(self.MANUAL_POSITION_FILE)
+            if config_path.exists():
+                data = json.loads(config_path.read_text())
+                self.manual_position = data
+        except Exception:
+            pass
+
+    def _save_manual_position(self, position: dict | None):
+        """Save manual GPS position."""
+        try:
+            if position is None:
+                Path(self.MANUAL_POSITION_FILE).unlink(missing_ok=True)
+            else:
+                Path(self.MANUAL_POSITION_FILE).write_text(json.dumps(position, indent=2))
+            self.manual_position = position
+        except Exception:
             pass
 
     def sync_options_from_running(self):
@@ -1156,6 +1180,21 @@ async def api_converter_add_to_gpsd():
     """Add converter device to gpsd config and restart."""
     ok, msg = converter_manager.add_to_gpsd_config()
     return {"success": ok, "message": msg}
+
+
+@app.get("/api/gps/manual-position")
+async def api_get_manual_position():
+    """Get the saved manual GPS position."""
+    return {"position": manager.manual_position}
+
+
+@app.post("/api/gps/manual-position")
+async def api_set_manual_position(request: Request):
+    """Set the manual GPS position."""
+    data = await request.json()
+    position = data.get("position")
+    manager._save_manual_position(position)
+    return {"success": True, "position": manager.manual_position}
 
 
 if __name__ == "__main__":
