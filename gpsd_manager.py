@@ -848,8 +848,16 @@ class MCODEConverterManager:
                 if not Path(self.device_path).exists():
                     return False, f"Device not created yet: {self.device_path}. Try again in a moment."
 
-            # Get current devices
+            # Get current devices and remove any old converter devices
             current_devices = manager.get_configured_devices()
+            # Remove any previous MCODE converter file or TCP devices
+            current_devices = [d for d in current_devices if not (
+                d == "/tmp/mcode_nmea.txt" or
+                d == self.output_path or
+                d.startswith("tcp://127.0.0.1:2948")
+            )]
+
+            # Add the current device if not already present
             if self.device_path not in current_devices:
                 current_devices.append(self.device_path)
 
