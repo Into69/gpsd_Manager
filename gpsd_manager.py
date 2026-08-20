@@ -526,12 +526,16 @@ class GpsdManager:
             else:
                 content += f'\nDEVICES="{devices_str}"\n'
 
+        print(f"DEBUG: GPSD config being written:\n{content}", file=sys.stderr)
+
         proc = subprocess.run(
             ["sudo", "tee", self.GPSD_CONF_PATH],
             input=content, capture_output=True, text=True, timeout=5,
         )
         if proc.returncode != 0:
             return False, f"Failed to write config: {proc.stderr}"
+
+        print(f"DEBUG: Config written successfully to {self.GPSD_CONF_PATH}", file=sys.stderr)
 
         # Verify the file was written correctly
         try:
@@ -865,9 +869,11 @@ class MCODEConverterManager:
                 print(f"Removed old converter devices. Before: {original_devices}, After: {current_devices}", file=sys.stderr)
 
             # Write config
+            print(f"DEBUG: Writing devices to GPSD config: {current_devices}", file=sys.stderr)
             ok, msg = manager.set_devices(current_devices)
             if not ok:
                 return False, f"Failed to update config: {msg}"
+            print(f"DEBUG: Config write result: {ok}, {msg}", file=sys.stderr)
 
             # Wait before restart
             time.sleep(0.5)
