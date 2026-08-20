@@ -272,6 +272,27 @@
                     </select>
                 </div>
             </div>
+            <div id="mcode-quality" style="display:none; margin-top:0.75rem; padding:0.75rem; background:var(--surface2); border-radius:4px; border:1px solid var(--border); font-size:0.8125rem;">
+                <div style="color:var(--text-dim); margin-bottom:0.5rem;"><strong>GPS Quality</strong></div>
+                <div style="display:grid; grid-template-columns:1fr 1fr; gap:0.75rem;">
+                    <div>
+                        <div style="color:var(--text-dim); font-size:0.75rem; margin-bottom:0.25rem;">Fix Quality</div>
+                        <div id="mcode-fix-quality" style="color:var(--blue); font-weight:500;">--</div>
+                    </div>
+                    <div>
+                        <div style="color:var(--text-dim); font-size:0.75rem; margin-bottom:0.25rem;">Satellites</div>
+                        <div id="mcode-satellites" style="color:var(--blue); font-weight:500;">--</div>
+                    </div>
+                    <div>
+                        <div style="color:var(--text-dim); font-size:0.75rem; margin-bottom:0.25rem;">HDOP</div>
+                        <div id="mcode-hdop" style="color:var(--blue); font-weight:500;">--</div>
+                    </div>
+                    <div>
+                        <div style="color:var(--text-dim); font-size:0.75rem; margin-bottom:0.25rem;">Position</div>
+                        <div id="mcode-position" style="color:var(--blue); font-weight:500; font-size:0.75rem;">--</div>
+                    </div>
+                </div>
+            </div>
             <div class="status-row" style="display:none;" id="mcode-gpsd-row">
                 <span class="status-label">In GPSD Config</span>
                 <span class="status-value">

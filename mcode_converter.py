@@ -104,6 +104,8 @@ class GPSPrintParser:
                         'tow': float(time_match.group(2)),
                         'gps_sec': time_match.group(3),
                     }
+                    # Also capture raw line for debugging
+                    self.gps_time_data['raw_line'] = line
 
             # Parse ZED Alt line
             elif line.startswith('ZED Alt:'):
@@ -122,6 +124,7 @@ class GPSPrintParser:
                         'hdop': float(hdop_match.group(1)) if hdop_match else 0,
                         'fix': int(fix_match.group(1)) if fix_match else 0,
                         'sv': int(sv_match.group(1)) if sv_match else 0,
+                        'raw_line': line,
                     }
 
                     # If we have both GPS time and ZED data, return the parsed result
@@ -133,11 +136,18 @@ class GPSPrintParser:
     def _parse_complete(self) -> dict | None:
         """Combine GPS time and ZED data into standard format."""
         try:
+            # Combine all decoded info
             result = {
                 "lat": self.zed_data['lat'],
                 "lon": self.zed_data['lon'],
                 "alt": self.zed_data['alt'],
                 "speed_ms": 0,  # Speed not provided in this format
+                # Additional decoded fields
+                "week": self.gps_time_data.get('week'),
+                "tow": self.gps_time_data.get('tow'),
+                "hdop": self.zed_data.get('hdop'),
+                "fix_quality": self.zed_data.get('fix'),  # 0=no fix, 1=fix, 2=dgps
+                "satellites_used": self.zed_data.get('sv'),
             }
             return result
         except (ValueError, KeyError):

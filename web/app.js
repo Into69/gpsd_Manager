@@ -660,21 +660,93 @@ async function refreshMCodeStatus() {
                 updateSerialDisplay();
             }
 
-            const parsedHtml = Object.entries(data.debug.parsed_fields || {})
-                .map(([k, v]) => {
-                    let displayVal = v;
-                    if (typeof v === 'number') {
-                        displayVal = v.toFixed(6);
+            const parsed = data.debug.parsed_fields || {};
+
+            // Organize fields into categories
+            const categories = {
+                'Position': ['lat', 'lon', 'alt'],
+                'Motion': ['speed_ms'],
+                'Quality': ['fix_quality', 'hdop', 'satellites_used'],
+                'Time': ['week', 'tow', 'gps_sec'],
+            };
+
+            const fieldLabels = {
+                'lat': 'Latitude',
+                'lon': 'Longitude',
+                'alt': 'Altitude (m)',
+                'speed_ms': 'Speed (m/s)',
+                'fix_quality': 'Fix Quality',
+                'hdop': 'HDOP',
+                'satellites_used': 'Satellites',
+                'week': 'GPS Week',
+                'tow': 'Time of Week (s)',
+                'gps_sec': 'GPS Seconds',
+            };
+
+            let parsedHtml = '';
+            for (const [category, fields] of Object.entries(categories)) {
+                const hasFields = fields.some(f => parsed[f] !== undefined && parsed[f] !== null);
+                if (hasFields) {
+                    parsedHtml += `<div style="color:var(--text-dim); font-size:0.75rem; margin-top:0.5rem; margin-bottom:0.25rem;"><strong>${category}</strong></div>`;
+                    for (const field of fields) {
+                        const val = parsed[field];
+                        if (val !== undefined && val !== null) {
+                            let displayVal = val;
+                            if (typeof val === 'number') {
+                                if (field === 'tow') {
+                                    displayVal = val.toFixed(3);
+                                } else if (field === 'hdop' || field === 'alt' || field === 'speed_ms') {
+                                    displayVal = val.toFixed(2);
+                                } else if (field === 'lat' || field === 'lon') {
+                                    displayVal = val.toFixed(5);
+                                } else {
+                                    displayVal = val.toFixed(6);
+                                }
+                            }
+                            const label = fieldLabels[field] || field;
+                            parsedHtml += `<div style="margin-left:0.5rem;">${label}: <span style="color:var(--blue);">${displayVal}</span></div>`;
+                        }
                     }
-                    return `<div>${k}: <span style="color:var(--blue);">${displayVal}</span></div>`;
-                })
-                .join('');
+                }
+            }
             document.getElementById('mcode-debug-parsed').innerHTML = parsedHtml || '<div style="color:var(--text-dim);">No data yet</div>';
 
             document.getElementById('mcode-debug-gga').textContent = data.debug.nmea_gga || '';
             document.getElementById('mcode-debug-rmc').textContent = data.debug.nmea_rmc || '';
+
+            // Update GPS Quality section
+            const qualityDiv = document.getElementById('mcode-quality');
+            if (qualityDiv) {
+                const parsed = data.debug.parsed_fields || {};
+                if (Object.keys(parsed).length > 0) {
+                    qualityDiv.style.display = 'block';
+
+                    // Fix quality
+                    const fixMap = { 0: 'No Fix', 1: 'Fix', 2: 'DGPS', 3: 'PPS', 4: 'RTK', 5: 'Float RTK', 9: 'SBAS' };
+                    const fixVal = parsed.fix_quality !== undefined ? fixMap[parsed.fix_quality] || `${parsed.fix_quality}` : '--';
+                    document.getElementById('mcode-fix-quality').textContent = fixVal;
+
+                    // Satellites
+                    const satsVal = parsed.satellites_used !== undefined ? `${parsed.satellites_used} SV` : '--';
+                    document.getElementById('mcode-satellites').textContent = satsVal;
+
+                    // HDOP
+                    const hdopVal = parsed.hdop !== undefined ? parsed.hdop.toFixed(2) : '--';
+                    document.getElementById('mcode-hdop').textContent = hdopVal;
+
+                    // Position
+                    const posVal = (parsed.lat !== undefined && parsed.lon !== undefined)
+                        ? `${parsed.lat.toFixed(5)}°, ${parsed.lon.toFixed(5)}°`
+                        : '--';
+                    document.getElementById('mcode-position').textContent = posVal;
+                } else {
+                    qualityDiv.style.display = 'none';
+                }
+            }
         } else {
             debugDiv.style.display = 'none';
+            const qualityDiv = document.getElementById('mcode-quality');
+            if (qualityDiv) qualityDiv.style.display = 'none';
         }
 
         // Show GPSD config status (Linux only)
