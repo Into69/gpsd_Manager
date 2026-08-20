@@ -631,8 +631,15 @@ async function refreshMCodeStatus() {
                 serialDataBuffer.length = 0;
                 updateSerialDisplay();
             } else {
-                // For serial mode, add to buffer and display
-                addSerialData(rawData);
+                // For serial mode, use the complete buffer from converter
+                if (data.debug.serial_data_buffer && Array.isArray(data.debug.serial_data_buffer)) {
+                    serialDataBuffer.length = 0;
+                    serialDataBuffer.push(...data.debug.serial_data_buffer);
+                } else if (rawData) {
+                    // Fallback: add current raw data
+                    addSerialData(rawData);
+                }
+                updateSerialDisplay();
             }
 
             const parsedHtml = Object.entries(data.debug.parsed_fields || {})

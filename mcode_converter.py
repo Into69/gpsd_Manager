@@ -160,6 +160,7 @@ class MCODEConverter:
         self.debug_file = self._get_debug_file_path()
         self.tcp_server = None
         self.tcp_clients = []
+        self.serial_data_lines = []  # Buffer of all serial data lines (max 1000)
 
     def run(self):
         """Main loop: read from serial or manual position, convert, output."""
@@ -221,6 +222,10 @@ class MCODEConverter:
                 try:
                     if ser.in_waiting:
                         data = ser.read(ser.in_waiting).decode("utf-8", errors="replace")
+
+                        # Add all incoming serial data to buffer
+                        self._add_serial_data(data)
+
                         parsed = self.parser.feed(data)
 
                         if parsed:
@@ -270,6 +275,16 @@ class MCODEConverter:
         temp_dir = Path(os.environ.get("TEMP") if self.is_windows else "/tmp")
         return str(temp_dir / "mcode_debug.json")
 
+    def _add_serial_data(self, data: str):
+        """Add incoming serial data to buffer (max 1000 lines)."""
+        lines = data.split('\n')
+        for line in lines:
+            if line.strip():  # Only add non-empty lines
+                self.serial_data_lines.append(line.strip())
+        # Keep only last 1000 lines
+        if len(self.serial_data_lines) > 1000:
+            self.serial_data_lines = self.serial_data_lines[-1000:]
+
     def _write_debug_info(self, raw_line: str, parsed: dict, nmea_gga: str, nmea_rmc: str):
         """Write debug info to JSON file."""
         try:
@@ -279,6 +294,7 @@ class MCODEConverter:
                 "parsed_fields": parsed,
                 "nmea_gga": nmea_gga.strip(),
                 "nmea_rmc": nmea_rmc.strip(),
+                "serial_data_buffer": self.serial_data_lines[-100:],  # Include last 100 lines for performance
             }
             with open(self.debug_file, "w") as f:
                 json.dump(debug_info, f, indent=2)
