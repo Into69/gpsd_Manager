@@ -760,11 +760,11 @@ async function setManualPosition() {
         // Stop serial converter if running
         await api('POST', 'converter/stop', {});
 
-        // Save position and start converter
-        await api('POST', 'gps/manual-position', { position });
-
-        // Clear all configured devices when manual position is set
+        // Clear all configured devices first
         await api('POST', 'devices', { devices: [] });
+
+        // Save position and start converter (this will add TCP to GPSD)
+        await api('POST', 'gps/manual-position', { position });
 
         document.getElementById('manual-position-status').innerHTML =
             `<span style="color:var(--green);">✓ Position set: ${lat.toFixed(6)}, ${lon.toFixed(6)}, ${alt.toFixed(1)}m (TCP mode)</span>`;

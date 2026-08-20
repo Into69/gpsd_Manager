@@ -652,9 +652,13 @@ class MCODEConverterManager:
 
             # Check if process died
             if self.process.poll() is not None:
-                stdout, stderr = self.process.communicate()
+                # Process has exited - try to get error message
+                try:
+                    _, stderr = self.process.communicate(timeout=1)
+                    error_msg = stderr.strip() if stderr else "Unknown error"
+                except subprocess.TimeoutExpired:
+                    error_msg = "Process startup timeout"
                 self.process = None
-                error_msg = stderr or stdout or "Unknown error"
                 return False, f"Converter failed to start: {error_msg}"
 
             # Auto-add to GPSD on Linux
@@ -704,9 +708,13 @@ class MCODEConverterManager:
 
             # Check if process died
             if self.process.poll() is not None:
-                stdout, stderr = self.process.communicate()
+                # Process has exited - try to get error message
+                try:
+                    _, stderr = self.process.communicate(timeout=1)
+                    error_msg = stderr.strip() if stderr else "Unknown error"
+                except subprocess.TimeoutExpired:
+                    error_msg = "Process startup timeout"
                 self.process = None
-                error_msg = stderr or stdout or "Unknown error"
                 return False, f"Manual position converter failed to start: {error_msg}"
 
             # Auto-add to GPSD on Linux
