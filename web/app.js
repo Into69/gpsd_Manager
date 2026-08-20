@@ -672,13 +672,33 @@ async function refreshMCodeStatus() {
             const fieldLabels = {
                 'lat': 'Latitude',
                 'lon': 'Longitude',
-                'alt': 'Altitude (m)',
+                'alt': 'Altitude',
                 'fix_quality': 'Fix Quality',
                 'hdop': 'HDOP',
                 'satellites_used': 'Satellites',
                 'week': 'GPS Week',
-                'tow': 'Time of Week (s)',
+                'tow': 'Time of Week',
                 'gps_sec': 'GPS Seconds',
+            };
+
+            const fieldUnits = {
+                'alt': 'm',
+                'hdop': '',
+                'satellites_used': 'satellites',
+                'week': 'weeks',
+                'tow': 'seconds',
+                'gps_sec': 'seconds',
+            };
+
+            const fieldFormats = {
+                'lat': (v) => `${Math.abs(v).toFixed(5)}° ${v >= 0 ? 'N' : 'S'}`,
+                'lon': (v) => `${Math.abs(v).toFixed(5)}° ${v >= 0 ? 'E' : 'W'}`,
+                'alt': (v) => `${v.toFixed(2)} m`,
+                'hdop': (v) => `${v.toFixed(2)}`,
+                'satellites_used': (v) => `${v}`,
+                'week': (v) => `${v}`,
+                'tow': (v) => `${v.toFixed(3)}`,
+                'gps_sec': (v) => `${v}`,
             };
 
             let parsedHtml = '';
@@ -690,16 +710,8 @@ async function refreshMCodeStatus() {
                         const val = parsed[field];
                         if (val !== undefined && val !== null) {
                             let displayVal = val;
-                            if (typeof val === 'number') {
-                                if (field === 'tow') {
-                                    displayVal = val.toFixed(3);
-                                } else if (field === 'hdop' || field === 'alt' || field === 'speed_ms') {
-                                    displayVal = val.toFixed(2);
-                                } else if (field === 'lat' || field === 'lon') {
-                                    displayVal = val.toFixed(5);
-                                } else {
-                                    displayVal = val.toFixed(6);
-                                }
+                            if (typeof val === 'number' && fieldFormats[field]) {
+                                displayVal = fieldFormats[field](val);
                             }
                             const label = fieldLabels[field] || field;
                             parsedHtml += `<div style="margin-left:0.5rem;">${label}: <span style="color:var(--blue);">${displayVal}</span></div>`;
@@ -736,17 +748,22 @@ async function refreshMCodeStatus() {
                     document.getElementById('mcode-fix-quality').textContent = fixVal;
 
                     // Satellites
-                    const satsVal = parsed.satellites_used !== undefined ? `${parsed.satellites_used} SV` : '--';
+                    const satsVal = parsed.satellites_used !== undefined ? `${parsed.satellites_used} satellites` : '--';
                     document.getElementById('mcode-satellites').textContent = satsVal;
 
-                    // HDOP
-                    const hdopVal = parsed.hdop !== undefined ? parsed.hdop.toFixed(2) : '--';
+                    // HDOP (Horizontal Dilution of Precision)
+                    const hdopVal = parsed.hdop !== undefined ? `${parsed.hdop.toFixed(2)} (${parsed.hdop < 1 ? 'excellent' : parsed.hdop < 2 ? 'good' : parsed.hdop < 5 ? 'moderate' : 'poor'})` : '--';
                     document.getElementById('mcode-hdop').textContent = hdopVal;
 
-                    // Position
-                    const posVal = (parsed.lat !== undefined && parsed.lon !== undefined)
-                        ? `${parsed.lat.toFixed(5)}°, ${parsed.lon.toFixed(5)}°`
-                        : '--';
+                    // Position with direction indicators
+                    let posVal = '--';
+                    if (parsed.lat !== undefined && parsed.lon !== undefined) {
+                        const latDir = parsed.lat >= 0 ? 'N' : 'S';
+                        const lonDir = parsed.lon >= 0 ? 'E' : 'W';
+                        const latAbs = Math.abs(parsed.lat).toFixed(5);
+                        const lonAbs = Math.abs(parsed.lon).toFixed(5);
+                        posVal = `${latAbs}° ${latDir}, ${lonAbs}° ${lonDir}`;
+                    }
                     document.getElementById('mcode-position').textContent = posVal;
                 } else {
                     qualityDiv.style.display = 'none';
