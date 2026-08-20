@@ -146,18 +146,54 @@ class NMEAGenerator:
 class MCODEConverter:
     """Main converter: reads MCODE from serial, outputs NMEA."""
 
-    def __init__(self, port: str, baudrate: int = 9600, output_path: str | None = None, output_mode: str = "auto"):
+    TCP_PORT = 2948
+
+    def __init__(self, port: str, baudrate: int = 9600, output_path: str | None = None, output_mode: str = "auto", manual_position: dict | None = None):
         self.port = port
         self.baudrate = baudrate
         self.output_path = output_path
         self.output_mode = output_mode  # "auto", "file", "pipe", "tcp"
+        self.manual_position = manual_position  # If set, output this position instead of reading serial
         self.parser = MCodeParser()
         self.running = False
         self.is_windows = platform.system() == "Windows"
         self.debug_file = self._get_debug_file_path()
+        self.tcp_server = None
+        self.tcp_clients = []
 
     def run(self):
-        """Main loop: read from serial, convert, output."""
+        """Main loop: read from serial or manual position, convert, output."""
+        if self.manual_position:
+            self._run_manual_mode()
+        else:
+            self._run_serial_mode()
+
+    def _run_manual_mode(self):
+        """Output NMEA from manually set position via TCP."""
+        self._start_tcp_server()
+        try:
+            self.running = True
+            print(f"MCODE converter: manual position mode, TCP server on port {self.TCP_PORT}", file=sys.stderr)
+            while self.running:
+                try:
+                    now = datetime.now(datetime.now().astimezone().tzinfo)
+                    gga = NMEAGenerator.gga(self.manual_position, now)
+                    rmc = NMEAGenerator.rmc(self.manual_position, now)
+                    self._write_debug_info("manual position", self.manual_position, gga, rmc)
+                    self._send_to_clients(gga)
+                    self._send_to_clients(rmc)
+                    time.sleep(1)
+                except Exception as e:
+                    print(f"Manual mode error: {e}", file=sys.stderr)
+                    time.sleep(0.5)
+        except KeyboardInterrupt:
+            pass
+        finally:
+            self.running = False
+            self._stop_tcp_server()
+
+    def _run_serial_mode(self):
+        """Read from serial port and output NMEA."""
         try:
             ser = serial.Serial(self.port, self.baudrate, timeout=1)
         except serial.SerialException as e:
@@ -264,6 +300,55 @@ class MCODEConverter:
         except Exception:
             pass  # Silently ignore debug write errors
 
+    def _start_tcp_server(self):
+        """Start TCP server to accept GPSD connections."""
+        try:
+            self.tcp_server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+            self.tcp_server.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+            self.tcp_server.bind(('127.0.0.1', self.TCP_PORT))
+            self.tcp_server.listen(5)
+            self.tcp_server.setblocking(False)
+            print(f"TCP server listening on port {self.TCP_PORT}", file=sys.stderr)
+        except Exception as e:
+            print(f"Failed to start TCP server: {e}", file=sys.stderr)
+
+    def _stop_tcp_server(self):
+        """Stop TCP server and close all connections."""
+        for client in self.tcp_clients:
+            try:
+                client.close()
+            except OSError:
+                pass
+        self.tcp_clients.clear()
+        if self.tcp_server:
+            try:
+                self.tcp_server.close()
+            except OSError:
+                pass
+
+    def _send_to_clients(self, data: str):
+        """Send data to all connected TCP clients."""
+        if not self.tcp_server:
+            return
+        try:
+            client, _ = self.tcp_server.accept()
+            self.tcp_clients.append(client)
+            print(f"Client connected: {len(self.tcp_clients)} clients", file=sys.stderr)
+        except (BlockingIOError, OSError):
+            pass
+        dead_clients = []
+        for i, client in enumerate(self.tcp_clients):
+            try:
+                client.sendall(data.encode('utf-8'))
+            except (BrokenPipeError, OSError):
+                dead_clients.append(i)
+        for i in reversed(dead_clients):
+            try:
+                self.tcp_clients[i].close()
+            except OSError:
+                pass
+            self.tcp_clients.pop(i)
+
 
 if __name__ == "__main__":
     import argparse
@@ -276,8 +361,17 @@ if __name__ == "__main__":
     parser.add_argument("--output", help="Output path (FIFO on Unix, file/pipe on Windows)")
     parser.add_argument("--mode", default="auto", choices=["auto", "file", "pipe", "tcp"],
                         help="Output mode (default: auto)")
+    parser.add_argument("--manual-position", help="Manual position JSON: {\"lat\": ..., \"lon\": ..., \"alt\": ..., \"speed_ms\": ...}")
 
     args = parser.parse_args()
 
-    converter = MCODEConverter(args.port, args.baudrate, args.output, args.mode)
+    manual_pos = None
+    if args.manual_position:
+        try:
+            manual_pos = json.loads(args.manual_position)
+        except json.JSONDecodeError as e:
+            print(f"Invalid manual position JSON: {e}", file=sys.stderr)
+            sys.exit(1)
+
+    converter = MCODEConverter(args.port, args.baudrate, args.output, args.mode, manual_pos)
     converter.run()

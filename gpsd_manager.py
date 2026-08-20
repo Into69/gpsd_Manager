@@ -654,6 +654,50 @@ class MCODEConverterManager:
             self.process = None
             return False, f"Failed to start converter: {e}"
 
+    def start_manual_position(self, position: dict) -> tuple[bool, str]:
+        """Start the MCODE converter in manual position mode (TCP server)."""
+        if self.process is not None:
+            return False, "Converter already running"
+
+        self.errors.clear()
+
+        try:
+            converter_script = Path(__file__).parent / "mcode_converter.py"
+            python_exe = sys.executable
+            manual_pos_json = json.dumps(position)
+            cmd = [
+                python_exe, str(converter_script),
+                "--port", "MANUAL",
+                "--mode", "tcp",
+                "--manual-position", manual_pos_json,
+            ]
+
+            self.process = subprocess.Popen(
+                cmd,
+                stdout=subprocess.PIPE,
+                stderr=subprocess.PIPE,
+                text=True,
+            )
+
+            self.device_path = "tcp://127.0.0.1:2948"
+
+            # Give it a moment to start
+            time.sleep(0.5)
+
+            # Check if process died
+            if self.process.poll() is not None:
+                stdout, stderr = self.process.communicate()
+                self.process = None
+                error_msg = stderr or stdout or "Unknown error"
+                return False, f"Manual position converter failed to start: {error_msg}"
+
+            return True, f"Manual position converter started on TCP port 2948"
+
+        except Exception as e:
+            self.errors.append(str(e))
+            self.process = None
+            return False, f"Failed to start manual position converter: {e}"
+
     def stop(self) -> tuple[bool, str]:
         """Stop the MCODE converter."""
         if self.process is None:
@@ -751,12 +795,13 @@ class MCODEConverterManager:
             return False, "Only supported on Linux"
 
         try:
-            # Wait a moment to ensure converter has FIFO open
+            # Wait a moment to ensure converter is ready
             time.sleep(1)
 
-            # Verify FIFO exists before adding to gpsd
-            if not Path(self.device_path).exists():
-                return False, f"FIFO not created yet: {self.device_path}. Try again in a moment."
+            # For file-based devices, verify they exist. For TCP, skip check.
+            if not self.device_path.startswith("tcp://"):
+                if not Path(self.device_path).exists():
+                    return False, f"Device not created yet: {self.device_path}. Try again in a moment."
 
             # Get current devices
             current_devices = manager.get_configured_devices()
@@ -768,7 +813,7 @@ class MCODEConverterManager:
             if not ok:
                 return False, f"Failed to update config: {msg}"
 
-            # Wait before restart to ensure FIFO is stable
+            # Wait before restart
             time.sleep(0.5)
 
             # Restart gpsd
@@ -1194,6 +1239,11 @@ async def api_set_manual_position(request: Request):
     data = await request.json()
     position = data.get("position")
     manager._save_manual_position(position)
+
+    # If position is set and converter not already running, start it
+    if position and not (converter_manager.process and converter_manager.process.poll() is None):
+        converter_manager.start_manual_position(position)
+
     return {"success": True, "position": manager.manual_position}
 
 
