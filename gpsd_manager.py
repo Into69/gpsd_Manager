@@ -572,18 +572,52 @@ class MCODEConverterManager:
             self.output_path = str(Path(tempfile.gettempdir()) / "mcode_output.txt")
             self.output_mode = "file"
         else:
-            # On Linux/Unix, use FIFO
-            fifo_dir = "/tmp/gpsd-manager"
-            try:
-                Path(fifo_dir).mkdir(parents=True, exist_ok=True)
-                # Ensure directory is world-accessible
-                os.chmod(fifo_dir, 0o777)
-            except OSError:
-                pass
+            # On Linux/Unix, try multiple FIFO locations
+            # Prefer /var/run (better permissions) but fall back to /tmp
+            fifo_paths = [
+                "/var/run/gpsd-manager",
+                "/tmp/gpsd-manager",
+            ]
+
+            fifo_dir = None
+            for candidate_dir in fifo_paths:
+                if self._try_create_fifo_dir(candidate_dir):
+                    fifo_dir = candidate_dir
+                    break
+
+            if not fifo_dir:
+                fifo_dir = "/tmp/gpsd-manager"
+
             self.output_path = f"{fifo_dir}/mcode.fifo"
             self.output_mode = "pipe"
             # Remove and recreate FIFO with permissive permissions
             self._recreate_fifo()
+
+    def _try_create_fifo_dir(self, dir_path: str) -> bool:
+        """Try to create and set permissions on FIFO directory. Return True if successful."""
+        try:
+            # Try with regular mkdir
+            Path(dir_path).mkdir(parents=True, exist_ok=True)
+            os.chmod(dir_path, 0o777)
+            return True
+        except OSError:
+            # Try with sudo if regular mkdir fails
+            try:
+                subprocess.run(
+                    ["sudo", "mkdir", "-p", dir_path],
+                    check=True,
+                    capture_output=True,
+                    timeout=5,
+                )
+                subprocess.run(
+                    ["sudo", "chmod", "0o777", dir_path],
+                    check=True,
+                    capture_output=True,
+                    timeout=5,
+                )
+                return True
+            except (subprocess.CalledProcessError, subprocess.TimeoutExpired, FileNotFoundError):
+                return False
 
     def _recreate_fifo(self):
         """Remove old FIFO and create new one with proper permissions."""
@@ -591,26 +625,43 @@ class MCODEConverterManager:
             return
 
         fifo_path = Path(self.output_path)
-        try:
-            # Remove existing FIFO
-            if fifo_path.exists():
+
+        # Try to remove existing FIFO (with sudo if needed)
+        if fifo_path.exists():
+            try:
                 fifo_path.unlink()
-        except OSError:
-            pass
+            except OSError:
+                try:
+                    subprocess.run(
+                        ["sudo", "rm", "-f", self.output_path],
+                        check=False,
+                        capture_output=True,
+                        timeout=5,
+                    )
+                except (subprocess.TimeoutExpired, FileNotFoundError):
+                    pass
 
         # Create new FIFO with 0o666 permissions
         try:
             os.mkfifo(self.output_path, 0o666)
-        except FileExistsError:
-            pass  # Another process created it
-        except OSError:
-            pass
-
-        # Verify and fix permissions
-        try:
             os.chmod(self.output_path, 0o666)
-        except OSError:
-            pass
+        except (FileExistsError, OSError):
+            # Try with sudo
+            try:
+                subprocess.run(
+                    ["sudo", "mkfifo", self.output_path],
+                    check=False,
+                    capture_output=True,
+                    timeout=5,
+                )
+                subprocess.run(
+                    ["sudo", "chmod", "0o666", self.output_path],
+                    check=False,
+                    capture_output=True,
+                    timeout=5,
+                )
+            except (subprocess.TimeoutExpired, FileNotFoundError):
+                pass
 
     def start(self, serial_port: str, baudrate: int = 9600) -> tuple[bool, str]:
         """Start the MCODE converter."""
@@ -690,31 +741,41 @@ class MCODEConverterManager:
         running = self.process is not None and self.process.poll() is None
         device_in_config = False
         debug_info = None
-        fifo_perms = None
+        fifo_info = None
 
         if running:
             device_in_config = self._is_device_in_gpsd_config()
             debug_info = self._read_debug_info()
 
-        # Get FIFO permissions for diagnostics
-        if not IS_WINDOWS and Path(self.output_path).exists():
-            try:
-                stat_info = os.stat(self.output_path)
-                mode = stat_info.st_mode & 0o777
-                fifo_perms = f"0o{mode:03o}"
-            except OSError:
-                pass
+        # Get FIFO permissions and info for diagnostics
+        if not IS_WINDOWS:
+            fifo_info = self._get_fifo_info()
 
         return {
             "running": running,
             "output_path": self.device_path if running else None,
             "output_mode": self.output_mode,
             "platform": "Windows" if IS_WINDOWS else "Linux",
-            "fifo_permissions": fifo_perms,
+            "fifo_info": fifo_info,
             "device_in_config": device_in_config,
             "debug": debug_info,
             "errors": self.errors[-5:],
         }
+
+    def _get_fifo_info(self) -> dict:
+        """Get FIFO path and permission information for diagnostics."""
+        info = {"path": self.output_path, "exists": False, "permissions": None}
+
+        if Path(self.output_path).exists():
+            info["exists"] = True
+            try:
+                stat_info = os.stat(self.output_path)
+                mode = stat_info.st_mode & 0o777
+                info["permissions"] = f"0o{mode:03o}"
+            except OSError:
+                info["permissions"] = "unknown (permission denied)"
+
+        return info
 
     def _read_debug_info(self) -> dict | None:
         """Read last debug info from converter."""
