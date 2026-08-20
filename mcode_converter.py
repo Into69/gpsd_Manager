@@ -70,6 +70,80 @@ class MCodeParser:
             return None
 
 
+class GPSPrintParser:
+    """Parse GPS print format data."""
+
+    def __init__(self):
+        self.buffer = ""
+        self.gps_time_data = {}
+        self.zed_data = {}
+
+    def feed(self, data: str) -> dict | None:
+        """Feed data and return parsed GPS dict when complete, or None."""
+        self.buffer += data
+
+        # Normalize line endings: ensure all lines end with \n
+        self.buffer = self.buffer.replace('\r\n', '\n').replace('\r', '\n')
+
+        lines = self.buffer.split('\n')
+        # Keep the last incomplete line in buffer
+        self.buffer = lines[-1]
+
+        parsed = None
+        for line in lines[:-1]:
+            line = line.strip()
+            if not line:
+                continue
+
+            # Parse GPS TIME line
+            if line.startswith('[GPS TIME]'):
+                time_match = re.search(r'week=(\d+)\s+tow=([\d.]+)\s+gps_sec=([^\s]*)', line)
+                if time_match:
+                    self.gps_time_data = {
+                        'week': int(time_match.group(1)),
+                        'tow': float(time_match.group(2)),
+                        'gps_sec': time_match.group(3),
+                    }
+
+            # Parse ZED Alt line
+            elif line.startswith('ZED Alt:'):
+                alt_match = re.search(r'ZED Alt:\s+([\d.-]+)', line)
+                lat_match = re.search(r'Lat:\s+([\d.-]+)', line)
+                lon_match = re.search(r'Lon:\s+([\d.-]+)', line)
+                hdop_match = re.search(r'HDOP:\s+([\d.]+)', line)
+                fix_match = re.search(r'Fix:(\d+)', line)
+                sv_match = re.search(r'SV:(\d+)', line)
+
+                if alt_match and lat_match and lon_match:
+                    self.zed_data = {
+                        'alt': float(alt_match.group(1)),
+                        'lat': float(lat_match.group(1)),
+                        'lon': float(lon_match.group(1)),
+                        'hdop': float(hdop_match.group(1)) if hdop_match else 0,
+                        'fix': int(fix_match.group(1)) if fix_match else 0,
+                        'sv': int(sv_match.group(1)) if sv_match else 0,
+                    }
+
+                    # If we have both GPS time and ZED data, return the parsed result
+                    if self.gps_time_data and self.zed_data:
+                        parsed = self._parse_complete()
+
+        return parsed
+
+    def _parse_complete(self) -> dict | None:
+        """Combine GPS time and ZED data into standard format."""
+        try:
+            result = {
+                "lat": self.zed_data['lat'],
+                "lon": self.zed_data['lon'],
+                "alt": self.zed_data['alt'],
+                "speed_ms": 0,  # Speed not provided in this format
+            }
+            return result
+        except (ValueError, KeyError):
+            return None
+
+
 class NMEAGenerator:
     """Generate standard NMEA sentences from MCODE data."""
 
@@ -144,17 +218,18 @@ class NMEAGenerator:
 
 
 class MCODEConverter:
-    """Main converter: reads MCODE from serial, outputs NMEA."""
+    """Main converter: reads GPS data from serial, outputs NMEA."""
 
     TCP_PORT = 2948
 
-    def __init__(self, port: str, baudrate: int = 9600, output_path: str | None = None, output_mode: str = "auto", manual_position: dict | None = None):
+    def __init__(self, port: str, baudrate: int = 9600, output_path: str | None = None, output_mode: str = "auto", manual_position: dict | None = None, parser_type: str = "mcode"):
         self.port = port
         self.baudrate = baudrate
         self.output_path = output_path
         self.output_mode = output_mode  # "auto", "file", "pipe", "tcp"
         self.manual_position = manual_position  # If set, output this position instead of reading serial
-        self.parser = MCodeParser()
+        self.parser_type = parser_type  # "mcode" or "gps_print"
+        self.parser = MCodeParser() if parser_type == "mcode" else GPSPrintParser()
         self.running = False
         self.is_windows = platform.system() == "Windows"
         self.debug_file = self._get_debug_file_path()
@@ -203,7 +278,10 @@ class MCODEConverter:
 
         # Send enable command to the device
         try:
-            enable_cmd = "mcode atak enable\n"
+            if self.parser_type == "gps_print":
+                enable_cmd = "gps print enable\n"
+            else:
+                enable_cmd = "mcode atak enable\n"
             ser.write(enable_cmd.encode("utf-8"))
             ser.flush()
             print(f"Sent enable command: {enable_cmd.strip()}", file=sys.stderr)
@@ -374,11 +452,13 @@ if __name__ == "__main__":
 
     default_port = "COM3" if platform.system() == "Windows" else "/dev/ttyUSB0"
 
-    parser = argparse.ArgumentParser(description="Convert MCODE GPS to NMEA")
+    parser = argparse.ArgumentParser(description="Convert GPS data to NMEA")
     parser.add_argument("--port", default=default_port, help=f"Serial port (default: {default_port})")
     parser.add_argument("--baudrate", type=int, default=9600, help="Baud rate (default: 9600)")
     parser.add_argument("--mode", default="tcp", choices=["tcp"],
                         help="Output mode (TCP only)")
+    parser.add_argument("--parser", default="mcode", choices=["mcode", "gps_print"],
+                        help="GPS data format parser (default: mcode)")
     parser.add_argument("--manual-position", help="Manual position JSON: {\"lat\": ..., \"lon\": ..., \"alt\": ..., \"speed_ms\": ...}")
 
     args = parser.parse_args()
@@ -391,5 +471,5 @@ if __name__ == "__main__":
             print(f"Invalid manual position JSON: {e}", file=sys.stderr)
             sys.exit(1)
 
-    converter = MCODEConverter(args.port, args.baudrate, None, args.mode, manual_pos)
+    converter = MCODEConverter(args.port, args.baudrate, None, args.mode, manual_pos, args.parser)
     converter.run()

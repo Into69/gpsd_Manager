@@ -576,6 +576,7 @@ async function loadMCodeConfig() {
         const data = await api('GET', 'converter/config');
         const portSelect = document.getElementById('mcode-port');
         const baudrateSelect = document.getElementById('mcode-baudrate');
+        const parserSelect = document.getElementById('mcode-parser-type');
 
         // Set saved values
         if (data.serial_port) {
@@ -584,8 +585,25 @@ async function loadMCodeConfig() {
         if (data.baudrate) {
             baudrateSelect.value = data.baudrate;
         }
+        if (data.parser_type) {
+            parserSelect.value = data.parser_type;
+        }
     } catch (e) {
         // Silently fail if config doesn't exist
+    }
+}
+
+async function saveConverterConfig() {
+    const parserSelect = document.getElementById('mcode-parser-type');
+    try {
+        const result = await api('POST', 'converter/config', {
+            parser_type: parserSelect.value
+        });
+        if (result.success) {
+            toast('Parser type saved', 'success');
+        }
+    } catch (e) {
+        toast('Failed to save parser type', 'error');
     }
 }
 
@@ -867,6 +885,12 @@ async function init() {
     loadManualPosition();
     refreshMCodeStatus();
     connectGpsWs();
+
+    // Add event listener for parser type changes
+    const parserSelect = document.getElementById('mcode-parser-type');
+    if (parserSelect) {
+        parserSelect.addEventListener('change', saveConverterConfig);
+    }
 }
 init();
 

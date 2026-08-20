@@ -577,6 +577,7 @@ class MCODEConverterManager:
         self.last_nmea_rmc: str | None = None
         self.serial_port: str = "/dev/ttyUSB0"
         self.baudrate: int = 9600
+        self.parser_type: str = "mcode"
         self.add_to_gpsd_on_start: bool = False
         self._setup_output_path()
         self._load_config()
@@ -589,6 +590,7 @@ class MCODEConverterManager:
                 data = json.loads(config_path.read_text())
                 self.serial_port = data.get("serial_port", self.serial_port)
                 self.baudrate = data.get("baudrate", self.baudrate)
+                self.parser_type = data.get("parser_type", self.parser_type)
                 self.add_to_gpsd_on_start = data.get("add_to_gpsd_on_start", False)
         except Exception:
             pass
@@ -599,6 +601,7 @@ class MCODEConverterManager:
             config = {
                 "serial_port": self.serial_port,
                 "baudrate": self.baudrate,
+                "parser_type": self.parser_type,
                 "add_to_gpsd_on_start": self.add_to_gpsd_on_start,
                 "enabled": self.process is not None and self.process.poll() is None,
             }
@@ -633,6 +636,7 @@ class MCODEConverterManager:
                 "--port", serial_port,
                 "--baudrate", str(baudrate),
                 "--mode", "tcp",
+                "--parser", self.parser_type,
             ]
 
             self.process = subprocess.Popen(
@@ -1227,8 +1231,19 @@ async def api_converter_config():
     return {
         "serial_port": converter_manager.serial_port,
         "baudrate": converter_manager.baudrate,
+        "parser_type": converter_manager.parser_type,
         "add_to_gpsd_on_start": converter_manager.add_to_gpsd_on_start,
     }
+
+
+@app.post("/api/converter/config")
+async def api_set_converter_config(request: Request):
+    """Update MCODE converter configuration."""
+    data = await request.json()
+    if "parser_type" in data:
+        converter_manager.parser_type = data["parser_type"]
+        converter_manager._save_config()
+    return {"success": True, "parser_type": converter_manager.parser_type}
 
 
 @app.post("/api/devices/rescan")
