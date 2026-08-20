@@ -226,34 +226,23 @@ class MCODEConverter:
                     pass
 
     def _open_output(self):
-        """Open output stream based on platform and mode."""
+        """Open output stream (file-based for simplicity)."""
         if not self.output_path:
             return sys.stdout
 
-        if self.is_windows:
-            return self._open_output_windows()
-        else:
-            return self._open_output_unix()
-
-    def _open_output_unix(self):
-        """Unix/Linux output (FIFO)."""
-        print(f"Opening FIFO at {self.output_path}...", file=sys.stderr)
-
-        # Ensure FIFO has proper permissions (rw-rw-rw-)
+        print(f"Opening output file: {self.output_path}", file=sys.stderr)
         try:
-            os.chmod(self.output_path, 0o666)
-            print(f"Set FIFO permissions to 0666", file=sys.stderr)
-        except OSError as e:
-            print(f"Warning: Could not set FIFO permissions: {e}", file=sys.stderr)
-
-        try:
-            # Try non-blocking open
-            fd = os.open(self.output_path, os.O_WRONLY | os.O_NONBLOCK)
-            return os.fdopen(fd, "w", buffering=1)
-        except (OSError, BlockingIOError):
-            # Fall back to blocking open
-            print(f"FIFO not ready, opening blocking...", file=sys.stderr)
-            return open(self.output_path, "w", buffering=1)
+            f = open(self.output_path, "w", buffering=1)
+            # Set world-readable permissions on Linux
+            if not self.is_windows:
+                try:
+                    os.chmod(self.output_path, 0o666)
+                except OSError:
+                    pass
+            return f
+        except Exception as e:
+            print(f"Failed to open output: {e}", file=sys.stderr)
+            return sys.stdout
 
     def _get_debug_file_path(self) -> str:
         """Get path for debug file."""
@@ -274,25 +263,6 @@ class MCODEConverter:
                 json.dump(debug_info, f, indent=2)
         except Exception:
             pass  # Silently ignore debug write errors
-
-    def _open_output_windows(self):
-        """Windows output (file or named pipe)."""
-        if self.output_path.startswith("\\\\.\\pipe\\"):
-            # Named pipe
-            print(f"Opening named pipe at {self.output_path}...", file=sys.stderr)
-            import msvcrt
-            try:
-                # Try to open as file (Windows named pipes can be opened as files)
-                return open(self.output_path, "w", buffering=1)
-            except Exception as e:
-                print(f"Pipe open failed, will retry: {e}", file=sys.stderr)
-                # Named pipes block until a reader connects
-                # This will wait indefinitely, which is OK
-                return open(self.output_path, "w", buffering=1)
-        else:
-            # Regular file
-            print(f"Opening output file at {self.output_path}...", file=sys.stderr)
-            return open(self.output_path, "w", buffering=1)
 
 
 if __name__ == "__main__":

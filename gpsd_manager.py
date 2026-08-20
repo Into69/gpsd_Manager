@@ -572,96 +572,15 @@ class MCODEConverterManager:
             self.output_path = str(Path(tempfile.gettempdir()) / "mcode_output.txt")
             self.output_mode = "file"
         else:
-            # On Linux/Unix, try multiple FIFO locations
-            # Prefer /var/run (better permissions) but fall back to /tmp
-            fifo_paths = [
-                "/var/run/gpsd-manager",
-                "/tmp/gpsd-manager",
-            ]
-
-            fifo_dir = None
-            for candidate_dir in fifo_paths:
-                if self._try_create_fifo_dir(candidate_dir):
-                    fifo_dir = candidate_dir
-                    break
-
-            if not fifo_dir:
-                fifo_dir = "/tmp/gpsd-manager"
-
-            self.output_path = f"{fifo_dir}/mcode.fifo"
-            self.output_mode = "pipe"
-            # Remove and recreate FIFO with permissive permissions
-            self._recreate_fifo()
-
-    def _try_create_fifo_dir(self, dir_path: str) -> bool:
-        """Try to create and set permissions on FIFO directory. Return True if successful."""
-        try:
-            # Try with regular mkdir
-            Path(dir_path).mkdir(parents=True, exist_ok=True)
-            os.chmod(dir_path, 0o777)
-            return True
-        except OSError:
-            # Try with sudo if regular mkdir fails
+            # On Linux/Unix, use a regular file (simpler and more reliable than FIFO)
+            self.output_path = "/var/run/mcode_nmea.txt"
+            self.output_mode = "file"
+            # Ensure directory exists and is writable
             try:
-                subprocess.run(
-                    ["sudo", "mkdir", "-p", dir_path],
-                    check=True,
-                    capture_output=True,
-                    timeout=5,
-                )
-                subprocess.run(
-                    ["sudo", "chmod", "0o777", dir_path],
-                    check=True,
-                    capture_output=True,
-                    timeout=5,
-                )
-                return True
-            except (subprocess.CalledProcessError, subprocess.TimeoutExpired, FileNotFoundError):
-                return False
-
-    def _recreate_fifo(self):
-        """Remove old FIFO and create new one with proper permissions."""
-        if IS_WINDOWS:
-            return
-
-        fifo_path = Path(self.output_path)
-
-        # Try to remove existing FIFO (with sudo if needed)
-        if fifo_path.exists():
-            try:
-                fifo_path.unlink()
+                Path("/var/run").chmod(0o777)
             except OSError:
-                try:
-                    subprocess.run(
-                        ["sudo", "rm", "-f", self.output_path],
-                        check=False,
-                        capture_output=True,
-                        timeout=5,
-                    )
-                except (subprocess.TimeoutExpired, FileNotFoundError):
-                    pass
-
-        # Create new FIFO with 0o666 permissions
-        try:
-            os.mkfifo(self.output_path, 0o666)
-            os.chmod(self.output_path, 0o666)
-        except (FileExistsError, OSError):
-            # Try with sudo
-            try:
-                subprocess.run(
-                    ["sudo", "mkfifo", self.output_path],
-                    check=False,
-                    capture_output=True,
-                    timeout=5,
-                )
-                subprocess.run(
-                    ["sudo", "chmod", "0o666", self.output_path],
-                    check=False,
-                    capture_output=True,
-                    timeout=5,
-                )
-            except (subprocess.TimeoutExpired, FileNotFoundError):
                 pass
+
 
     def start(self, serial_port: str, baudrate: int = 9600) -> tuple[bool, str]:
         """Start the MCODE converter."""
@@ -674,10 +593,6 @@ class MCODEConverterManager:
         self.serial_port = serial_port
         self.baudrate = baudrate
         self._save_config()
-
-        # Ensure FIFO has correct permissions before starting
-        if IS_LINUX:
-            self._recreate_fifo()
 
         try:
             converter_script = Path(__file__).parent / "mcode_converter.py"
