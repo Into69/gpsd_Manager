@@ -510,13 +510,9 @@ class GpsdManager:
                 else:
                     file_devices.append(dev)
 
-        # Add network devices to both options and devices (some GPSD versions support both)
+        # Add network devices to options as command-line arguments
         options_list.extend(network_devices)
         options_str = " ".join(options_list)
-
-        # Also add network devices to file_devices so they go in DEVICES line
-        # (this ensures compatibility with different GPSD configurations)
-        file_devices.extend(network_devices)
 
         if re.search(r'GPSD_OPTIONS=', content):
             content = re.sub(r'GPSD_OPTIONS="[^"]*"', f'GPSD_OPTIONS="{options_str}"', content)
@@ -850,16 +846,23 @@ class MCODEConverterManager:
 
             # Get current devices and remove any old converter devices
             current_devices = manager.get_configured_devices()
+            original_devices = current_devices.copy()
+
             # Remove any previous MCODE converter file or TCP devices
             current_devices = [d for d in current_devices if not (
                 d == "/tmp/mcode_nmea.txt" or
                 d == self.output_path or
-                d.startswith("tcp://127.0.0.1:2948")
+                d.startswith("tcp://127.0.0.1:2948") or
+                d.startswith("udp://127.0.0.1")
             )]
 
             # Add the current device if not already present
             if self.device_path not in current_devices:
                 current_devices.append(self.device_path)
+
+            # Debug: log if we removed any devices
+            if original_devices != current_devices:
+                print(f"Removed old converter devices. Before: {original_devices}, After: {current_devices}", file=sys.stderr)
 
             # Write config
             ok, msg = manager.set_devices(current_devices)
