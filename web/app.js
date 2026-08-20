@@ -601,12 +601,28 @@ async function refreshMCodeStatus() {
         // Show debug info if available
         if (data.debug) {
             debugDiv.style.display = 'block';
-            document.getElementById('mcode-debug-raw').textContent = data.debug.raw_mcode || '';
+
+            // Display raw source data
+            const rawEl = document.getElementById('mcode-debug-raw');
+            const rawData = data.debug.raw_mcode || '';
+            if (rawData === 'manual position') {
+                // For manual position mode, show the parsed fields instead
+                rawEl.textContent = '[Manual Position Mode]';
+            } else {
+                // For serial mode, show the raw MCODE
+                rawEl.textContent = rawData;
+            }
 
             const parsedHtml = Object.entries(data.debug.parsed_fields || {})
-                .map(([k, v]) => `<div>${k}: <span style="color:var(--blue);">${v}</span></div>`)
+                .map(([k, v]) => {
+                    let displayVal = v;
+                    if (typeof v === 'number') {
+                        displayVal = v.toFixed(6);
+                    }
+                    return `<div>${k}: <span style="color:var(--blue);">${displayVal}</span></div>`;
+                })
                 .join('');
-            document.getElementById('mcode-debug-parsed').innerHTML = parsedHtml;
+            document.getElementById('mcode-debug-parsed').innerHTML = parsedHtml || '<div style="color:var(--text-dim);">No data yet</div>';
 
             document.getElementById('mcode-debug-gga').textContent = data.debug.nmea_gga || '';
             document.getElementById('mcode-debug-rmc').textContent = data.debug.nmea_rmc || '';
