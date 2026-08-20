@@ -517,16 +517,12 @@ class GpsdManager:
             else:
                 content += f'\nDEVICES="{devices_str}"\n'
 
-        print(f"DEBUG: GPSD config being written:\n{content}", file=sys.stderr)
-
         proc = subprocess.run(
             ["sudo", "tee", self.GPSD_CONF_PATH],
             input=content, capture_output=True, text=True, timeout=5,
         )
         if proc.returncode != 0:
             return False, f"Failed to write config: {proc.stderr}"
-
-        print(f"DEBUG: Config written successfully to {self.GPSD_CONF_PATH}", file=sys.stderr)
 
         # Verify the file was written correctly
         try:
@@ -841,7 +837,6 @@ class MCODEConverterManager:
 
             # Get current devices and remove any old converter devices
             current_devices = manager.get_configured_devices()
-            original_devices = current_devices.copy()
 
             # Remove any previous MCODE converter file or TCP devices
             current_devices = [d for d in current_devices if not (
@@ -855,16 +850,11 @@ class MCODEConverterManager:
             if self.device_path not in current_devices:
                 current_devices.append(self.device_path)
 
-            # Debug: log if we removed any devices
-            if original_devices != current_devices:
-                print(f"Removed old converter devices. Before: {original_devices}, After: {current_devices}", file=sys.stderr)
 
             # Write config
-            print(f"DEBUG: Writing devices to GPSD config: {current_devices}", file=sys.stderr)
             ok, msg = manager.set_devices(current_devices)
             if not ok:
                 return False, f"Failed to update config: {msg}"
-            print(f"DEBUG: Config write result: {ok}, {msg}", file=sys.stderr)
 
             # Wait before restart
             time.sleep(0.5)
