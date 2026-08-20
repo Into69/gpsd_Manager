@@ -647,6 +647,14 @@ class MCODEConverterManager:
                 error_msg = stderr or stdout or "Unknown error"
                 return False, f"Converter failed to start: {error_msg}"
 
+            # Auto-add to GPSD on Linux
+            if IS_LINUX:
+                ok, msg = self.add_to_gpsd_config()
+                if ok:
+                    return True, f"MCODE converter started and added to GPSD. {msg}"
+                else:
+                    return True, f"MCODE converter started but couldn't add to GPSD: {msg}. Device: {serial_port}"
+
             return True, f"MCODE converter started. Device: {serial_port}, Output: {self.output_path}"
 
         except Exception as e:
@@ -690,6 +698,14 @@ class MCODEConverterManager:
                 self.process = None
                 error_msg = stderr or stdout or "Unknown error"
                 return False, f"Manual position converter failed to start: {error_msg}"
+
+            # Auto-add to GPSD on Linux
+            if IS_LINUX:
+                ok, msg = self.add_to_gpsd_config()
+                if ok:
+                    return True, f"Manual position converter started and added to GPSD on TCP port 2948"
+                else:
+                    return True, f"Manual position converter started but couldn't add to GPSD: {msg}"
 
             return True, f"Manual position converter started on TCP port 2948"
 
