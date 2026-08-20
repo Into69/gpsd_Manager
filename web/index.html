@@ -184,6 +184,29 @@
             </div>
         </div>
 
+        <!-- Manual Position -->
+        <div class="card">
+            <h2>Manual GPS Position</h2>
+            <div style="font-size:0.875rem; color:var(--text-dim); margin-bottom:1rem;">Set a fixed position for testing or when GPS is unavailable</div>
+            <div class="status-row">
+                <span class="status-label">Latitude</span>
+                <input type="number" id="manual-lat" placeholder="45.432974" step="0.000001" style="flex:1; padding:0.5rem; border:1px solid var(--border); border-radius:4px; background:var(--surface2); color:var(--text);">
+            </div>
+            <div class="status-row">
+                <span class="status-label">Longitude</span>
+                <input type="number" id="manual-lon" placeholder="-76.360703" step="0.000001" style="flex:1; padding:0.5rem; border:1px solid var(--border); border-radius:4px; background:var(--surface2); color:var(--text);">
+            </div>
+            <div class="status-row">
+                <span class="status-label">Altitude (m)</span>
+                <input type="number" id="manual-alt" placeholder="95.241" step="0.1" style="flex:1; padding:0.5rem; border:1px solid var(--border); border-radius:4px; background:var(--surface2); color:var(--text);">
+            </div>
+            <div class="btn-group">
+                <button class="btn btn-blue" onclick="setManualPosition()">Set Position</button>
+                <button class="btn btn-red" onclick="clearManualPosition()">Clear</button>
+            </div>
+            <div id="manual-position-status" style="margin-top:0.5rem; font-size:0.8125rem; color:var(--text-dim);"></div>
+        </div>
+
         <!-- Sky plot + Constellations -->
         <div class="grid-2">
             <div class="card">

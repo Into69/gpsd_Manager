@@ -535,7 +535,16 @@ async function scanMCodePorts() {
         return;
     }
 
-    select.innerHTML = data.devices.map(d => `
+    // Filter out devices already in GPS devices
+    const usedDevices = new Set(configuredDevices);
+    const availableDevices = data.devices.filter(d => !usedDevices.has(d.path));
+
+    if (availableDevices.length === 0) {
+        select.innerHTML = '<option>No available ports (all in use)</option>';
+        return;
+    }
+
+    select.innerHTML = availableDevices.map(d => `
         <option value="${d.path}" title="${d.description}">${d.path} ${d.description ? '(' + d.description + ')' : ''}</option>
     `).join('');
 }
@@ -706,6 +715,66 @@ async function addConverterToGpsd() {
 }
 
 // ---------------------------------------------------------------------------
+// Manual GPS Position
+// ---------------------------------------------------------------------------
+function setManualPosition() {
+    const lat = parseFloat(document.getElementById('manual-lat').value);
+    const lon = parseFloat(document.getElementById('manual-lon').value);
+    const alt = parseFloat(document.getElementById('manual-alt').value);
+
+    if (isNaN(lat) || isNaN(lon) || isNaN(alt)) {
+        toast('Please enter valid coordinates', 'error');
+        return;
+    }
+
+    if (lat < -90 || lat > 90) {
+        toast('Latitude must be between -90 and 90', 'error');
+        return;
+    }
+
+    if (lon < -180 || lon > 180) {
+        toast('Longitude must be between -180 and 180', 'error');
+        return;
+    }
+
+    const position = { lat, lon, alt, timestamp: new Date().toISOString() };
+    localStorage.setItem('manualGpsPosition', JSON.stringify(position));
+
+    // Clear all configured devices when manual position is set
+    api('POST', 'devices', { devices: [] });
+
+    document.getElementById('manual-position-status').innerHTML =
+        `<span style="color:var(--green);">✓ Position set: ${lat.toFixed(6)}, ${lon.toFixed(6)}, ${alt.toFixed(1)}m (Devices disabled)</span>`;
+
+    toast('Manual position set - GPS devices disabled', 'success');
+}
+
+function clearManualPosition() {
+    localStorage.removeItem('manualGpsPosition');
+    document.getElementById('manual-lat').value = '';
+    document.getElementById('manual-lon').value = '';
+    document.getElementById('manual-alt').value = '';
+    document.getElementById('manual-position-status').innerHTML = '';
+    toast('Manual position cleared', 'success');
+}
+
+function loadManualPosition() {
+    const stored = localStorage.getItem('manualGpsPosition');
+    if (stored) {
+        try {
+            const position = JSON.parse(stored);
+            document.getElementById('manual-lat').value = position.lat;
+            document.getElementById('manual-lon').value = position.lon;
+            document.getElementById('manual-alt').value = position.alt;
+            document.getElementById('manual-position-status').innerHTML =
+                `<span style="color:var(--green);">✓ Position set: ${position.lat.toFixed(6)}, ${position.lon.toFixed(6)}, ${position.alt.toFixed(1)}m</span>`;
+        } catch (e) {
+            // Ignore invalid stored data
+        }
+    }
+}
+
+// ---------------------------------------------------------------------------
 // Logs
 // ---------------------------------------------------------------------------
 async function refreshLogs() {
@@ -728,6 +797,7 @@ async function init() {
     scanDevices();
     scanMCodePorts();
     loadMCodeConfig();
+    loadManualPosition();
     refreshMCodeStatus();
     connectGpsWs();
 }
