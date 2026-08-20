@@ -665,7 +665,6 @@ async function refreshMCodeStatus() {
             // Organize fields into categories
             const categories = {
                 'Position': ['lat', 'lon', 'alt'],
-                'Motion': ['speed_ms'],
                 'Quality': ['fix_quality', 'hdop', 'satellites_used'],
                 'Time': ['week', 'tow', 'gps_sec'],
             };
@@ -674,7 +673,6 @@ async function refreshMCodeStatus() {
                 'lat': 'Latitude',
                 'lon': 'Longitude',
                 'alt': 'Altitude (m)',
-                'speed_ms': 'Speed (m/s)',
                 'fix_quality': 'Fix Quality',
                 'hdop': 'HDOP',
                 'satellites_used': 'Satellites',
