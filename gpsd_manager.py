@@ -571,16 +571,11 @@ class MCODEConverterManager:
         if IS_WINDOWS:
             # On Windows, use a file in temp directory
             self.output_path = str(Path(tempfile.gettempdir()) / "mcode_output.txt")
-            self.output_mode = "file"
         else:
-            # On Linux/Unix, use a regular file (simpler and more reliable than FIFO)
-            self.output_path = "/var/run/mcode_nmea.txt"
-            self.output_mode = "file"
-            # Ensure directory exists and is writable
-            try:
-                Path("/var/run").chmod(0o777)
-            except OSError:
-                pass
+            # On Linux/Unix, use /tmp (simpler permissions than /var/run)
+            self.output_path = "/tmp/mcode_nmea.txt"
+
+        self.output_mode = "file"
 
 
     def start(self, serial_port: str, baudrate: int = 9600) -> tuple[bool, str]:

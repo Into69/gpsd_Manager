@@ -103,6 +103,12 @@ More fields can be added as needed.
 - Can be read by other GPS applications
 - For gpsd integration on Windows, run gpsd on WSL or a Linux system and point it to a network socket or shared file
 
+### File Output Paths
+- **Linux/WSL**: `/tmp/mcode_nmea.txt`
+- **Windows**: `%TEMP%\mcode_output.txt`
+
+Both files are world-readable and updated in real-time as data arrives.
+
 ## Project Structure
 
 ```
