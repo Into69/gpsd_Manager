@@ -719,6 +719,10 @@ async function refreshMCodeStatus() {
                 if (Object.keys(parsed).length > 0) {
                     qualityDiv.style.display = 'block';
 
+                    // Date/Time
+                    const datetimeVal = parsed.datetime_str || '--';
+                    document.getElementById('mcode-datetime').textContent = datetimeVal;
+
                     // Fix quality
                     const fixMap = { 0: '2D Fix', 1: '3D Fix' };
                     let fixVal = '--';

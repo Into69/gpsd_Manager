@@ -158,11 +158,14 @@ class GPSPrintParser:
         try:
             # Convert GPS time to datetime
             gps_datetime = None
+            datetime_str = None
             if self.gps_time_data.get('week') is not None and self.gps_time_data.get('tow') is not None:
                 gps_datetime = gps_time_to_datetime(
                     self.gps_time_data['week'],
                     self.gps_time_data['tow']
                 )
+                # Format for display: YYYY-MM-DD HH:MM:SS UTC
+                datetime_str = gps_datetime.strftime("%Y-%m-%d %H:%M:%S") + " UTC"
 
             # Combine all decoded info
             result = {
@@ -170,12 +173,13 @@ class GPSPrintParser:
                 "lon": self.zed_data['lon'],
                 "alt": self.zed_data['alt'],
                 "speed_ms": 0,  # Speed not provided in this format
-                "timestamp": gps_datetime,  # Converted GPS time
+                "timestamp": gps_datetime,  # Converted GPS time (for NMEA generation)
+                "datetime_str": datetime_str,  # Human-readable format for display
                 # Additional decoded fields
                 "week": self.gps_time_data.get('week'),
                 "tow": self.gps_time_data.get('tow'),
                 "hdop": self.zed_data.get('hdop'),
-                "fix_quality": self.zed_data.get('fix'),  # 0=no fix, 1=fix, 2=dgps
+                "fix_quality": self.zed_data.get('fix'),  # 0=2d fix, 1=3d fix, etc
                 "satellites_used": self.zed_data.get('sv'),
             }
             return result
