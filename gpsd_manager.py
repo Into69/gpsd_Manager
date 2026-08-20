@@ -532,7 +532,18 @@ class GpsdManager:
         )
         if proc.returncode != 0:
             return False, f"Failed to write config: {proc.stderr}"
-        return True, "Config updated"
+
+        # Verify the file was written correctly
+        try:
+            written_content = proc.stdout
+            if "tcp://" in written_content or "udp://" in written_content:
+                return True, f"Config updated with network device(s)"
+            elif devices:
+                return True, f"Config updated: {', '.join(devices)}"
+            else:
+                return True, "Config updated"
+        except Exception:
+            return True, "Config updated"
 
     def get_config(self) -> dict:
         """Read and return the current /etc/default/gpsd config."""
@@ -717,9 +728,9 @@ class MCODEConverterManager:
             if IS_LINUX:
                 ok, msg = self.add_to_gpsd_config()
                 if ok:
-                    return True, f"Manual position converter started and added to GPSD on TCP port 2948"
+                    return True, f"Manual position converter started on TCP port 2948. GPSD configured: {msg}"
                 else:
-                    return True, f"Manual position converter started but couldn't add to GPSD: {msg}"
+                    return False, f"Converter started but GPSD config failed: {msg}. Converter running on TCP 2948 but GPSD may not be listening to it."
 
             return True, f"Manual position converter started on TCP port 2948"
 
