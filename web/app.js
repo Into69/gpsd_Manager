@@ -722,7 +722,7 @@ async function refreshMCodeStatus() {
                     qualityDiv.style.display = 'block';
 
                     // Fix quality
-                    const fixMap = { 0: 'No Fix', 1: '3D Fix', 2: 'DGPS', 3: 'PPS', 4: 'RTK', 5: 'Float RTK', 9: 'SBAS' };
+                    const fixMap = { 0: '2D Fix', 1: '3D Fix', 2: 'DGPS', 3: 'PPS', 4: 'RTK', 5: 'Float RTK', 9: 'SBAS' };
                     const fixVal = parsed.fix_quality !== undefined ? fixMap[parsed.fix_quality] || `${parsed.fix_quality}` : '--';
                     document.getElementById('mcode-fix-quality').textContent = fixVal;
 
