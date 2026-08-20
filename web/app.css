@@ -284,6 +284,12 @@ header h1 { font-size: 1.25rem; font-weight: 600; }
 
 /* Satellite table column sizing */
 .sat-table { table-layout: fixed; }
+.sat-table thead {
+    position: sticky;
+    top: 0;
+    background: var(--surface);
+    z-index: 10;
+}
 .sat-col-prn  { width: 3rem; }
 .sat-col-sys  { width: 5.5rem; }
 .sat-col-elev { width: auto; }
@@ -343,8 +349,10 @@ header h1 { font-size: 1.25rem; font-weight: 600; }
 .gnss-other   { background: #1f2937; color: var(--text-dim); }
 
 .scroll-area {
-    max-height: 320px;
+    height: 280px;
     overflow-y: auto;
+    border: 1px solid var(--border);
+    border-radius: 4px;
 }
 
 .errors-list {
