@@ -500,18 +500,9 @@ class GpsdManager:
         except OSError:
             content = '# Default settings for gpsd\nSTART_DAEMON="true"\nGPSD_OPTIONS=""\nDEVICES=""\nUSBAUTO="true"\n'
 
-        # Separate file-based and network-based devices
-        file_devices = []
-        network_devices = []
-        if devices is not None:
-            for dev in devices:
-                if dev.startswith("tcp://") or dev.startswith("udp://"):
-                    network_devices.append(dev)
-                else:
-                    file_devices.append(dev)
-
-        # Add network devices to options as command-line arguments
-        options_list.extend(network_devices)
+        # All devices (file and network) go in DEVICES line
+        # GPSD_OPTIONS is only for flags like -n, -G, etc.
+        all_devices = devices if devices is not None else []
         options_str = " ".join(options_list)
 
         if re.search(r'GPSD_OPTIONS=', content):
@@ -520,7 +511,7 @@ class GpsdManager:
             content += f'\nGPSD_OPTIONS="{options_str}"\n'
 
         if devices is not None:
-            devices_str = " ".join(file_devices)
+            devices_str = " ".join(all_devices)
             if re.search(r'DEVICES=', content):
                 content = re.sub(r'DEVICES="[^"]*"', f'DEVICES="{devices_str}"', content)
             else:
