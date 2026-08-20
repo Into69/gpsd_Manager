@@ -198,11 +198,23 @@ async function scanDevices() {
 
 async function applyDevices() {
     const checked = [...document.querySelectorAll('.device-checkbox:checked')].map(c => c.value);
-    if (checked.length === 0) {
-        toast('No devices selected', 'error');
+
+    // Allow empty selection only if custom GPS is enabled
+    const isMCodeEnabled = document.getElementById('mcode-status')?.textContent?.includes('Enabled');
+
+    if (checked.length === 0 && !isMCodeEnabled) {
+        toast('No devices selected. Enable custom GPS to use no devices.', 'error');
         return;
     }
     const data = await api('POST', 'devices', { devices: checked });
+    toast(data.message, data.success ? 'success' : 'error');
+}
+
+async function clearDevices() {
+    if (!confirm('Clear all GPS devices? (only if using custom GPS receiver)')) {
+        return;
+    }
+    const data = await api('POST', 'devices', { devices: [] });
     toast(data.message, data.success ? 'success' : 'error');
 }
 
@@ -571,6 +583,12 @@ async function refreshMCodeStatus() {
         stopBtn.disabled = false;
         errorsDiv.style.display = 'none';
 
+        // Show "Clear All Devices" button when custom GPS is enabled
+        const clearBtn = document.getElementById('clear-devices-btn');
+        if (clearBtn) {
+            clearBtn.style.display = 'inline-block';
+        }
+
         // Show debug info if available
         if (data.debug) {
             debugDiv.style.display = 'block';
@@ -613,6 +631,12 @@ async function refreshMCodeStatus() {
         addBtn.style.display = 'none';
         gpsdRow.style.display = 'none';
         debugDiv.style.display = 'none';
+
+        // Hide "Clear All Devices" button when custom GPS is disabled
+        const clearBtn = document.getElementById('clear-devices-btn');
+        if (clearBtn) {
+            clearBtn.style.display = 'none';
+        }
 
         if (data.errors && data.errors.length > 0) {
             errorsDiv.style.display = 'block';
