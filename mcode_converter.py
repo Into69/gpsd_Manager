@@ -129,9 +129,9 @@ class GPSPrintParser:
 
             # Parse ZED Alt line
             elif line.startswith('ZED Alt:'):
-                alt_match = re.search(r'ZED Alt:\s+([\d.-]+)', line)
-                lat_match = re.search(r'Lat:\s+([\d.-]+)', line)
-                lon_match = re.search(r'Lon:\s+([\d.-]+)', line)
+                alt_match = re.search(r'ZED Alt:\s+([-\d.]+)', line)
+                lat_match = re.search(r'Lat:\s+([-\d.]+)', line)
+                lon_match = re.search(r'Lon:\s+([-\d.]+)', line)
                 hdop_match = re.search(r'HDOP:\s+([\d.]+)', line)
                 fix_match = re.search(r'Fix:(\d+)', line)
                 sv_match = re.search(r'SV:(\d+)', line)
