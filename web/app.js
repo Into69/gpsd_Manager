@@ -48,6 +48,28 @@ function snrColor(ss) {
     return 'var(--snr-bad)';
 }
 
+// Serial data buffer (max 1000 lines)
+const serialDataBuffer = [];
+const MAX_SERIAL_LINES = 1000;
+
+function addSerialData(data) {
+    if (!data) return;
+    const lines = data.split('\n').filter(l => l.trim());
+    serialDataBuffer.push(...lines);
+    if (serialDataBuffer.length > MAX_SERIAL_LINES) {
+        serialDataBuffer.splice(0, serialDataBuffer.length - MAX_SERIAL_LINES);
+    }
+    updateSerialDisplay();
+}
+
+function updateSerialDisplay() {
+    const textarea = document.getElementById('mcode-serial-data');
+    if (textarea) {
+        textarea.value = serialDataBuffer.join('\n');
+        textarea.scrollTop = textarea.scrollHeight;
+    }
+}
+
 // ---------------------------------------------------------------------------
 // Startup
 // ---------------------------------------------------------------------------
@@ -603,14 +625,14 @@ async function refreshMCodeStatus() {
             debugDiv.style.display = 'block';
 
             // Display raw source data
-            const rawEl = document.getElementById('mcode-debug-raw');
             const rawData = data.debug.raw_mcode || '';
             if (rawData === 'manual position') {
-                // For manual position mode, show the parsed fields instead
-                rawEl.textContent = '[Manual Position Mode]';
+                // For manual position mode, clear buffer and show status
+                serialDataBuffer.length = 0;
+                updateSerialDisplay();
             } else {
-                // For serial mode, show the raw MCODE
-                rawEl.textContent = rawData;
+                // For serial mode, add to buffer and display
+                addSerialData(rawData);
             }
 
             const parsedHtml = Object.entries(data.debug.parsed_fields || {})
@@ -656,6 +678,10 @@ async function refreshMCodeStatus() {
         addBtn.style.display = 'none';
         gpsdRow.style.display = 'none';
         debugDiv.style.display = 'none';
+
+        // Clear serial data buffer when converter stops
+        serialDataBuffer.length = 0;
+        updateSerialDisplay();
 
         // Hide "Clear All Devices" button when custom GPS is disabled
         const clearBtn = document.getElementById('clear-devices-btn');
