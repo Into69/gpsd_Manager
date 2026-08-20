@@ -560,6 +560,7 @@ class MCODEConverterManager:
                 "serial_port": self.serial_port,
                 "baudrate": self.baudrate,
                 "add_to_gpsd_on_start": self.add_to_gpsd_on_start,
+                "enabled": self.process is not None and self.process.poll() is None,
             }
             Path(self.CONFIG_FILE).write_text(json.dumps(config, indent=2))
         except Exception:
@@ -1118,6 +1119,17 @@ async def api_converter_config():
         "serial_port": converter_manager.serial_port,
         "baudrate": converter_manager.baudrate,
         "add_to_gpsd_on_start": converter_manager.add_to_gpsd_on_start,
+    }
+
+
+@app.post("/api/devices/rescan")
+async def api_rescan_devices():
+    """Trigger a device rescan in gpsd."""
+    devices = manager.discover_devices()
+    active_devices = manager._get_active_devices()
+    return {
+        "devices": devices,
+        "active": active_devices,
     }
 
 

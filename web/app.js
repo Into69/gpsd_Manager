@@ -106,6 +106,14 @@ async function refreshStatus() {
     } else {
         errCard.style.display = 'none';
     }
+
+    // Also update devices list
+    try {
+        const devData = await api('POST', 'devices/rescan');
+        configuredDevices = devData.active || [];
+    } catch (e) {
+        // Silently ignore if rescan fails
+    }
 }
 
 async function serviceAction(action) {
@@ -659,10 +667,14 @@ async function addConverterToGpsd() {
     try {
         const data = await api('POST', 'converter/add-to-gpsd');
         toast(data.message, data.success ? 'success' : 'error');
-        setTimeout(() => {
+        setTimeout(async () => {
             refreshMCodeStatus();
             refreshStatus();
-        }, 1000);
+            // Rescan and refresh devices after GPSD restart
+            const devicesData = await api('POST', 'devices/rescan');
+            configuredDevices = devicesData.active || [];
+            scanDevices();
+        }, 2000);
     } finally {
         btn.disabled = false;
         btn.textContent = original;
