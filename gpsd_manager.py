@@ -510,9 +510,13 @@ class GpsdManager:
                 else:
                     file_devices.append(dev)
 
-        # Add network devices to options
+        # Add network devices to both options and devices (some GPSD versions support both)
         options_list.extend(network_devices)
         options_str = " ".join(options_list)
+
+        # Also add network devices to file_devices so they go in DEVICES line
+        # (this ensures compatibility with different GPSD configurations)
+        file_devices.extend(network_devices)
 
         if re.search(r'GPSD_OPTIONS=', content):
             content = re.sub(r'GPSD_OPTIONS="[^"]*"', f'GPSD_OPTIONS="{options_str}"', content)
