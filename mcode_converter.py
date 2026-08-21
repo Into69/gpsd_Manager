@@ -433,8 +433,11 @@ class MCODEConverter:
                 "nmea_rmc": nmea_rmc.strip(),
                 "serial_data_buffer": self.serial_data_lines[-100:],  # Include last 100 lines for performance
             }
-            with open(self.debug_file, "w") as f:
+            # Write to temp file first, then atomically rename to avoid partial reads
+            temp_file = str(self.debug_file) + ".tmp"
+            with open(temp_file, "w") as f:
                 json.dump(debug_info, f, indent=2)
+            os.replace(temp_file, self.debug_file)
         except Exception:
             pass  # Silently ignore debug write errors
 
