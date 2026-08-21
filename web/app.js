@@ -840,6 +840,10 @@ async function startMCodeConverter() {
     btn.innerHTML = '<span class="spinner"></span>Enabling...';
 
     try {
+        // Clear serial data buffer when switching formats
+        serialDataBuffer.length = 0;
+        updateSerialDisplay();
+
         // Save parser type first, then start converter
         await api('POST', 'converter/config', { parser_type: parserType });
 
@@ -859,6 +863,10 @@ async function stopMCodeConverter() {
     btn.innerHTML = '<span class="spinner"></span>Disabling...';
 
     try {
+        // Clear serial data buffer when stopping
+        serialDataBuffer.length = 0;
+        updateSerialDisplay();
+
         const data = await api('POST', 'converter/stop');
         toast(data.message, data.success ? 'success' : 'error');
         setTimeout(refreshMCodeStatus, 500);
