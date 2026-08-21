@@ -3,6 +3,7 @@
 import asyncio
 import glob
 import json
+import logging
 import os
 import platform
 import re
@@ -22,6 +23,18 @@ from fastapi.templating import Jinja2Templates
 
 IS_WINDOWS = platform.system() == "Windows"
 IS_LINUX = platform.system() == "Linux"
+
+# Setup logging to file
+log_file = str(Path(tempfile.gettempdir()) / "gpsd_manager.log")
+logging.basicConfig(
+    level=logging.DEBUG,
+    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
+    handlers=[
+        logging.FileHandler(log_file),
+        logging.StreamHandler(sys.stderr)
+    ]
+)
+logger = logging.getLogger(__name__)
 
 
 # ---------------------------------------------------------------------------
