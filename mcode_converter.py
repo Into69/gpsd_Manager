@@ -355,13 +355,11 @@ class MCODEConverter:
                 try:
                     if ser.in_waiting:
                         data = ser.read(ser.in_waiting).decode("utf-8", errors="replace")
-                        print(f"[{self.parser_type}] Read {len(data)} bytes: {data[:100]!r}", file=sys.stderr)
 
                         # Add all incoming serial data to buffer
                         self._add_serial_data(data)
 
                         parsed = self.parser.feed(data)
-                        print(f"[{self.parser_type}] Parser returned: {parsed is not None}", file=sys.stderr)
 
                         if parsed:
                             # Use GPS timestamp if available, otherwise use current time
