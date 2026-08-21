@@ -115,6 +115,9 @@ class GPSPrintParser:
             if not line:
                 continue
 
+            # Debug: log every line received
+            print(f"GPSPrint received: {line}", file=sys.stderr)
+
             # Parse GPS TIME line
             if line.startswith('[GPS TIME]'):
                 time_match = re.search(r'week=(\d+)\s+tow=([\d.]+)\s+gps_sec=([^\s]*)', line)
