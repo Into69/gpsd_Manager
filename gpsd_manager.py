@@ -847,13 +847,19 @@ class MCODEConverterManager:
         debug_file = Path(tempfile.gettempdir()) / "mcode_debug.json"
         try:
             if debug_file.exists():
-                data = json.loads(debug_file.read_text())
-                logger.debug(f"Read debug file: {len(data)} keys, parsed_fields has {len(data.get('parsed_fields', {}))} items")
+                content = debug_file.read_text()
+                if not content.strip():
+                    logger.debug(f"Debug file is empty")
+                    return None
+                data = json.loads(content)
+                logger.debug(f"Read debug file OK: {len(data)} keys, parsed={len(data.get('parsed_fields', {}))} items, raw_data len={len(data.get('raw_mcode', ''))}")
                 return data
             else:
                 logger.debug(f"Debug file does not exist: {debug_file}")
-        except (OSError, json.JSONDecodeError) as e:
-            logger.error(f"Failed to read debug file: {e}")
+        except json.JSONDecodeError as e:
+            logger.error(f"JSON decode error at pos {e.pos}: {e.msg} - file may still be writing")
+        except OSError as e:
+            logger.error(f"File read error: {e}")
         return None
 
     def _is_device_in_gpsd_config(self) -> bool:
