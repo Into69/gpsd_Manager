@@ -11,6 +11,7 @@ import shutil
 import subprocess
 import sys
 import tempfile
+import threading
 import time
 from contextlib import asynccontextmanager
 from dataclasses import asdict, dataclass, field
@@ -631,6 +632,15 @@ class MCODEConverterManager:
         self.output_path = "tcp://127.0.0.1:2948"
         self.output_mode = "tcp"
 
+    def _log_converter_output(self, stderr_pipe):
+        """Read and log converter subprocess stderr output."""
+        try:
+            for line in iter(stderr_pipe.readline, ''):
+                if line:
+                    logger.info(f"[Converter] {line.rstrip()}")
+        except Exception as e:
+            logger.error(f"Error reading converter output: {e}")
+
 
     def start(self, serial_port: str, baudrate: int = 9600) -> tuple[bool, str]:
         """Start the MCODE converter."""
@@ -689,6 +699,15 @@ class MCODEConverterManager:
                 return False, f"Converter failed to start: {error_msg}"
 
             logger.info(f"Converter running on port 2948 for {self.parser_type} format")
+
+            # Start thread to read converter stderr and log it
+            if self.process and self.process.stderr:
+                stderr_thread = threading.Thread(
+                    target=self._log_converter_output,
+                    args=(self.process.stderr,),
+                    daemon=True
+                )
+                stderr_thread.start()
 
             # Auto-add to GPSD on Linux
             if IS_LINUX:
