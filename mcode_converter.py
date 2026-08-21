@@ -444,8 +444,8 @@ class MCODEConverter:
             with open(temp_file, "w") as f:
                 json.dump(debug_info, f, indent=2)
             os.replace(temp_file, self.debug_file)
-        except Exception as e:
-            print(f"ERROR writing debug file: {type(e).__name__}: {e}", file=sys.stderr)
+        except Exception:
+            pass  # Silently ignore debug write errors
 
     def _start_tcp_server(self):
         """Start TCP server to accept GPSD connections."""

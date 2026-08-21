@@ -5919,3 +5919,1895 @@
 2026-08-20 22:28:01,419 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
 2026-08-20 22:28:01,420 - gpsd_manager - INFO - [Converter] Error writing debug file: Object of type datetime is not JSON serializable
 2026-08-20 22:28:01,420 - gpsd_manager - INFO - [Converter] [gps_print] Wrote debug info, buffer has 114 lines
+2026-08-20 22:32:06,040 - gpsd_manager - INFO - Starting converter: C:\Users\me\AppData\Local\Programs\Python\Python312\python.exe c:\Users\me\app-gpsd_manager\mcode_converter.py --port COM9 --baudrate 9600 --mode tcp --parser gps_print
+2026-08-20 22:32:06,050 - gpsd_manager - INFO - Converter process started with PID 59376
+2026-08-20 22:32:07,552 - gpsd_manager - INFO - Converter running on port 2948 for gps_print format
+2026-08-20 22:32:07,552 - gpsd_manager - INFO - [Converter] Sent disable command: mcode atak disable
+2026-08-20 22:32:07,553 - gpsd_manager - INFO - [Converter] Sent enable command: gps print enable
+2026-08-20 22:32:07,553 - gpsd_manager - INFO - [Converter] TCP server listening on port 2948
+2026-08-20 22:32:07,553 - gpsd_manager - INFO - [Converter] MCODE converter: reading from COM9, streaming NMEA via TCP port 2948
+2026-08-20 22:32:07,553 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=False
+2026-08-20 22:32:08,218 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:32:08,218 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:32:09,371 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:32:09,371 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:32:10,425 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:32:10,425 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:32:11,257 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:32:11,258 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:32:12,009 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:32:12,009 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:32:13,228 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:32:13,228 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:32:14,154 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:32:14,154 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:32:15,315 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:32:15,316 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:32:16,465 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:32:16,466 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:32:18,010 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:32:18,010 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:32:19,070 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:32:19,070 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:32:20,121 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:32:20,121 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:32:21,251 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:32:21,252 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:32:22,198 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:32:22,198 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:32:23,458 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:32:23,459 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:32:24,406 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:32:24,407 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:32:25,131 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:32:25,132 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:32:26,083 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:32:26,083 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:32:27,215 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:32:27,215 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:32:28,271 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:32:28,272 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:32:29,418 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:32:29,418 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:32:30,473 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:32:30,473 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:32:31,227 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:32:31,227 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:32:32,278 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:32:32,278 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:32:33,435 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:32:33,435 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:32:34,494 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:32:34,494 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:32:35,346 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:32:35,346 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:32:36,295 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:32:36,295 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:32:37,457 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:32:37,457 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:32:38,403 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:32:38,403 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:32:39,260 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:32:39,260 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:32:40,216 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:32:40,216 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:32:41,463 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:32:41,463 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:32:42,419 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:32:42,419 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:32:43,277 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:32:43,277 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:32:44,233 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:32:44,233 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:32:45,487 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:32:45,487 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:32:46,434 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:32:46,434 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:32:47,291 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:32:47,292 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:32:48,249 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:32:48,250 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:32:50,297 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:32:50,297 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:32:51,049 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:32:51,050 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:32:52,177 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:32:52,178 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:32:53,234 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:32:53,234 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:32:54,381 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:32:54,382 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:32:55,442 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:32:55,443 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:32:56,290 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:32:56,290 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:32:58,011 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:32:58,012 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:32:59,261 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:32:59,261 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:33:00,419 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:33:00,419 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:33:01,473 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:33:01,473 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:33:02,226 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:33:02,227 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:33:03,280 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:33:03,280 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:33:05,237 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:33:05,237 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:33:06,289 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:33:06,289 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:33:07,441 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:33:07,441 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:33:08,689 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:33:08,689 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:33:09,915 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:33:09,915 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:33:11,039 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:33:11,040 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:33:12,295 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:33:12,295 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:33:13,442 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:33:13,442 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:33:14,504 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:33:14,504 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:33:15,256 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:33:15,256 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:33:16,315 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:33:16,315 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:33:17,334 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:33:17,334 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:33:18,162 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:33:18,162 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:33:18,917 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:33:18,917 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:33:20,172 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:33:20,172 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:33:20,989 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:33:20,989 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:33:22,115 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:33:22,115 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:33:23,269 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:33:23,270 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:33:24,422 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:33:24,422 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:33:25,382 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:33:25,382 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:33:26,334 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:33:26,334 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:33:27,291 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:33:27,291 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:33:28,438 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:33:28,438 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:33:30,294 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:33:30,294 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:33:31,443 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:33:31,443 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:33:32,702 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:33:32,702 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:33:33,847 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:33:33,848 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:33:34,973 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:33:34,973 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:33:36,104 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:33:36,104 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:33:37,247 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:33:37,247 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:33:38,405 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:33:38,405 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:33:39,459 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:33:39,459 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:33:40,220 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:33:40,220 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:33:41,268 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:33:41,268 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:33:42,423 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:33:42,423 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:33:43,473 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:33:43,473 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:33:44,233 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:33:44,233 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:33:45,283 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:33:45,283 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:33:46,342 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:33:46,342 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:33:47,301 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:33:47,302 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:33:48,348 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:33:48,349 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:33:49,405 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:33:49,405 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:33:50,457 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:33:50,457 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:33:51,212 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:33:51,212 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:33:52,274 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:33:52,274 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:33:53,424 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:33:53,424 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:33:54,476 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:33:54,476 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:33:55,234 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:33:55,235 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:33:57,053 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:33:57,053 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:33:59,195 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:33:59,195 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:34:00,453 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:34:00,453 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:34:01,405 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:34:01,405 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:34:02,358 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:34:02,359 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:34:03,221 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:34:03,222 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:34:04,467 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:34:04,467 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:34:05,420 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:34:05,420 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:34:06,278 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:34:06,278 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:34:07,238 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:34:07,238 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:34:08,489 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:34:08,489 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:34:09,439 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:34:09,439 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:34:10,296 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:34:10,296 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:34:11,250 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:34:11,250 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:34:12,404 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:34:12,404 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:34:13,464 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:34:13,464 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:34:14,414 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:34:14,414 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:34:15,268 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:34:15,269 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:34:16,424 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:34:16,424 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:34:18,046 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:34:18,047 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:34:18,903 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:34:18,903 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:34:20,050 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:34:20,050 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:34:21,103 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:34:21,103 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:34:22,231 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:34:22,232 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:34:23,189 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:34:23,189 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:34:24,441 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:34:24,442 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:34:25,390 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:34:25,390 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:34:27,044 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:34:27,044 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:34:28,264 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:34:28,264 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:34:29,316 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:34:29,316 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:34:30,470 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:34:30,470 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:34:31,429 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:34:31,429 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:34:32,279 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:34:32,279 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:34:41,390 - gpsd_manager - INFO - Starting converter: C:\Users\me\AppData\Local\Programs\Python\Python312\python.exe c:\Users\me\app-gpsd_manager\mcode_converter.py --port COM9 --baudrate 9600 --mode tcp --parser mcode
+2026-08-20 22:34:41,402 - gpsd_manager - INFO - Converter process started with PID 57572
+2026-08-20 22:34:42,903 - gpsd_manager - INFO - Converter running on port 2948 for mcode format
+2026-08-20 22:34:42,903 - gpsd_manager - INFO - [Converter] Sent disable command: gps print disable
+2026-08-20 22:34:42,903 - gpsd_manager - INFO - [Converter] Sent enable command: mcode atak enable
+2026-08-20 22:34:42,903 - gpsd_manager - INFO - [Converter] TCP server listening on port 2948
+2026-08-20 22:34:42,903 - gpsd_manager - INFO - [Converter] MCODE converter: reading from COM9, streaming NMEA via TCP port 2948
+2026-08-20 22:35:11,902 - gpsd_manager - INFO - Starting converter: C:\Users\me\AppData\Local\Programs\Python\Python312\python.exe c:\Users\me\app-gpsd_manager\mcode_converter.py --port COM9 --baudrate 9600 --mode tcp --parser gps_print
+2026-08-20 22:35:11,907 - gpsd_manager - INFO - Converter process started with PID 33212
+2026-08-20 22:35:13,409 - gpsd_manager - INFO - Converter running on port 2948 for gps_print format
+2026-08-20 22:35:13,410 - gpsd_manager - INFO - [Converter] Sent disable command: mcode atak disable
+2026-08-20 22:35:13,410 - gpsd_manager - INFO - [Converter] Sent enable command: gps print enable
+2026-08-20 22:35:13,410 - gpsd_manager - INFO - [Converter] TCP server listening on port 2948
+2026-08-20 22:35:13,412 - gpsd_manager - INFO - [Converter] MCODE converter: reading from COM9, streaming NMEA via TCP port 2948
+2026-08-20 22:35:13,412 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=False
+2026-08-20 22:35:13,412 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:35:13,413 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:35:14,300 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:35:14,300 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:35:15,450 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:35:15,450 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:35:16,276 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:35:16,276 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:35:17,132 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:35:17,132 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:35:18,281 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:35:18,281 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:35:19,440 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:35:19,440 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:35:20,492 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:35:20,493 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:35:21,246 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:35:21,246 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:35:22,304 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:35:22,304 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:35:24,147 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:35:24,147 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:35:25,970 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:35:25,970 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:35:27,319 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:35:27,319 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:35:28,473 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:35:28,473 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:35:29,526 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:35:29,526 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:35:30,281 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:35:30,281 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:35:31,339 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:35:31,340 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:35:32,385 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:35:32,385 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:35:33,448 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:35:33,448 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:35:34,301 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:35:34,301 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:35:35,257 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:35:35,257 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:35:36,274 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:35:36,274 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:35:37,332 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:35:37,332 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:35:38,181 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:35:38,182 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:35:39,238 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:35:39,238 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:35:44,083 - gpsd_manager - INFO - Starting converter: C:\Users\me\AppData\Local\Programs\Python\Python312\python.exe c:\Users\me\app-gpsd_manager\mcode_converter.py --port COM9 --baudrate 9600 --mode tcp --parser gps_print
+2026-08-20 22:35:44,088 - gpsd_manager - INFO - Converter process started with PID 61884
+2026-08-20 22:35:45,590 - gpsd_manager - INFO - Converter running on port 2948 for gps_print format
+2026-08-20 22:35:45,591 - gpsd_manager - INFO - [Converter] Sent disable command: mcode atak disable
+2026-08-20 22:35:45,591 - gpsd_manager - INFO - [Converter] Sent enable command: gps print enable
+2026-08-20 22:35:45,591 - gpsd_manager - INFO - [Converter] TCP server listening on port 2948
+2026-08-20 22:35:45,591 - gpsd_manager - INFO - [Converter] MCODE converter: reading from COM9, streaming NMEA via TCP port 2948
+2026-08-20 22:35:45,592 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=False
+2026-08-20 22:35:46,069 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=False
+2026-08-20 22:35:48,079 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=False
+2026-08-20 22:35:49,235 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:35:49,235 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:35:50,387 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:35:50,387 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:35:51,448 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:35:51,448 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:35:52,200 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:35:52,200 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:35:53,357 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:35:53,357 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:35:54,407 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:35:54,407 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:35:55,458 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:35:55,459 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:35:56,318 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:35:56,319 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:35:57,264 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:35:57,264 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:35:58,523 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:35:58,523 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:35:59,471 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:35:59,471 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:36:00,333 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:36:00,333 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:36:01,282 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:36:01,282 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:36:02,434 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:36:02,434 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:36:03,392 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:36:03,392 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:36:04,248 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:36:04,248 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:36:05,295 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:36:05,296 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:36:06,456 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:36:06,456 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:36:07,501 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:36:07,502 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:36:08,258 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:36:08,258 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:36:09,314 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:36:09,314 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:36:10,369 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:36:10,369 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:36:11,328 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:36:11,328 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:36:12,275 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:36:12,275 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:36:13,306 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:36:13,306 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:36:14,256 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:36:14,256 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:36:15,178 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:36:15,178 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:36:16,237 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:36:16,237 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:36:17,386 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:36:17,386 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:36:18,440 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:36:18,440 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:36:19,202 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:36:19,202 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:36:20,251 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:36:20,251 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:36:21,502 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:36:21,502 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:36:22,457 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:36:22,457 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:36:24,013 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:36:24,013 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:36:25,236 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:36:25,236 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:36:26,280 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:36:26,280 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:36:27,438 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:36:27,438 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:36:28,388 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:36:28,388 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:36:29,248 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:36:29,248 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:36:30,299 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:36:30,299 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:36:31,452 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:36:31,452 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:36:32,410 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:36:32,410 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:36:33,268 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:36:33,268 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:36:34,221 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:36:34,221 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:36:35,370 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:36:35,370 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:36:36,423 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:36:36,423 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:36:37,278 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:36:37,278 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:36:38,237 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:36:38,238 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:36:39,485 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:36:39,485 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:36:40,340 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:36:40,340 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:36:41,193 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:36:41,193 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:36:42,247 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:36:42,247 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:36:43,207 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:36:43,207 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:36:44,454 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:36:44,454 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:36:45,415 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:36:45,415 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:36:46,273 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:36:46,273 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:36:47,224 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:36:47,224 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:36:49,269 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:36:49,270 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:36:50,024 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:36:50,024 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:36:51,250 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:36:51,250 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:36:52,200 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:36:52,200 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:36:53,222 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:36:53,222 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:36:54,284 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:36:54,285 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:36:55,032 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:36:55,032 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:36:56,194 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:36:56,194 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:36:57,215 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:36:57,215 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:36:58,263 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:36:58,263 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:36:59,189 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:36:59,189 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:37:00,252 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:37:00,252 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:37:01,199 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:37:01,199 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:37:02,022 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:37:02,022 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:37:03,054 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:37:03,054 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:37:04,202 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:37:04,202 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:37:05,355 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:37:05,355 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:37:06,409 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:37:06,409 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:37:07,463 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:37:07,463 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:37:08,223 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:37:08,223 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:37:09,273 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:37:09,273 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:37:10,293 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:37:10,293 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:37:11,253 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:37:11,254 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:37:12,107 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:37:12,107 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:37:13,232 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:37:13,232 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:37:14,283 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:37:14,283 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:37:15,439 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:37:15,439 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:37:16,488 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:37:16,489 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:37:17,345 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:37:17,345 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:37:18,295 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:37:18,295 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:37:19,457 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:37:19,457 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:37:20,406 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:37:20,407 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:37:21,257 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:37:21,258 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:37:22,315 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:37:22,315 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:37:23,468 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:37:23,468 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:37:24,423 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:37:24,424 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:37:25,272 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:37:25,272 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:37:26,229 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:37:26,229 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:37:27,379 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:37:27,379 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:37:28,342 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:37:28,342 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:37:29,098 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:37:29,098 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:37:30,152 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:37:30,152 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:37:31,265 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:37:31,266 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:37:32,220 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:37:32,220 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:37:34,273 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:37:34,273 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:37:35,425 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:37:35,425 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:37:36,678 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:37:36,678 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:37:37,834 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:37:37,834 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:37:38,953 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:37:38,953 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:37:40,174 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:37:40,174 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:37:41,226 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:37:41,226 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:37:42,381 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:37:42,381 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:37:43,434 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:37:43,434 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:37:44,296 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:37:44,296 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:37:45,244 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:37:45,244 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:37:46,269 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:37:46,269 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:37:47,325 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:37:47,325 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:37:48,078 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:37:48,078 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:37:49,129 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:37:49,129 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:37:50,152 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:37:50,152 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:37:51,212 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:37:51,212 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:37:52,235 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:37:52,235 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:37:53,288 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:37:53,288 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:37:54,437 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:37:54,439 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:37:55,391 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:37:55,391 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:37:56,255 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:37:56,255 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:37:57,310 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:37:57,311 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:37:58,229 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:37:58,229 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:37:59,282 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:37:59,282 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:38:00,040 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:38:00,040 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:38:01,165 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:38:01,165 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:38:02,312 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:38:02,312 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:38:03,368 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:38:03,368 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:38:04,523 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:38:04,523 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:38:05,577 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:38:05,577 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:38:06,733 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:38:06,733 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:38:07,784 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:38:07,784 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:38:08,909 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:38:08,910 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:38:09,935 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:38:09,935 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:38:10,958 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:38:10,958 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:38:12,081 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:38:12,081 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:38:13,334 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:38:13,334 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:38:14,387 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:38:14,388 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:38:15,441 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:38:15,442 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:38:16,062 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:38:16,062 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:38:17,117 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:38:17,117 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:38:18,245 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:38:18,245 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:38:19,200 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:38:19,200 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:38:20,222 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:38:20,222 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:38:21,279 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:38:21,279 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:38:23,226 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:38:23,226 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:38:24,082 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:38:24,082 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:38:25,236 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:38:25,237 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:38:25,961 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:38:25,961 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:38:27,178 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:38:27,179 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:38:28,330 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:38:28,331 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:38:29,389 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:38:29,390 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:38:30,444 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:38:30,444 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:38:31,193 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:38:31,193 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:38:32,246 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:38:32,247 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:38:33,273 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:38:33,273 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:38:34,233 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:38:34,233 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:38:35,081 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:38:35,081 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:38:36,332 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:38:36,332 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:38:37,393 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:38:37,394 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:38:38,447 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:38:38,447 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:38:39,303 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:38:39,303 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:38:40,250 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:38:40,250 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:38:41,404 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:38:41,404 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:38:42,231 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:38:42,232 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:38:43,089 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:38:43,089 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:38:44,244 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:38:44,244 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:38:45,194 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:38:45,194 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:38:46,217 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:38:46,218 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:38:47,172 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:38:47,172 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:38:48,195 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:38:48,195 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:38:49,246 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:38:49,246 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:38:50,177 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:38:50,177 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:38:51,230 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:38:51,230 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:38:52,251 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:38:52,251 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:38:53,304 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:38:53,304 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:38:54,166 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:38:54,166 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:38:54,991 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:38:54,992 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:38:56,114 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:38:56,114 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:38:57,266 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:38:57,266 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:38:59,208 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:38:59,209 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:39:00,063 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:39:00,063 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:39:01,188 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:39:01,188 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:39:02,242 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:39:02,242 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:39:04,190 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:39:04,190 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:39:05,048 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:39:05,048 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:39:06,075 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:39:06,075 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:39:07,325 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:39:07,326 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:39:08,483 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:39:08,483 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:39:09,436 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:39:09,436 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:39:10,285 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:39:10,285 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:39:11,242 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:39:11,242 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:39:12,495 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:39:12,495 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:39:13,448 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:39:13,448 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:39:14,175 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:39:14,176 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:39:15,125 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:39:15,126 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:39:16,155 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:39:16,156 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:39:17,202 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:39:17,202 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:39:19,157 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:39:19,157 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:39:20,206 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:39:20,206 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:39:21,227 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:39:21,227 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:39:22,290 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:39:22,290 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:39:23,304 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:39:23,304 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:39:24,265 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:39:24,265 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:39:25,288 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:39:25,288 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:39:26,340 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:39:26,340 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:39:27,390 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:39:27,390 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:39:28,449 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:39:28,449 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:39:29,305 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:39:29,306 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:39:30,261 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:39:30,262 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:39:31,512 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:39:31,513 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:39:32,338 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:39:32,338 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:39:33,089 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:39:33,089 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:39:34,047 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:39:34,047 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:39:35,267 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:39:35,268 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:39:36,220 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:39:36,220 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:39:37,479 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:39:37,479 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:39:38,299 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:39:38,299 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:39:39,057 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:39:39,057 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:39:40,011 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:39:40,011 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:39:41,231 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:39:41,232 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:39:42,188 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:39:42,188 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:39:43,440 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:39:43,440 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:39:44,396 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:39:44,396 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:39:45,250 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:39:45,250 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:39:46,304 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:39:46,304 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:39:47,458 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:39:47,458 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:39:48,406 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:39:48,406 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:39:49,261 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:39:49,261 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:39:50,221 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:39:50,222 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:39:51,468 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:39:51,468 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:39:52,427 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:39:52,427 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:39:53,274 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:39:53,275 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:39:54,229 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:39:54,229 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:39:55,481 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:39:55,482 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:39:57,033 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:39:57,034 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:39:57,862 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:39:57,862 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:39:59,081 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:39:59,081 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:40:00,237 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:40:00,237 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:40:01,484 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:40:01,484 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:40:02,444 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:40:02,445 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:40:03,301 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:40:03,301 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:40:04,250 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:40:04,250 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:40:05,410 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:40:05,410 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:40:06,454 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:40:06,454 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:40:07,214 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:40:07,214 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:40:08,271 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:40:08,272 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:40:09,419 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:40:09,419 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:40:10,469 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:40:10,469 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:40:11,224 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:40:11,225 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:40:12,282 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:40:12,282 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:40:13,430 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:40:13,430 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:40:14,390 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:40:14,390 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:40:15,247 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:40:15,247 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:40:16,294 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:40:16,294 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:40:18,013 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:40:18,014 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:40:18,873 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:40:18,873 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:40:20,122 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:40:20,122 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:40:21,074 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:40:21,075 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:40:22,304 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:40:22,304 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:40:23,255 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:40:23,255 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:40:24,412 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:40:24,412 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:40:25,129 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:40:25,130 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:40:26,059 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:40:26,060 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:40:27,084 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:40:27,084 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:40:28,107 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:40:28,107 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:40:29,259 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:40:29,259 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:40:30,416 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:40:30,416 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:40:31,467 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:40:31,467 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:40:32,089 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:40:32,089 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:40:33,148 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:40:33,148 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:40:34,269 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:40:34,269 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:40:35,221 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:40:35,221 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:40:36,243 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:40:36,243 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:40:37,297 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:40:37,297 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:40:38,250 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:40:38,250 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:40:39,280 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:40:39,280 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:40:40,230 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:40:40,231 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:40:41,250 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:40:41,250 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:40:42,209 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:40:42,209 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:40:43,229 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:40:43,229 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:40:44,290 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:40:44,290 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:40:45,145 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:40:45,145 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:40:46,092 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:40:46,092 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:40:47,221 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:40:47,221 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:40:48,272 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:40:48,272 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:40:49,423 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:40:49,423 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:40:50,476 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:40:50,476 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:40:51,332 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:40:51,332 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:40:52,290 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:40:52,290 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:40:53,440 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:40:53,440 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:40:54,495 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:40:54,495 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:40:55,252 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:40:55,252 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:40:56,302 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:40:56,302 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:40:57,460 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:40:57,460 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:40:58,410 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:40:58,410 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:40:59,269 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:40:59,269 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:41:00,221 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:41:00,221 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:41:03,255 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:41:03,256 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:41:04,512 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:41:04,512 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:41:05,661 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:41:05,661 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:42:07,106 - gpsd_manager - INFO - Starting converter: C:\Users\me\AppData\Local\Programs\Python\Python312\python.exe c:\Users\me\app-gpsd_manager\mcode_converter.py --port COM9 --baudrate 9600 --mode tcp --parser gps_print
+2026-08-20 22:42:07,118 - gpsd_manager - INFO - Converter process started with PID 47548
+2026-08-20 22:42:08,620 - gpsd_manager - INFO - Converter running on port 2948 for gps_print format
+2026-08-20 22:42:08,620 - gpsd_manager - INFO - [Converter] Sent disable command: mcode atak disable
+2026-08-20 22:42:08,620 - gpsd_manager - INFO - [Converter] Sent enable command: gps print enable
+2026-08-20 22:42:08,620 - gpsd_manager - INFO - [Converter] TCP server listening on port 2948
+2026-08-20 22:42:08,620 - gpsd_manager - INFO - [Converter] MCODE converter: reading from COM9, streaming NMEA via TCP port 2948
+2026-08-20 22:42:08,622 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=False
+2026-08-20 22:42:08,622 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:42:08,622 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:42:09,278 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:42:09,278 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:42:10,338 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:42:10,338 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:42:11,185 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:42:11,185 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:42:12,215 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:42:12,215 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:42:13,271 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:42:13,271 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:42:14,188 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:42:14,188 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:42:15,240 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:42:15,240 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:42:16,396 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:42:16,396 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:42:24,020 - gpsd_manager - INFO - Starting converter: C:\Users\me\AppData\Local\Programs\Python\Python312\python.exe c:\Users\me\app-gpsd_manager\mcode_converter.py --port COM9 --baudrate 9600 --mode tcp --parser mcode
+2026-08-20 22:42:24,031 - gpsd_manager - INFO - Converter process started with PID 52332
+2026-08-20 22:42:25,533 - gpsd_manager - INFO - Converter running on port 2948 for mcode format
+2026-08-20 22:42:25,533 - gpsd_manager - INFO - [Converter] Sent disable command: gps print disable
+2026-08-20 22:42:25,534 - gpsd_manager - INFO - [Converter] Sent enable command: mcode atak enable
+2026-08-20 22:42:25,534 - gpsd_manager - INFO - [Converter] TCP server listening on port 2948
+2026-08-20 22:42:25,534 - gpsd_manager - INFO - [Converter] MCODE converter: reading from COM9, streaming NMEA via TCP port 2948
+2026-08-20 22:42:41,306 - gpsd_manager - INFO - Starting converter: C:\Users\me\AppData\Local\Programs\Python\Python312\python.exe c:\Users\me\app-gpsd_manager\mcode_converter.py --port COM9 --baudrate 9600 --mode tcp --parser gps_print
+2026-08-20 22:42:41,312 - gpsd_manager - INFO - Converter process started with PID 60124
+2026-08-20 22:42:42,813 - gpsd_manager - INFO - Converter running on port 2948 for gps_print format
+2026-08-20 22:42:42,813 - gpsd_manager - INFO - [Converter] Sent disable command: mcode atak disable
+2026-08-20 22:42:42,813 - gpsd_manager - INFO - [Converter] Sent enable command: gps print enable
+2026-08-20 22:42:42,813 - gpsd_manager - INFO - [Converter] TCP server listening on port 2948
+2026-08-20 22:42:42,813 - gpsd_manager - INFO - [Converter] MCODE converter: reading from COM9, streaming NMEA via TCP port 2948
+2026-08-20 22:42:42,813 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:42:42,815 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:42:43,463 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:42:43,463 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:42:46,309 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:42:46,309 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:42:47,554 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:42:47,555 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:42:48,705 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:42:48,705 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:42:49,928 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:42:49,929 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:42:51,058 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:42:51,058 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:42:52,211 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:42:52,211 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:42:53,460 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:42:53,461 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:42:54,417 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:42:54,417 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:42:55,271 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:42:55,272 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:42:56,221 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:42:56,222 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:42:57,471 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:42:57,471 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:42:58,427 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:42:58,427 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:42:59,288 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:42:59,288 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:43:00,235 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:43:00,235 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:43:01,490 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:43:01,490 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:43:02,442 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:43:02,443 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:43:03,298 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:43:03,298 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:43:04,258 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:43:04,258 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:43:05,503 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:43:05,503 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:43:07,052 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:43:07,052 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:43:08,109 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:43:08,109 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:43:09,229 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:43:09,229 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:43:10,282 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:43:10,282 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:43:11,436 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:43:11,436 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:43:12,489 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:43:12,489 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:43:13,247 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:43:13,247 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:43:14,306 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:43:14,306 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:43:16,253 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:43:16,253 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:43:17,497 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:43:17,497 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:44:33,792 - gpsd_manager - INFO - start() called: process=False, parser_type=gps_print
+2026-08-20 22:44:33,794 - gpsd_manager - INFO - Starting new converter with parser_type=gps_print
+2026-08-20 22:44:33,804 - gpsd_manager - INFO - Converter process started with PID 27572
+2026-08-20 22:44:35,305 - gpsd_manager - INFO - Converter running on port 2948 for gps_print format
+2026-08-20 22:44:35,306 - gpsd_manager - INFO - [Converter] Sent disable command: mcode atak disable
+2026-08-20 22:44:35,306 - gpsd_manager - INFO - [Converter] Sent enable command: gps print enable
+2026-08-20 22:44:35,306 - gpsd_manager - INFO - [Converter] TCP server listening on port 2948
+2026-08-20 22:44:35,306 - gpsd_manager - INFO - [Converter] MCODE converter: reading from COM9, streaming NMEA via TCP port 2948
+2026-08-20 22:44:35,307 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:44:35,308 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:44:35,457 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:44:35,458 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:44:36,419 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:44:36,419 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:44:37,141 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:44:37,142 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:44:38,098 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:44:38,098 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:44:39,215 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:44:39,215 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:44:40,269 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:44:40,269 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:44:41,427 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:44:41,427 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:44:42,252 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:44:42,252 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:44:43,204 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:44:43,204 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:44:45,252 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:44:45,252 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:44:46,009 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:44:46,009 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:44:47,059 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:44:47,060 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:44:48,287 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:44:48,287 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:44:49,240 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:44:49,241 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:44:50,388 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:44:50,388 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:44:51,441 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:44:51,442 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:44:52,199 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:44:52,200 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:44:53,152 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:44:53,152 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:44:54,406 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:44:54,406 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:44:55,454 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:44:55,454 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:44:56,214 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:44:56,215 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:44:57,262 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:44:57,262 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:44:58,422 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:44:58,422 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:44:59,471 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:44:59,471 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:45:00,227 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:45:00,227 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:45:01,283 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:45:01,283 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:45:02,440 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:45:02,440 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:45:03,484 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:45:03,484 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:45:09,523 - gpsd_manager - INFO - start() called: process=False, parser_type=mcode
+2026-08-20 22:45:09,524 - gpsd_manager - INFO - Starting new converter with parser_type=mcode
+2026-08-20 22:45:09,535 - gpsd_manager - INFO - Converter process started with PID 33160
+2026-08-20 22:45:11,036 - gpsd_manager - INFO - Converter running on port 2948 for mcode format
+2026-08-20 22:45:11,036 - gpsd_manager - INFO - [Converter] Sent disable command: gps print disable
+2026-08-20 22:45:11,037 - gpsd_manager - INFO - [Converter] Sent enable command: mcode atak enable
+2026-08-20 22:45:11,037 - gpsd_manager - INFO - [Converter] TCP server listening on port 2948
+2026-08-20 22:45:11,038 - gpsd_manager - INFO - [Converter] MCODE converter: reading from COM9, streaming NMEA via TCP port 2948
+2026-08-20 22:47:04,152 - gpsd_manager - INFO - start() called: process=False, parser_type=mcode
+2026-08-20 22:47:04,153 - gpsd_manager - INFO - Starting new converter with parser_type=mcode
+2026-08-20 22:47:04,162 - gpsd_manager - INFO - Converter process started with PID 51892
+2026-08-20 22:47:05,663 - gpsd_manager - INFO - Converter running on port 2948 for mcode format
+2026-08-20 22:47:05,663 - gpsd_manager - INFO - [Converter] Sent disable command: gps print disable
+2026-08-20 22:47:05,665 - gpsd_manager - INFO - [Converter] Sent enable command: mcode atak enable
+2026-08-20 22:47:05,665 - gpsd_manager - INFO - [Converter] TCP server listening on port 2948
+2026-08-20 22:47:05,666 - gpsd_manager - INFO - [Converter] MCODE converter: reading from COM9, streaming NMEA via TCP port 2948
+2026-08-20 22:47:18,764 - gpsd_manager - INFO - start() called: process=False, parser_type=gps_print
+2026-08-20 22:47:18,765 - gpsd_manager - INFO - Starting new converter with parser_type=gps_print
+2026-08-20 22:47:18,775 - gpsd_manager - INFO - Converter process started with PID 59668
+2026-08-20 22:47:20,276 - gpsd_manager - INFO - Converter running on port 2948 for gps_print format
+2026-08-20 22:47:20,277 - gpsd_manager - INFO - [Converter] Sent disable command: mcode atak disable
+2026-08-20 22:47:20,278 - gpsd_manager - INFO - [Converter] Sent enable command: gps print enable
+2026-08-20 22:47:20,278 - gpsd_manager - INFO - [Converter] TCP server listening on port 2948
+2026-08-20 22:47:20,278 - gpsd_manager - INFO - [Converter] MCODE converter: reading from COM9, streaming NMEA via TCP port 2948
+2026-08-20 22:47:20,278 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=False
+2026-08-20 22:47:20,279 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:47:20,279 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:47:21,526 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:47:21,526 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:47:22,377 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:47:22,377 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:47:23,241 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:47:23,241 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:47:24,296 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:47:24,296 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:48:54,783 - gpsd_manager - INFO - start() called: process=False, parser_type=mcode
+2026-08-20 22:48:54,783 - gpsd_manager - INFO - Starting new converter with parser_type=mcode
+2026-08-20 22:48:54,794 - gpsd_manager - INFO - Converter process started with PID 53628
+2026-08-20 22:48:56,296 - gpsd_manager - INFO - Converter running on port 2948 for mcode format
+2026-08-20 22:48:56,297 - gpsd_manager - INFO - [Converter] Sent disable command: gps print disable
+2026-08-20 22:48:56,297 - gpsd_manager - INFO - [Converter] Sent enable command: mcode atak enable
+2026-08-20 22:48:56,297 - gpsd_manager - INFO - [Converter] TCP server listening on port 2948
+2026-08-20 22:48:56,297 - gpsd_manager - INFO - [Converter] MCODE converter: reading from COM9, streaming NMEA via TCP port 2948
+2026-08-20 22:49:06,441 - gpsd_manager - INFO - Converter process 53628 terminated gracefully
+2026-08-20 22:49:14,159 - gpsd_manager - INFO - start() called: process=True, parser_type=gps_print
+2026-08-20 22:49:14,159 - gpsd_manager - INFO - Existing process check: running=False, pid=dead
+2026-08-20 22:49:14,160 - gpsd_manager - INFO - Starting new converter with parser_type=gps_print
+2026-08-20 22:49:14,171 - gpsd_manager - INFO - Converter process started with PID 27360
+2026-08-20 22:49:15,673 - gpsd_manager - INFO - Converter running on port 2948 for gps_print format
+2026-08-20 22:49:15,673 - gpsd_manager - INFO - [Converter] Sent disable command: mcode atak disable
+2026-08-20 22:49:15,673 - gpsd_manager - INFO - [Converter] Sent enable command: gps print enable
+2026-08-20 22:49:15,673 - gpsd_manager - INFO - [Converter] TCP server listening on port 2948
+2026-08-20 22:49:15,674 - gpsd_manager - INFO - [Converter] MCODE converter: reading from COM9, streaming NMEA via TCP port 2948
+2026-08-20 22:49:15,675 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:49:15,675 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:49:16,456 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:49:16,457 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:49:17,313 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:49:17,313 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:49:18,271 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:49:18,271 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:49:19,525 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:49:19,525 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:49:20,380 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:49:20,380 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:49:21,228 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:49:21,228 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:49:22,190 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:49:22,190 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:49:24,335 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:49:24,335 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:49:25,484 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:49:25,484 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:49:26,642 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:49:26,642 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:49:27,788 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:49:27,788 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:49:28,911 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:49:28,911 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:49:30,038 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:49:30,039 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:49:32,182 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:49:32,182 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:49:34,233 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:49:34,234 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:49:35,190 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:49:35,190 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:49:36,433 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:49:36,433 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:49:37,392 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:49:37,393 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:49:38,241 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:49:38,241 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:49:39,300 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:49:39,300 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:49:40,449 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:49:40,449 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:49:41,411 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:49:41,411 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:49:42,267 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:49:42,267 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:49:43,319 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:49:43,319 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:49:44,468 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:49:44,468 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:49:45,290 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:49:45,290 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:49:46,048 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:49:46,048 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:49:47,204 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:49:47,204 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:49:48,223 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:49:48,223 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:49:49,274 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:49:49,274 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:49:50,433 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:49:50,433 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:49:51,483 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:49:51,484 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:49:52,340 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:49:52,340 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:49:53,297 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:49:53,297 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:49:54,445 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:49:54,445 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:49:55,499 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:49:55,499 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:49:56,256 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:49:56,257 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:49:57,305 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:49:57,305 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:49:58,463 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:49:58,463 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:50:00,308 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:50:00,308 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:50:01,460 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:50:01,460 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:50:02,716 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:50:02,716 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:50:03,834 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:50:03,835 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:50:04,962 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:50:04,962 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:50:06,086 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:50:06,087 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:50:07,234 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:50:07,234 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:50:08,392 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:50:08,392 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:50:10,036 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:50:10,036 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:50:11,094 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:50:11,094 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:50:12,214 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:50:12,214 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:50:13,264 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:50:13,265 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:50:14,421 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:50:14,421 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:50:15,473 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:50:15,473 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:50:16,229 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:50:16,229 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:50:17,288 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:50:17,288 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:50:18,311 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:50:18,312 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:50:19,267 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:50:19,267 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:50:20,188 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:50:20,188 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:50:22,002 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:50:22,002 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:50:23,030 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:50:23,031 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:50:24,277 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:50:24,277 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:50:25,437 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:50:25,437 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:50:26,488 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:50:26,488 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:50:27,239 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:50:27,239 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:50:28,297 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:50:28,297 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:50:29,454 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:50:29,454 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:50:30,499 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:50:30,499 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:50:31,256 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:50:31,256 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:50:32,312 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:50:32,312 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:50:34,254 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:50:34,255 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:50:35,211 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:50:35,211 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:50:37,157 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:50:37,157 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:50:38,118 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:50:38,118 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:50:39,243 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:50:39,243 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:50:40,293 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:50:40,293 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:50:41,449 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:50:41,449 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:50:42,401 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:50:42,401 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:50:43,256 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:50:43,256 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:50:44,212 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:50:44,212 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:50:45,232 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:50:45,232 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:50:46,289 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:50:46,289 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:50:47,139 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:50:47,140 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:50:48,094 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:50:48,094 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:50:49,219 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:50:49,219 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:50:50,169 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:50:50,169 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:50:52,223 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:50:52,224 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:50:53,072 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:50:53,072 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:50:54,229 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:50:54,229 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:50:56,175 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:50:56,175 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:50:57,028 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:50:57,028 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:50:58,147 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:50:58,147 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:50:59,207 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:50:59,207 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:51:00,462 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:51:00,462 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:51:01,411 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:51:01,411 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:51:02,262 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:51:02,262 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:51:03,324 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:51:03,325 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:51:04,468 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:51:04,468 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:51:05,298 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:51:05,299 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:51:06,148 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:51:06,148 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:51:07,209 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:51:07,210 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:51:08,227 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:51:08,227 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:51:10,174 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:51:10,174 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:51:11,304 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:51:11,304 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:51:12,250 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:51:12,250 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:51:13,080 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:51:13,080 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:51:14,133 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:51:14,133 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:51:15,252 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:51:15,253 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:51:16,210 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:51:16,210 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:51:17,231 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:51:17,232 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:51:18,288 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:51:18,288 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:51:19,442 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:51:19,442 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:51:20,496 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:51:20,496 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:51:21,246 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:51:21,247 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:51:22,303 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:51:22,303 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:51:23,454 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:51:23,455 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:51:24,410 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:51:24,410 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:51:25,362 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:51:25,362 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:51:26,220 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:51:26,220 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:51:27,472 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:51:27,472 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:51:29,022 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:51:29,022 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:51:30,077 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:51:30,077 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:51:31,198 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:51:31,198 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:51:32,250 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:51:32,250 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:51:34,195 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:51:34,195 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:51:35,046 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:51:35,047 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:51:36,967 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:51:36,967 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:51:38,093 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:51:38,093 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:51:39,248 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:51:39,248 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:51:40,394 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:51:40,394 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:51:41,447 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:51:41,447 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:51:42,306 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:51:42,307 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:51:43,257 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:51:43,257 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:51:44,510 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:51:44,510 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:51:45,469 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:51:45,469 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:51:46,318 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:51:46,318 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:51:47,270 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:51:47,270 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:51:48,425 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:51:48,425 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:51:49,378 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:51:49,378 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:51:50,241 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:51:50,241 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:51:51,292 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:51:51,292 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:51:52,313 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:51:52,313 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:51:53,267 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:51:53,267 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:51:54,121 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:51:54,121 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:51:55,247 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:51:55,247 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:51:56,200 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:51:56,200 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:51:57,221 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:51:57,221 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:51:58,273 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:51:58,273 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:52:00,324 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:52:00,324 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:52:01,480 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:52:01,480 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:52:02,723 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:52:02,724 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:52:03,852 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:52:03,852 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:52:04,975 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:52:04,976 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:52:06,092 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:52:06,092 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:52:07,250 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:52:07,250 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:52:08,403 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:52:08,403 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:52:09,453 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:52:09,462 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:52:10,310 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:52:10,310 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:52:11,263 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:52:11,263 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:52:12,419 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:52:12,419 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:52:13,465 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:52:13,465 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:52:14,396 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:52:14,396 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:52:15,349 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:52:15,350 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:52:16,502 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:52:16,502 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:52:17,451 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:52:17,451 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:52:18,311 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:52:18,311 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:52:20,153 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:52:20,153 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:52:21,311 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:52:21,311 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:52:22,234 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:52:22,234 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:52:23,191 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:52:23,191 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:52:24,142 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:52:24,142 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:52:25,099 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:52:25,099 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:52:26,215 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:52:26,215 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:52:27,277 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:52:27,277 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:52:28,292 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:52:28,292 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:52:29,253 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:52:29,253 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:52:30,308 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:52:30,308 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:52:31,453 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:52:31,454 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:52:32,413 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:52:32,413 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:52:33,260 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:52:33,261 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:52:34,314 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:52:34,315 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:52:36,171 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:52:36,171 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:52:37,022 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:52:37,022 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:52:38,148 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:52:38,148 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:52:39,198 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:52:39,198 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:52:40,221 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:52:40,222 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:53:16,911 - gpsd_manager - INFO - start() called: process=False, parser_type=gps_print
+2026-08-20 22:53:16,912 - gpsd_manager - INFO - Starting new converter with parser_type=gps_print
+2026-08-20 22:53:16,923 - gpsd_manager - INFO - Converter process started with PID 58252
+2026-08-20 22:53:18,424 - gpsd_manager - INFO - Converter running on port 2948 for gps_print format
+2026-08-20 22:53:18,425 - gpsd_manager - INFO - [Converter] Sent disable command: mcode atak disable
+2026-08-20 22:53:18,425 - gpsd_manager - INFO - [Converter] Sent enable command: gps print enable
+2026-08-20 22:53:18,425 - gpsd_manager - INFO - [Converter] TCP server listening on port 2948
+2026-08-20 22:53:18,425 - gpsd_manager - INFO - [Converter] MCODE converter: reading from COM9, streaming NMEA via TCP port 2948
+2026-08-20 22:53:18,425 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:53:18,426 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:53:18,426 - gpsd_manager - INFO - [Converter] ERROR writing debug file: TypeError: Object of type datetime is not JSON serializable
+2026-08-20 22:53:19,248 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:53:19,248 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:53:19,249 - gpsd_manager - INFO - [Converter] ERROR writing debug file: TypeError: Object of type datetime is not JSON serializable
+2026-08-20 22:53:20,299 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:53:20,299 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:53:20,300 - gpsd_manager - INFO - [Converter] ERROR writing debug file: TypeError: Object of type datetime is not JSON serializable
+2026-08-20 22:53:22,247 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:53:22,247 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:53:22,247 - gpsd_manager - INFO - [Converter] ERROR writing debug file: TypeError: Object of type datetime is not JSON serializable
+2026-08-20 22:53:23,007 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:53:23,008 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:53:23,008 - gpsd_manager - INFO - [Converter] ERROR writing debug file: TypeError: Object of type datetime is not JSON serializable
+2026-08-20 22:53:24,134 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:53:24,134 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:53:24,134 - gpsd_manager - INFO - [Converter] ERROR writing debug file: TypeError: Object of type datetime is not JSON serializable
+2026-08-20 22:53:25,185 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:53:25,185 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:53:25,186 - gpsd_manager - INFO - [Converter] ERROR writing debug file: TypeError: Object of type datetime is not JSON serializable
+2026-08-20 22:53:26,206 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:53:26,206 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:53:26,206 - gpsd_manager - INFO - [Converter] ERROR writing debug file: TypeError: Object of type datetime is not JSON serializable
+2026-08-20 22:53:27,256 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:53:27,256 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:53:27,256 - gpsd_manager - INFO - [Converter] ERROR writing debug file: TypeError: Object of type datetime is not JSON serializable
+2026-08-20 22:53:28,282 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:53:28,282 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:53:28,282 - gpsd_manager - INFO - [Converter] ERROR writing debug file: TypeError: Object of type datetime is not JSON serializable
+2026-08-20 22:53:29,239 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:53:29,239 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:53:29,240 - gpsd_manager - INFO - [Converter] ERROR writing debug file: TypeError: Object of type datetime is not JSON serializable
+2026-08-20 22:53:30,292 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:53:30,292 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:53:30,293 - gpsd_manager - INFO - [Converter] ERROR writing debug file: TypeError: Object of type datetime is not JSON serializable
+2026-08-20 22:53:31,311 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:53:31,312 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:53:31,312 - gpsd_manager - INFO - [Converter] ERROR writing debug file: TypeError: Object of type datetime is not JSON serializable
+2026-08-20 22:53:32,267 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:53:32,267 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:53:32,267 - gpsd_manager - INFO - [Converter] ERROR writing debug file: TypeError: Object of type datetime is not JSON serializable
+2026-08-20 22:53:33,118 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:53:33,118 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:53:33,119 - gpsd_manager - INFO - [Converter] ERROR writing debug file: TypeError: Object of type datetime is not JSON serializable
+2026-08-20 22:53:34,250 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:53:34,250 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:53:34,250 - gpsd_manager - INFO - [Converter] ERROR writing debug file: TypeError: Object of type datetime is not JSON serializable
+2026-08-20 22:53:35,195 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:53:35,195 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:53:35,195 - gpsd_manager - INFO - [Converter] ERROR writing debug file: TypeError: Object of type datetime is not JSON serializable
+2026-08-20 22:53:36,447 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:53:36,447 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:53:36,448 - gpsd_manager - INFO - [Converter] ERROR writing debug file: TypeError: Object of type datetime is not JSON serializable
+2026-08-20 22:53:37,401 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:53:37,402 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:53:37,402 - gpsd_manager - INFO - [Converter] ERROR writing debug file: TypeError: Object of type datetime is not JSON serializable
+2026-08-20 22:53:38,257 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:53:38,257 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:53:38,258 - gpsd_manager - INFO - [Converter] ERROR writing debug file: TypeError: Object of type datetime is not JSON serializable
+2026-08-20 22:53:39,318 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:53:39,318 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:53:39,319 - gpsd_manager - INFO - [Converter] ERROR writing debug file: TypeError: Object of type datetime is not JSON serializable
+2026-08-20 22:53:40,469 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:53:40,470 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:53:40,470 - gpsd_manager - INFO - [Converter] ERROR writing debug file: TypeError: Object of type datetime is not JSON serializable
+2026-08-20 22:53:41,289 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:53:41,289 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:53:41,290 - gpsd_manager - INFO - [Converter] ERROR writing debug file: TypeError: Object of type datetime is not JSON serializable
+2026-08-20 22:53:42,149 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:53:42,149 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:53:42,149 - gpsd_manager - INFO - [Converter] ERROR writing debug file: TypeError: Object of type datetime is not JSON serializable
+2026-08-20 22:53:43,102 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:53:43,102 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:53:43,103 - gpsd_manager - INFO - [Converter] ERROR writing debug file: TypeError: Object of type datetime is not JSON serializable
+2026-08-20 22:53:44,224 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:53:44,224 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:53:44,224 - gpsd_manager - INFO - [Converter] ERROR writing debug file: TypeError: Object of type datetime is not JSON serializable
+2026-08-20 22:53:45,177 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:53:45,177 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:53:45,177 - gpsd_manager - INFO - [Converter] ERROR writing debug file: TypeError: Object of type datetime is not JSON serializable
+2026-08-20 22:53:47,920 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:53:47,920 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:53:47,920 - gpsd_manager - INFO - [Converter] ERROR writing debug file: TypeError: Object of type datetime is not JSON serializable
+2026-08-20 22:53:49,068 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:53:49,069 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:53:49,069 - gpsd_manager - INFO - [Converter] ERROR writing debug file: TypeError: Object of type datetime is not JSON serializable
+2026-08-20 22:53:50,128 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:53:50,128 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:53:50,129 - gpsd_manager - INFO - [Converter] ERROR writing debug file: TypeError: Object of type datetime is not JSON serializable
+2026-08-20 22:53:51,249 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:53:51,249 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:53:51,250 - gpsd_manager - INFO - [Converter] ERROR writing debug file: TypeError: Object of type datetime is not JSON serializable
+2026-08-20 22:53:52,204 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:53:52,204 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:53:52,204 - gpsd_manager - INFO - [Converter] ERROR writing debug file: TypeError: Object of type datetime is not JSON serializable
+2026-08-20 22:53:53,456 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:53:53,456 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:53:53,456 - gpsd_manager - INFO - [Converter] ERROR writing debug file: TypeError: Object of type datetime is not JSON serializable
+2026-08-20 22:53:54,411 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:53:54,412 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:53:54,412 - gpsd_manager - INFO - [Converter] ERROR writing debug file: TypeError: Object of type datetime is not JSON serializable
+2026-08-20 22:53:55,267 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:53:55,267 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:53:55,268 - gpsd_manager - INFO - [Converter] ERROR writing debug file: TypeError: Object of type datetime is not JSON serializable
+2026-08-20 22:53:56,214 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:53:56,214 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:53:56,214 - gpsd_manager - INFO - [Converter] ERROR writing debug file: TypeError: Object of type datetime is not JSON serializable
+2026-08-20 22:54:19,512 - gpsd_manager - INFO - start() called: process=False, parser_type=gps_print
+2026-08-20 22:54:19,514 - gpsd_manager - INFO - Starting new converter with parser_type=gps_print
+2026-08-20 22:54:19,525 - gpsd_manager - INFO - Converter process started with PID 64176
+2026-08-20 22:54:21,026 - gpsd_manager - INFO - Converter running on port 2948 for gps_print format
+2026-08-20 22:54:21,026 - gpsd_manager - INFO - [Converter] Sent disable command: mcode atak disable
+2026-08-20 22:54:21,028 - gpsd_manager - INFO - [Converter] Sent enable command: gps print enable
+2026-08-20 22:54:21,028 - gpsd_manager - INFO - [Converter] TCP server listening on port 2948
+2026-08-20 22:54:21,028 - gpsd_manager - INFO - [Converter] MCODE converter: reading from COM9, streaming NMEA via TCP port 2948
+2026-08-20 22:54:21,029 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:54:21,029 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:54:21,166 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:54:21,166 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:54:22,223 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:54:22,223 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:54:24,266 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:54:24,266 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:54:25,287 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:54:25,287 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:54:26,312 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:54:26,312 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:54:27,263 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:54:27,263 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:54:28,118 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:54:28,118 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:54:29,243 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:54:29,243 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:54:30,202 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:54:30,202 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:54:31,452 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:54:31,452 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:54:32,404 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:54:32,404 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:54:33,256 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:54:33,256 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:54:34,310 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:54:34,311 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:54:35,462 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:54:35,462 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:54:36,288 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:54:36,289 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:54:37,148 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:54:37,148 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:54:38,196 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:54:38,197 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:54:39,454 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:54:39,454 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:54:40,402 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:54:40,402 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:54:41,266 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:54:41,267 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:54:42,218 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:54:42,218 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:54:43,472 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:54:43,472 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:54:44,422 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:54:44,422 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:54:45,277 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:54:45,277 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:54:46,230 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:54:46,231 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:54:47,482 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:54:47,482 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:54:48,442 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:54:48,442 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:54:49,290 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:54:49,290 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:54:50,245 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:54:50,246 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:54:51,400 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:54:51,400 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:54:52,450 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:54:52,450 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:54:53,307 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:54:53,307 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:54:54,260 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:54:54,260 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:54:55,411 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:54:55,412 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:54:56,474 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:54:56,474 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:54:57,224 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:54:57,225 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:54:58,278 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:54:58,278 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:54:59,435 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:54:59,435 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:55:00,388 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:55:00,389 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:55:01,241 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:55:01,241 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:55:02,290 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:55:02,291 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:55:03,443 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:55:03,443 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:55:04,404 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:55:04,404 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:55:05,261 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:55:05,262 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:55:06,309 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:55:06,310 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:55:07,461 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:55:07,461 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:55:10,306 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:55:10,306 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:55:11,556 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:55:11,556 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:55:12,709 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:55:12,709 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:55:13,933 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:55:13,933 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:55:14,956 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:55:14,956 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:55:16,206 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:55:16,207 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:55:17,461 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:55:17,461 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:55:18,412 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:55:18,412 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:55:19,273 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:55:19,274 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:55:20,320 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:55:20,320 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:55:21,477 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:55:21,477 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:55:22,433 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:55:22,434 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:55:23,054 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:55:23,054 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:55:24,014 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:55:24,014 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:55:25,133 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:55:25,133 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:55:26,190 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:55:26,190 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:55:28,233 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:55:28,233 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:55:29,288 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:55:29,288 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:55:30,446 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:55:30,446 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:55:31,497 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:55:31,497 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:55:32,252 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:55:32,252 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:55:33,300 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:55:33,300 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:55:34,456 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:55:34,456 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:55:35,412 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:55:35,412 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:55:36,262 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:55:36,262 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:55:37,221 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:55:37,222 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:55:38,475 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:55:38,475 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:55:40,020 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:55:40,021 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:55:41,173 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:55:41,173 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:55:42,199 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:55:42,199 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:55:43,249 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:55:43,249 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:55:44,178 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:55:44,178 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:55:45,233 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:55:45,233 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:55:46,386 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:55:46,386 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:55:47,433 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:55:47,434 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:55:48,292 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:55:48,292 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:55:49,241 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:55:49,242 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:55:50,495 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:55:50,496 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:55:51,346 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:55:51,346 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:55:52,206 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:55:52,206 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:55:53,453 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:55:53,454 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:55:54,406 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:55:54,406 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:55:55,362 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:55:55,362 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:55:56,417 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:55:56,417 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:55:57,476 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:55:57,476 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:55:58,297 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:55:58,297 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:55:59,053 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:55:59,053 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:56:00,272 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:56:00,272 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:56:01,231 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:56:01,232 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:56:03,274 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:56:03,274 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:56:04,036 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:56:04,036 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:56:05,088 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:56:05,088 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:56:06,205 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:56:06,205 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:56:07,263 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:56:07,263 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:56:08,518 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:56:08,518 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:56:09,469 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:56:09,469 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:56:10,330 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:56:10,330 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:56:11,282 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:56:11,282 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:56:12,431 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:56:12,432 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:56:13,385 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:56:13,386 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
+2026-08-20 22:56:14,240 - gpsd_manager - INFO - [Converter] GPSPrint: Parsed ZED data, has_gps_time=True
+2026-08-20 22:56:14,241 - gpsd_manager - INFO - [Converter] GPSPrint: Returning parsed result
