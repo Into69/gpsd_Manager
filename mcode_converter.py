@@ -8,7 +8,7 @@ import serial
 import socket
 import sys
 import time
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
 
@@ -28,8 +28,8 @@ def gps_time_to_datetime(gps_week: int, tow_seconds: float) -> datetime:
     # Convert to Unix timestamp
     unix_timestamp = GPS_EPOCH_UNIX + total_seconds
 
-    # Convert to datetime
-    return datetime.utcfromtimestamp(unix_timestamp)
+    # Convert to datetime (using timezone-aware UTC to avoid deprecation warning)
+    return datetime.fromtimestamp(unix_timestamp, tz=timezone.utc).replace(tzinfo=None)
 
 
 class MCodeParser:
