@@ -644,8 +644,11 @@ class MCODEConverterManager:
 
     def start(self, serial_port: str, baudrate: int = 9600) -> tuple[bool, str]:
         """Start the MCODE converter."""
-        if self.process is not None:
-            return False, "Converter already running"
+        # Stop existing converter if running (e.g., when switching parser format)
+        if self.process is not None and self.process.poll() is None:
+            logger.info("Stopping existing converter before starting new one")
+            self.stop()
+            time.sleep(0.5)  # Give it time to stop
 
         self.errors.clear()
 
