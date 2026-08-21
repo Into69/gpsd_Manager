@@ -811,16 +811,19 @@ class MCODEConverterManager:
             return False, "Converter not running"
 
         try:
+            pid = self.process.pid
             self.process.terminate()
             try:
                 self.process.wait(timeout=5)
+                logger.info(f"Converter process {pid} terminated gracefully")
             except subprocess.TimeoutExpired:
+                logger.warning(f"Converter process {pid} didn't stop, force killing")
                 self.process.kill()
                 self.process.wait()
+                logger.info(f"Converter process {pid} force killed")
 
-            self.process = None
+            # Note: Keep self.process reference so start() can detect stale processes
             self.device_path = None
-
             return True, "MCODE converter stopped"
         except Exception as e:
             self.errors.append(str(e))
