@@ -642,6 +642,8 @@ async function refreshMCodeStatus() {
         if (data.debug) {
             if (debugDiv) {
                 debugDiv.style.display = 'block';
+                debugDiv.style.visibility = 'visible';
+                console.log('Debug div shown, data exists:', Object.keys(data.debug).length, 'keys');
             } else {
                 console.error('mcode-debug element not found');
             }
