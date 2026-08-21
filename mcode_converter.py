@@ -425,10 +425,16 @@ class MCODEConverter:
     def _write_debug_info(self, raw_line: str, parsed: dict, nmea_gga: str, nmea_rmc: str):
         """Write debug info to JSON file."""
         try:
+            # Make a copy of parsed_fields and convert non-JSON-serializable types
+            serializable_fields = dict(parsed)
+            if "timestamp" in serializable_fields and isinstance(serializable_fields["timestamp"], datetime):
+                # Convert datetime to ISO format string for JSON
+                serializable_fields["timestamp"] = serializable_fields["timestamp"].isoformat()
+
             debug_info = {
                 "timestamp": datetime.now().isoformat(),
                 "raw_mcode": raw_line,
-                "parsed_fields": parsed,
+                "parsed_fields": serializable_fields,
                 "nmea_gga": nmea_gga.strip(),
                 "nmea_rmc": nmea_rmc.strip(),
                 "serial_data_buffer": self.serial_data_lines[-100:],  # Include last 100 lines for performance
