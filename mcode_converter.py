@@ -146,11 +146,9 @@ class GPSPrintParser:
                         'sv': int(sv_match.group(1)) if sv_match else 0,
                         'raw_line': line,
                     }
-                    print(f"GPSPrint: Parsed ZED data, has_gps_time={bool(self.gps_time_data)}", file=sys.stderr)
 
                     # If we have both GPS time and ZED data, return the parsed result
                     if self.gps_time_data and self.zed_data:
-                        print(f"GPSPrint: Returning parsed result", file=sys.stderr)
                         parsed = self._parse_complete()
 
         return parsed
