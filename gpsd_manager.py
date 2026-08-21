@@ -27,7 +27,7 @@ IS_LINUX = platform.system() == "Linux"
 # Setup logging to file in same directory as this script
 log_file = str(Path(__file__).parent / "gpsd_manager.log")
 logging.basicConfig(
-    level=logging.DEBUG,
+    level=logging.INFO,
     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
     handlers=[
         logging.FileHandler(log_file),
@@ -35,6 +35,9 @@ logging.basicConfig(
     ]
 )
 logger = logging.getLogger(__name__)
+# Suppress debug messages from watchfiles (file monitor) and asyncio
+logging.getLogger('watchfiles').setLevel(logging.WARNING)
+logging.getLogger('asyncio').setLevel(logging.WARNING)
 
 
 # ---------------------------------------------------------------------------
