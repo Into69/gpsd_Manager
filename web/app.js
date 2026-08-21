@@ -630,6 +630,7 @@ async function refreshMCodeStatus() {
         statusEl.textContent = 'Enabled';
         startBtn.disabled = true;
         stopBtn.disabled = false;
+        document.getElementById('mcode-parser-type').disabled = true;
         errorsDiv.style.display = 'none';
 
         // Show "Clear All Devices" button when custom GPS is enabled
@@ -805,6 +806,7 @@ async function refreshMCodeStatus() {
         statusEl.textContent = 'Disabled';
         startBtn.disabled = false;
         stopBtn.disabled = true;
+        document.getElementById('mcode-parser-type').disabled = false;
         addBtn.disabled = true;
         addBtn.style.display = 'none';
         gpsdRow.style.display = 'none';
