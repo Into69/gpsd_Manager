@@ -24,8 +24,8 @@ from fastapi.templating import Jinja2Templates
 IS_WINDOWS = platform.system() == "Windows"
 IS_LINUX = platform.system() == "Linux"
 
-# Setup logging to file
-log_file = str(Path(tempfile.gettempdir()) / "gpsd_manager.log")
+# Setup logging to file in same directory as this script
+log_file = str(Path(__file__).parent / "gpsd_manager.log")
 logging.basicConfig(
     level=logging.DEBUG,
     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
