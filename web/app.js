@@ -832,6 +832,7 @@ async function refreshMCodeStatus() {
 async function startMCodeConverter() {
     const port = document.getElementById('mcode-port').value;
     const baudrate = parseInt(document.getElementById('mcode-baudrate').value);
+    const parserType = document.getElementById('mcode-parser-type').value;
 
     const btn = document.getElementById('mcode-start-btn');
     btn.disabled = true;
@@ -839,6 +840,9 @@ async function startMCodeConverter() {
     btn.innerHTML = '<span class="spinner"></span>Enabling...';
 
     try {
+        // Save parser type first, then start converter
+        await api('POST', 'converter/config', { parser_type: parserType });
+
         const data = await api('POST', 'converter/start', { port, baudrate });
         toast(data.message, data.success ? 'success' : 'error');
         setTimeout(refreshMCodeStatus, 500);
