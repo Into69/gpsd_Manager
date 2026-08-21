@@ -645,23 +645,27 @@ class MCODEConverterManager:
     def start(self, serial_port: str, baudrate: int = 9600) -> tuple[bool, str]:
         """Start the MCODE converter."""
         # Ensure any existing converter is fully stopped before starting new one
+        logger.info(f"start() called: process={self.process is not None}, parser_type={self.parser_type}")
         if self.process is not None:
             running = self.process.poll() is None
+            logger.info(f"Existing process check: running={running}, pid={self.process.pid if running else 'dead'}")
             if running:
                 logger.info(f"Stopping existing converter process (PID {self.process.pid})")
                 self.stop()
                 # Wait up to 2 seconds for it to terminate
                 for i in range(20):
                     time.sleep(0.1)
-                    if self.process.poll() is not None:
-                        logger.info("Converter stopped successfully")
+                    status = self.process.poll()
+                    if status is not None:
+                        logger.info(f"Converter stopped successfully (exit code {status})")
                         break
                 else:
                     # If still running, force kill
-                    logger.warning("Converter didn't stop, force killing")
+                    logger.warning("Converter didn't stop gracefully, force killing")
                     try:
                         self.process.kill()
                         self.process.wait(timeout=1)
+                        logger.info("Converter force-killed")
                     except Exception as e:
                         logger.error(f"Error force-killing converter: {e}")
             self.process = None
@@ -685,7 +689,8 @@ class MCODEConverterManager:
                 "--parser", self.parser_type,
             ]
 
-            logger.info(f"Starting converter: {' '.join(cmd)}")
+            logger.info(f"Starting new converter with parser_type={self.parser_type}")
+            logger.debug(f"Command: {' '.join(cmd)}")
 
             self.process = subprocess.Popen(
                 cmd,
