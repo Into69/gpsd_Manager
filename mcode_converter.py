@@ -324,11 +324,11 @@ class MCODEConverter:
         # Send enable/disable commands to the device
         try:
             if self.parser_type == "gps_print":
-                enable_cmd = "gps print enable\n"
-                disable_cmd = "mcode atak disable\n"
+                enable_cmd = "gps print enable\r\n"
+                disable_cmd = "mcode atak disable\r\n"
             else:
-                enable_cmd = "mcode atak enable\n"
-                disable_cmd = "gps print disable\n"
+                enable_cmd = "mcode atak enable\r\n"
+                disable_cmd = "gps print disable\r\n"
 
             # Send disable command first to ensure clean state
             ser.write(disable_cmd.encode("utf-8"))
