@@ -745,7 +745,7 @@ async function refreshMCodeStatus() {
                     document.getElementById('mcode-datetime').textContent = datetimeVal;
 
                     // Fix quality
-                    const fixMap = { 0: 'In Progress', 1: '2D Fix', 2: '3D Fix' };
+                    const fixMap = { 0: 'Acquiring', 1: '2D Fix', 2: '3D Fix' };
                     let fixVal = '--';
                     if (parsed.fix_quality !== undefined) {
                         if (parsed.fix_quality in fixMap) {
