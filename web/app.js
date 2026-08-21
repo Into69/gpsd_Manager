@@ -847,9 +847,7 @@ async function startMCodeConverter() {
         updateSerialDisplay();
 
         // Save parser type first, then start converter
-        console.log(`Saving parser_type: ${parserType}`);
-        const configResp = await api('POST', 'converter/config', { parser_type: parserType });
-        console.log(`Config response:`, configResp);
+        await api('POST', 'converter/config', { parser_type: parserType });
 
         const data = await api('POST', 'converter/start', { port, baudrate });
         toast(data.message, data.success ? 'success' : 'error');

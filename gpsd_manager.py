@@ -668,8 +668,7 @@ class MCODEConverterManager:
                 "--parser", self.parser_type,
             ]
 
-            logger.info(f"Starting converter with parser_type={self.parser_type}")
-            logger.info(f"Command: {' '.join(cmd)}")
+            logger.info(f"Starting converter: {' '.join(cmd)}")
 
             self.process = subprocess.Popen(
                 cmd,
@@ -851,19 +850,10 @@ class MCODEConverterManager:
         debug_file = Path(tempfile.gettempdir()) / "mcode_debug.json"
         try:
             if debug_file.exists():
-                content = debug_file.read_text()
-                if not content.strip():
-                    logger.debug(f"Debug file is empty")
-                    return None
-                data = json.loads(content)
-                logger.debug(f"Read debug file OK: {len(data)} keys, parsed={len(data.get('parsed_fields', {}))} items, raw_data len={len(data.get('raw_mcode', ''))}")
+                data = json.loads(debug_file.read_text())
                 return data
-            else:
-                logger.debug(f"Debug file does not exist: {debug_file}")
-        except json.JSONDecodeError as e:
-            logger.error(f"JSON decode error at pos {e.pos}: {e.msg} - file may still be writing")
-        except OSError as e:
-            logger.error(f"File read error: {e}")
+        except (OSError, json.JSONDecodeError):
+            pass
         return None
 
     def _is_device_in_gpsd_config(self) -> bool:
@@ -1299,10 +1289,8 @@ async def api_set_converter_config(request: Request):
     """Update MCODE converter configuration."""
     data = await request.json()
     if "parser_type" in data:
-        logger.info(f"Setting parser_type to: {data['parser_type']}")
         converter_manager.parser_type = data["parser_type"]
         converter_manager._save_config()
-        logger.info(f"Parser type now: {converter_manager.parser_type}")
     return {"success": True, "parser_type": converter_manager.parser_type}
 
 

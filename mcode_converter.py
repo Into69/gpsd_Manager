@@ -372,7 +372,6 @@ class MCODEConverter:
 
                             # Store raw data for debugging
                             self._write_debug_info(data, parsed, gga, rmc)
-                            print(f"[{self.parser_type}] Wrote debug info, buffer has {len(self.serial_data_lines)} lines", file=sys.stderr)
 
                             # Send to all connected TCP clients
                             self._send_to_clients(gga)
@@ -439,8 +438,8 @@ class MCODEConverter:
             with open(temp_file, "w") as f:
                 json.dump(debug_info, f, indent=2)
             os.replace(temp_file, self.debug_file)
-        except Exception as e:
-            print(f"Error writing debug file: {e}", file=sys.stderr)
+        except Exception:
+            pass  # Silently ignore debug write errors
 
     def _start_tcp_server(self):
         """Start TCP server to accept GPSD connections."""
