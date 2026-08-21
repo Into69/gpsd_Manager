@@ -327,18 +327,28 @@ class MCODEConverter:
             print(f"Failed to open {self.port}: {e}", file=sys.stderr)
             return
 
-        # Send enable command to the device
+        # Send enable/disable commands to the device
         try:
             if self.parser_type == "gps_print":
                 enable_cmd = "gps print enable\n"
+                disable_cmd = "mcode atak disable\n"
             else:
                 enable_cmd = "mcode atak enable\n"
+                disable_cmd = "gps print disable\n"
+
+            # Send disable command first to ensure clean state
+            ser.write(disable_cmd.encode("utf-8"))
+            ser.flush()
+            print(f"Sent disable command: {disable_cmd.strip()}", file=sys.stderr)
+            time.sleep(0.2)
+
+            # Then send enable command
             ser.write(enable_cmd.encode("utf-8"))
             ser.flush()
             print(f"Sent enable command: {enable_cmd.strip()}", file=sys.stderr)
             time.sleep(0.5)
         except Exception as e:
-            print(f"Warning: Failed to send enable command: {e}", file=sys.stderr)
+            print(f"Warning: Failed to send setup commands: {e}", file=sys.stderr)
 
         # Start TCP server
         self._start_tcp_server()
