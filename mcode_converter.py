@@ -181,7 +181,7 @@ class GPSPrintParser:
                 "week": self.gps_time_data.get('week'),
                 "tow": self.gps_time_data.get('tow'),
                 "hdop": self.zed_data.get('hdop'),
-                "fix_quality": self.zed_data.get('fix'),  # 0=2d fix, 1=3d fix, etc
+                "fix_quality": self.zed_data.get('fix'),  # 0=in progress, 1=2D fix, 2=3D fix
                 "satellites_used": self.zed_data.get('sv'),
             }
             return result
