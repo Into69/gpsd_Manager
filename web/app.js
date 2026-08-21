@@ -774,6 +774,11 @@ async function refreshMCodeStatus() {
                         posVal = `${latAbs}° ${latDir}, ${lonAbs}° ${lonDir}`;
                     }
                     document.getElementById('mcode-position').textContent = posVal;
+
+                    // Display MGRS if available
+                    if (parsed.mgrs) {
+                        document.getElementById('mcode-mgrs').textContent = parsed.mgrs;
+                    }
                 } else {
                     qualityDiv.style.display = 'none';
                 }

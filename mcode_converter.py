@@ -38,10 +38,17 @@ class MCodeParser:
     def __init__(self):
         self.buffer = ""
         self.current_mcode = {}
+        self.latest_settings = {}  # Store latest MCODESETTINGS data
 
     def feed(self, data: str) -> dict | None:
         """Feed data and return parsed MCODE dict when complete, or None."""
         self.buffer += data
+
+        # Look for MCODESETTINGS lines first (they contain MGRS data)
+        settings_match = re.search(r'\$MCODESETTINGS1/2,(.+?)(?=\$|$)', self.buffer)
+        if settings_match:
+            settings_data = settings_match.group(1).rstrip()
+            self.latest_settings = self._parse_settings(settings_data)
 
         # Look for complete MCODE sentences (multi-part)
         # Pattern: $MCODE1/2 or $MCODE2/2
@@ -65,6 +72,19 @@ class MCodeParser:
 
         return None
 
+    def _parse_settings(self, data: str) -> dict:
+        """Parse MCODESETTINGS1/2 line to extract MGRS and satellite data."""
+        try:
+            fields = data.split(",")
+            if len(fields) >= 2:
+                return {
+                    "mgrs": fields[0].strip(),  # e.g., "18T UR 93545 31979"
+                    "satellites": int(fields[8]) if len(fields) > 8 else None,
+                }
+        except (ValueError, IndexError):
+            pass
+        return {}
+
     def _parse_complete(self) -> dict | None:
         """Parse complete MCODE data from all parts."""
         try:
@@ -82,6 +102,13 @@ class MCodeParser:
                 "alt": float(fields[2]),
                 "speed_ms": float(fields[3]) if len(fields) > 3 else 0,
             }
+
+            # Add MGRS data if available from latest MCODESETTINGS
+            if self.latest_settings:
+                if "mgrs" in self.latest_settings:
+                    result["mgrs"] = self.latest_settings["mgrs"]
+                if "satellites" in self.latest_settings:
+                    result["satellites_used"] = self.latest_settings["satellites"]
 
             self.current_mcode.clear()
             return result
