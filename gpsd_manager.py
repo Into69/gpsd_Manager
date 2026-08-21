@@ -668,7 +668,8 @@ class MCODEConverterManager:
                 "--parser", self.parser_type,
             ]
 
-            logger.info(f"Starting converter: {' '.join(cmd)}")
+            logger.info(f"Starting converter with parser_type={self.parser_type}")
+            logger.info(f"Command: {' '.join(cmd)}")
 
             self.process = subprocess.Popen(
                 cmd,
@@ -1298,8 +1299,10 @@ async def api_set_converter_config(request: Request):
     """Update MCODE converter configuration."""
     data = await request.json()
     if "parser_type" in data:
+        logger.info(f"Setting parser_type to: {data['parser_type']}")
         converter_manager.parser_type = data["parser_type"]
         converter_manager._save_config()
+        logger.info(f"Parser type now: {converter_manager.parser_type}")
     return {"success": True, "parser_type": converter_manager.parser_type}
 
 
