@@ -655,6 +655,8 @@ class MCODEConverterManager:
                 "--parser", self.parser_type,
             ]
 
+            logger.info(f"Starting converter: {' '.join(cmd)}")
+
             self.process = subprocess.Popen(
                 cmd,
                 stdout=subprocess.PIPE,
@@ -663,6 +665,7 @@ class MCODEConverterManager:
             )
 
             self.device_path = "tcp://127.0.0.1:2948"
+            logger.info(f"Converter process started with PID {self.process.pid}")
 
             # Give it a moment to start
             time.sleep(0.5)
@@ -674,12 +677,18 @@ class MCODEConverterManager:
             if self.process.poll() is not None:
                 # Process has exited - try to get error message
                 try:
-                    _, stderr = self.process.communicate(timeout=1)
-                    error_msg = stderr.strip() if stderr else "Unknown error"
+                    stdout_data, stderr_data = self.process.communicate(timeout=1)
+                    error_msg = stderr_data.strip() if stderr_data else "Unknown error"
+                    logger.error(f"Converter process died. stderr: {error_msg}")
+                    if stdout_data:
+                        logger.error(f"stdout: {stdout_data}")
                 except subprocess.TimeoutExpired:
                     error_msg = "Process startup timeout"
+                    logger.error(error_msg)
                 self.process = None
                 return False, f"Converter failed to start: {error_msg}"
+
+            logger.info(f"Converter running on port 2948 for {self.parser_type} format")
 
             # Auto-add to GPSD on Linux
             if IS_LINUX:
