@@ -644,11 +644,28 @@ class MCODEConverterManager:
 
     def start(self, serial_port: str, baudrate: int = 9600) -> tuple[bool, str]:
         """Start the MCODE converter."""
-        # Stop existing converter if running (e.g., when switching parser format)
-        if self.process is not None and self.process.poll() is None:
-            logger.info("Stopping existing converter before starting new one")
-            self.stop()
-            time.sleep(0.5)  # Give it time to stop
+        # Ensure any existing converter is fully stopped before starting new one
+        if self.process is not None:
+            running = self.process.poll() is None
+            if running:
+                logger.info(f"Stopping existing converter process (PID {self.process.pid})")
+                self.stop()
+                # Wait up to 2 seconds for it to terminate
+                for i in range(20):
+                    time.sleep(0.1)
+                    if self.process.poll() is not None:
+                        logger.info("Converter stopped successfully")
+                        break
+                else:
+                    # If still running, force kill
+                    logger.warning("Converter didn't stop, force killing")
+                    try:
+                        self.process.kill()
+                        self.process.wait(timeout=1)
+                    except Exception as e:
+                        logger.error(f"Error force-killing converter: {e}")
+            self.process = None
+            self.device_path = None
 
         self.errors.clear()
 
